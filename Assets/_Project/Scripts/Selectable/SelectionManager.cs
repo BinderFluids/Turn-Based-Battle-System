@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -36,11 +37,11 @@ public class SelectionManager : Singleton<SelectionManager>
         else
             currentHighlighter = highlighter;
         
-        currentHighlighter.Activate();
-        
         active = true; 
         activeItems = items; 
         selectionCount = index;
+        
+        currentHighlighter.Activate();
         CurrentItem.Value = activeItems[selectionCount];
     }
 
@@ -80,10 +81,19 @@ public class SelectionManager : Singleton<SelectionManager>
 
     void NavigateSelectables()
     {
-        if (Input.GetKeyDown(KeyCode.D)) selectionCount++;
-        if (Input.GetKeyDown(KeyCode.A)) selectionCount--; 
+        if (Input.GetKeyDown(KeyCode.D)) ShiftSelection(1);
+        if (Input.GetKeyDown(KeyCode.A)) ShiftSelection(-1); 
+    }
+
+    private UniTask currentHighlighterTask; 
+    void ShiftSelection(int shift)
+    {
+        //if (currentHighlighterTask.Status == UniTaskStatus.Pending) return;
         
+        selectionCount += shift; 
         var index = GetTrueIndex(selectionCount, activeItems);
         CurrentItem.Value = activeItems[index];
+
+        //currentHighlighterTask = currentHighlighter.GetHighlightTask();
     }
 }

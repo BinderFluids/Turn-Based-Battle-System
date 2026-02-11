@@ -6,12 +6,21 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Registry;
 
+public enum PhysicalBattleEntityModifier
+{
+    Flying,
+    SpikyTop,
+    Underground,
+    None
+}
+
 public class BattleEntity : MonoBehaviour, ISelectable
 {
     public int Strength;
     public int Speed;
     private bool isActive;
     public bool IsActive => isActive;
+    public PhysicalBattleEntityModifier physicalBattleEntityModifier;
 
     [SerializeField] public Vector3 topPosition;
     
@@ -60,13 +69,15 @@ public class BattleEntity : MonoBehaviour, ISelectable
         try
         {
             BattleEntity target = await targetSelectionStrategyRef.Value
-                .GetEntity(this, targetSelectionCancellationTokenSource.Token);
+                .GetEntity(this, action, targetSelectionCancellationTokenSource.Token);
             
             action.Strategy(this, target).Forget();
         }
         catch (OperationCanceledException e)
         {
             Debug.Log($"Target selection for {gameObject.name} was cancelled");
+            isActive = false;
+            StartTurn();
         }
     }
     

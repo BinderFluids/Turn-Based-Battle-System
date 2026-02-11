@@ -15,6 +15,7 @@ public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
     private bool eventTriggered; 
     private EventBinding<SelectableChosenEvent> chosenEventBinding;
     private SelectableChosenEvent chosenEvent;
+    [SerializeField] private List<PhysicalBattleEntityModifier> modifiers;
 
     void OnSelectableChosenEventRaised(SelectableChosenEvent e)
     {
@@ -22,7 +23,7 @@ public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
         chosenEvent = e;
     }
     
-    public override async UniTask<BattleEntity> GetEntity(BattleEntity actor, CancellationToken ct)
+    public override async UniTask<BattleEntity> GetEntity(BattleEntity actor, IBattleAction action, CancellationToken ct)
     {
         if (chosenEventBinding == null)
             chosenEventBinding = new EventBinding<SelectableChosenEvent>(OnSelectableChosenEventRaised);
@@ -31,15 +32,14 @@ public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
 
         //Create list of selectable entities
         List<ISelectable> entitiesAsSelectables = new();
-        Registry<BattleEntity>
-            .All
-            .Where(e => e != actor)
-            .ForEach(e => entitiesAsSelectables.Add(e));
+        action.GetValidTargets(actor).ForEach(e => entitiesAsSelectables.Add(e as ISelectable));
         SelectionManager.Instance.StartSelection(entitiesAsSelectables);
         
+        //Wait for SelectionManager to make a selection
         eventTriggered = false;
         while (!eventTriggered)
         {
+            //Throw cancellation exception if Z is pressed
             if (Input.GetKeyDown(KeyCode.Z))
                 actor.CancelTargetSelection();
 
@@ -49,7 +49,6 @@ public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
                 
                 SelectionManager.Instance.EndSelection();
                 EventBus<SelectableChosenEvent>.Deregister(chosenEventBinding);
-                actor.StartTurn().Forget(); 
                 
                 ct.ThrowIfCancellationRequested();
                 return null;

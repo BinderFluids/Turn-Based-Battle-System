@@ -12,3 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31ffbc6abf740bebd32cfc113fe6387, type: 3}
   m_Name: Jump
   m_EditorClassIdentifier: 
+  forbiddenModifiers: 0100000002000000
+  duration: 1
+  jumpHeight: 3
+  miniumAboveEnemy: 3
+  jumpSegmentDistribution: 0.405
+  jumpRiseEase: 18
+  jumpFallEase: 17
+  horizontalMovementEase: 0
