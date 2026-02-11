@@ -36,8 +36,9 @@ public class BattleActionWheel : MonoBehaviour, IBattleActionSelectionStrategy
             )); 
         
         await UniTask.WaitUntil(() => eventTriggered);
-        eventTriggered = false; 
-        
+        eventTriggered = false;
+
+        ActivateItems(false); 
         EventBus<SelectableChosenEvent>.Deregister(chosenItemBinding); 
         
         return selectedItem.Action;
@@ -46,9 +47,6 @@ public class BattleActionWheel : MonoBehaviour, IBattleActionSelectionStrategy
     void ActivateItems(bool active = true)
     {
         foreach (var item in items)
-        {
             item.gameObject.SetActive(active); 
-            
-        }
     }
 }

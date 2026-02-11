@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8655964225799357595}
+  - component: {fileID: 3168407468696385733}
   - component: {fileID: 5096844507003226977}
   - component: {fileID: 5927189457270778855}
   - component: {fileID: 9131098203372662490}
-  - component: {fileID: 3168407468696385733}
   - component: {fileID: 8375349048879979830}
   m_Layer: 0
   m_Name: Battle Entity
@@ -36,6 +36,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3168407468696385733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8336961009638053909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644da525316aa891e83a6e22c4c4135a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Strength: 1
+  Speed: 0
+  topPosition: {x: 0, y: 0, z: 0}
+  healthComponent: {fileID: 8375349048879979830}
+  actionsRef:
+  - underlyingValue: {fileID: 11400000, guid: de1125fe147ab9359b56592f2baab9a7, type: 2}
+  actionSelectionStrategyRef:
+    underlyingValue: {fileID: 11400000, guid: 4f7fdeed4a019a5abbf3d393a55d621d, type: 2}
+  targetSelectionStrategyRef:
+    underlyingValue: {fileID: 0}
 --- !u!33 &5096844507003226977
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -110,25 +132,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3168407468696385733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8336961009638053909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 644da525316aa891e83a6e22c4c4135a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength: 1
-  Speed: 0
-  healthComponent: {fileID: 8375349048879979830}
-  actionsRef:
-  - underlyingValue: {fileID: 11400000, guid: de1125fe147ab9359b56592f2baab9a7, type: 2}
-  actionSelectionStrategyRef:
-    underlyingValue: {fileID: 11400000, guid: 4f7fdeed4a019a5abbf3d393a55d621d, type: 2}
 --- !u!114 &8375349048879979830
 MonoBehaviour:
   m_ObjectHideFlags: 0

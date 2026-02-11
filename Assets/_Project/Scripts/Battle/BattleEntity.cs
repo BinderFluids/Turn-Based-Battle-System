@@ -10,6 +10,8 @@ public class BattleEntity : MonoBehaviour, ISelectable
 {
     public int Strength;
     public int Speed;
+    private bool isActive;
+    public bool IsActive => isActive;
 
     [SerializeField] public Vector3 topPosition;
     
@@ -31,10 +33,19 @@ public class BattleEntity : MonoBehaviour, ISelectable
 
     public async UniTaskVoid StartTurn()
     {
+        if (Registry<BattleEntity>.All.Count(e => e.IsActive) > 0)
+        {
+            Debug.LogWarning($"{gameObject.name} tried to start a turn while another is active");
+            return; 
+        }
+
+        isActive = true;
         Debug.Log($"Starting turn for {gameObject.name}");
 
         IBattleAction action = await AwaitActionSelection();
-        AwaitTargetSelection(action).Forget(); 
+        await AwaitTargetSelection(action);
+        
+        isActive = false;
     }
 
     async UniTask<IBattleAction> AwaitActionSelection()
@@ -43,7 +54,7 @@ public class BattleEntity : MonoBehaviour, ISelectable
             .GetAction(actions);
     }
 
-    async UniTaskVoid AwaitTargetSelection(IBattleAction action)
+    async UniTask AwaitTargetSelection(IBattleAction action)
     {
         targetSelectionCancellationTokenSource = new CancellationTokenSource();
         try
@@ -76,10 +87,5 @@ public class BattleEntity : MonoBehaviour, ISelectable
     public void Select()
     {
         //throw new NotImplementedException();
-    }
-    public void OnHover(bool isHovering)
-    {
-        if (!isHovering) return;
-        Debug.Log($"Hovering {gameObject.name}");
     }
 }

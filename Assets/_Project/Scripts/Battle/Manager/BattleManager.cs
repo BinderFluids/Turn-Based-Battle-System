@@ -8,10 +8,17 @@ using System.Linq;
 public class BattleManager : Singleton<BattleManager>
 {
     private int turnNumber = -1;
-    private List<BattleEntity> turnSortedEntities = new();
+    [SerializeField] private List<BattleEntity> turnSortedEntities = new();
     private EventBinding<NextTurnEvent> nextTurnBinding;
+    [SerializeField] private bool manageBattle;
 
     private void Start()
+    {
+        if (manageBattle)
+            StartBattle();
+    }
+
+    private void StartBattle()
     {
         Registry<BattleEntity>._onItemAddedNoArgs += SetSortedTurns;
 
@@ -26,7 +33,7 @@ public class BattleManager : Singleton<BattleManager>
     {
         turnSortedEntities = Registry<BattleEntity>
             .All
-            .OrderBy(e => e.Speed)
+            .OrderBy(e => 1f / e.Speed)
             .ToList();
     }
     

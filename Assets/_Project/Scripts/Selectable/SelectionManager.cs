@@ -10,10 +10,12 @@ public class SelectionManager : Singleton<SelectionManager>
     [SerializeField] private int selectionCount;
     
     private List<ISelectable> activeItems;
+    public Observer<ISelectable> CurrentItem = new Observer<ISelectable>(null); 
+    private bool active = false;
 
-    public Observer<ISelectable> CurrentItem; 
-    private bool active = false; 
-
+    [SerializeField] private SelectionHighlighter defaultHighligher;
+    [SerializeField] private SelectionHighlighter currentHighlighter; 
+    
     int GetTrueIndex(int index, List<ISelectable> items)
     {
         if (items.Count == 0) return 0; 
@@ -21,7 +23,7 @@ public class SelectionManager : Singleton<SelectionManager>
         return newIndex;
     }
     
-    public void StartSelection(List<ISelectable> items, int index = 0)
+    public void StartSelection(List<ISelectable> items, int index = 0, SelectionHighlighter highlighter = null)
     {
         if (active)
         {
@@ -29,6 +31,13 @@ public class SelectionManager : Singleton<SelectionManager>
             return; 
         }
 
+        if (highlighter == null)
+            currentHighlighter = defaultHighligher;
+        else
+            currentHighlighter = highlighter;
+        
+        currentHighlighter.Activate();
+        
         active = true; 
         activeItems = items; 
         selectionCount = index;
@@ -43,6 +52,9 @@ public class SelectionManager : Singleton<SelectionManager>
             return;
         }
 
+        currentHighlighter.Deactivate();
+        currentHighlighter = null; 
+        
         active = false; 
         activeItems.Clear();
     }
@@ -64,21 +76,13 @@ public class SelectionManager : Singleton<SelectionManager>
             ); 
             EndSelection();
         }
-        
     }
 
     void NavigateSelectables()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            ISelectable previousItem = CurrentItem.Value;
-            selectionCount++;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            ISelectable previousItem = CurrentItem.Value;
-            selectionCount--;
-        }
+        if (Input.GetKeyDown(KeyCode.D)) selectionCount++;
+        if (Input.GetKeyDown(KeyCode.A)) selectionCount--; 
+        
         var index = GetTrueIndex(selectionCount, activeItems);
         CurrentItem.Value = activeItems[index];
     }
