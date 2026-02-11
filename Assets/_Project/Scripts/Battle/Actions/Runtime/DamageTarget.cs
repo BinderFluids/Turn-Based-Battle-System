@@ -18,9 +18,4 @@ public class DamageTarget : ScriptableBattleAction
 
         NextTurn(actor); 
     }
-
-    public override List<BattleEntity> GetValidTargets(BattleEntity actor1)
-    {
-        return Registry<BattleEntity>.All.Where(e => !e.IsActive).ToList(); 
-    }
 }

@@ -1,11 +1,8 @@
 using UnityEngine;
 
 
-    public class NestedAsset : ScriptableObject
+    public abstract class NestedAsset : ScriptableObject
     {
-        [SerializeField, Delayed, HideInInspector] private string _editorName = nameof(NestedAsset);
+        public abstract string GetNestedAssetName();
 
-#if UNITY_EDITOR
-        public static string editor_name_prop_name = nameof(_editorName);
-#endif
     }

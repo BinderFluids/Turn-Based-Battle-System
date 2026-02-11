@@ -230,7 +230,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 3.85, y: 2.86, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -457,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: Modifier
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: topPosition.x
@@ -472,13 +472,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: physicalBattleEntityModifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: Actions.Array.data[0].underlyingValue
       value: 
-      objectReference: {fileID: 11400000, guid: de1125fe147ab9359b56592f2baab9a7, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: actionsRef.Array.data[0].underlyingValue
       value: 
-      objectReference: {fileID: 11400000, guid: 58b1ae9412b7192ec90c59fd5b5d84f8, type: 2}
+      objectReference: {fileID: 11400000, guid: de1125fe147ab9359b56592f2baab9a7, type: 2}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: targetSelectionStrategyRef.underlyingValue
       value: 
@@ -550,7 +558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: Modifier
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: topPosition.x
@@ -569,7 +577,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: physicalBattleEntityModifier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: Actions.Array.data[0].underlyingValue
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.data[0].underlyingValue
       value: 
       objectReference: {fileID: 11400000, guid: de1125fe147ab9359b56592f2baab9a7, type: 2}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
@@ -586,7 +606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8655964225799357595, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8655964225799357595, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: m_LocalPosition.y
@@ -980,7 +1000,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: physicalBattleEntityModifier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: Actions.Array.data[0].underlyingValue
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.data[0].underlyingValue
       value: 
       objectReference: {fileID: 11400000, guid: de1125fe147ab9359b56592f2baab9a7, type: 2}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
@@ -997,7 +1029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8655964225799357595, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8655964225799357595, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1246,9 +1278,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: physicalBattleEntityModifier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: Actions.Array.data[0].underlyingValue
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.data[0].underlyingValue
+      value: 
       objectReference: {fileID: 11400000, guid: de1125fe147ab9359b56592f2baab9a7, type: 2}
+    - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.data[1].underlyingValue
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3168407468696385733, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: actionSelectionStrategyRef.underlyingValue
       value: 

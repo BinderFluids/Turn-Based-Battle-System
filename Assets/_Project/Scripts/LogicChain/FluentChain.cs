@@ -5,8 +5,6 @@ public static class Chain
 {
     public static DistanceChain FromPlayer(Transform player) => new DistanceChain(new DistanceFromPlayer(player));
     public static DistanceChain Start(DistanceFromPlayer processor) => new DistanceChain(processor);
-    public static BattleEntityModifierFilterChain Start(BattleEntityModifierFilter processor) => new BattleEntityModifierFilterChain(processor);
-    
 }
 
 public abstract class FluentChain<TIn, TOut, TDerived> where TDerived : FluentChain<TIn, TOut, TDerived>

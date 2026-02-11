@@ -8,8 +8,6 @@ using Registry;
 [CreateAssetMenu(menuName = "Battle Action/Player/Jump", fileName = "Jump", order = 0)]
 public class Jump : ScriptableBattleAction
 {
-    [SerializeField] private List<PhysicalBattleEntityModifier> forbiddenModifiers; 
-    
     [SerializeField] private float duration;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float miniumAboveEnemy = 1f;
@@ -22,6 +20,7 @@ public class Jump : ScriptableBattleAction
     
     public override async UniTaskVoid Strategy(BattleEntity actor, BattleEntity target)
     {
+        Debug.Log("hit");
         Transform transform = actor.transform;
         Vector3 startPos = transform.position;
         float targetHeight = Mathf.Max(transform.position.y + jumpHeight, target.transform.position.y + miniumAboveEnemy); 
@@ -49,13 +48,5 @@ public class Jump : ScriptableBattleAction
         
         transform.position = startPos;
         NextTurn(actor); 
-    }
-
-    public override List<BattleEntity> GetValidTargets(BattleEntity actor)
-    {
-        return Chain<List<BattleEntity>, List<BattleEntity>>
-            .Start(new BattleEntityModifierFilter(forbiddenModifiers))
-            .Then(new BattleEntitySelfFilter(actor))
-            .Run(Registry<BattleEntity>.All.ToList());
     }
 }
