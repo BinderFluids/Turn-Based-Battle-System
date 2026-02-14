@@ -74,7 +74,7 @@ public class BattleEntity : MonoBehaviour, ISelectable
         print($"Selected target: {target}");
         
         targetSelectionStrategy.onEntitySelected -= OnTargetSelected; 
-        chosenAction.Strategy(this, target).Forget();
+        chosenAction.StartAction(this, target);
         chosenAction.onActionEnded += OnActionEnded;
     }
 
@@ -87,7 +87,8 @@ public class BattleEntity : MonoBehaviour, ISelectable
     
     public void CancelTargetSelection()
     {
-        Debug.Log($"Cancelling target selection for {gameObject.name}");
+        Debug.LogWarning("Cancel target selection currently does nothing!");
+        //Debug.Log($"Cancelling target selection for {gameObject.name}");
     }
 
     private void OnDestroy()

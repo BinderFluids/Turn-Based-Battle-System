@@ -9,7 +9,12 @@ public class DamageTarget : ScriptableBattleAction
 {
     private BattleEntity actor; 
     
-    public override async UniTaskVoid Strategy(BattleEntity actor, BattleEntity target)
+    public override void StartAction(BattleEntity actor, BattleEntity target)
+    {
+        Wait(actor, target).Forget();
+    }
+
+    async UniTaskVoid Wait(BattleEntity actor, BattleEntity target)
     {
         target.HealthComponent.ChangeHealth(-actor.Strength);
         Debug.Log($"{actor.name} damaged {target.name} for {actor.Strength}");
@@ -17,5 +22,6 @@ public class DamageTarget : ScriptableBattleAction
         await UniTask.WaitForSeconds(.5f);
 
         EndAction(actor); 
+        
     }
 }

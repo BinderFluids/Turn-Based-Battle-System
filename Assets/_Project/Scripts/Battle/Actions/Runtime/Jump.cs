@@ -18,7 +18,7 @@ public class Jump : ScriptableBattleAction
     [SerializeField] private Ease jumpFallEase;
     [SerializeField] private Ease horizontalMovementEase; 
     
-    public override async UniTaskVoid Strategy(BattleEntity actor, BattleEntity target)
+    public override void StartAction(BattleEntity actor, BattleEntity target)
     {
         Debug.Log("hit");
         Transform transform = actor.transform;
@@ -44,7 +44,12 @@ public class Jump : ScriptableBattleAction
             );
         Tween horizontalMovement = Tween.PositionX(transform, target.transform.position.x, duration, horizontalMovementEase);
 
-        await horizontalMovement;
+        AwaitTween(actor, transform, startPos, horizontalMovement).Forget(); 
+    }
+
+    async UniTaskVoid AwaitTween(BattleEntity actor, Transform transform, Vector3 startPos, Tween tween)
+    {
+        await tween;
         
         transform.position = startPos;
         EndAction(actor); 

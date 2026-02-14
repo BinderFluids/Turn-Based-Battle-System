@@ -9,9 +9,10 @@ public abstract class ScriptableBattleAction : NestedAssetParent, IBattleAction
     public event Action onActionStarted;
     public event Action onActionEnded;
     
-    public abstract UniTaskVoid Strategy(BattleEntity actor, BattleEntity target);
     public override Type nestedAssetChildType => typeof(BattleSelectionFilter);
 
+    
+    public abstract void StartAction(BattleEntity actor, BattleEntity target);
     protected void EndAction(BattleEntity actor)
     {
         onActionEnded?.Invoke();
