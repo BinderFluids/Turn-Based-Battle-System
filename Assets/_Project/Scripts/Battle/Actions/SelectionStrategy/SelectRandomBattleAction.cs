@@ -1,13 +1,19 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityUtils;
+using Random = UnityEngine.Random;
 
 
 [CreateAssetMenu(menuName = "Battle Action Selection Strategy/Random", fileName = "SelectRandomBattleAction", order = 0)]
 public class SelectRandomBattleAction : ScriptableObject, IBattleActionSelectionStrategy
 {
-    public async UniTask<IBattleAction> GetAction(List<IBattleAction> context)
+    public event Action<IBattleAction> onActionSelected;
+
+    public void GetAction(List<IBattleAction> context)
     {
-        return context[Random.Range(0, context.Count)];
+        Debug.Log($"Selecting random action from {context.Count} actions");
+        onActionSelected?.Invoke(context.Random());
     }
 }
