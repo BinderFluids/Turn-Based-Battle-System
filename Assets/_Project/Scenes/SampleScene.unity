@@ -955,7 +955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSortedEntities: []
-  manageBattle: 1
+  manageBattle: 0
 --- !u!4 &1584180567
 Transform:
   m_ObjectHideFlags: 0

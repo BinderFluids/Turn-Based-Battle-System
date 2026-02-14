@@ -16,6 +16,6 @@ public class DamageTarget : ScriptableBattleAction
 
         await UniTask.WaitForSeconds(.5f);
 
-        NextTurn(actor); 
+        EndAction(actor); 
     }
 }

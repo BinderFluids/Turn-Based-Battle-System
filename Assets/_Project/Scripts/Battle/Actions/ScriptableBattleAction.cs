@@ -6,11 +6,15 @@ using Registry;
 
 public abstract class ScriptableBattleAction : NestedAssetParent, IBattleAction
 {
+    public event Action onActionStarted;
+    public event Action onActionEnded;
+    
     public abstract UniTaskVoid Strategy(BattleEntity actor, BattleEntity target);
     public override Type nestedAssetChildType => typeof(BattleSelectionFilter);
 
-    protected void NextTurn(BattleEntity actor)
+    protected void EndAction(BattleEntity actor)
     {
+        onActionEnded?.Invoke();
         NextTurnEvent nextTurnEvent = new NextTurnEvent {previousActor = actor};
         EventBus<NextTurnEvent>.Raise(nextTurnEvent);
     }

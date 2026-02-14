@@ -47,6 +47,6 @@ public class Jump : ScriptableBattleAction
         await horizontalMovement;
         
         transform.position = startPos;
-        NextTurn(actor); 
+        EndAction(actor); 
     }
 }

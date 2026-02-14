@@ -29,11 +29,14 @@ public class BattleEntity : MonoBehaviour, ISelectable
 
     [SerializeField] private List<InterfaceReference<IBattleAction>> actionsRef;
     private List<IBattleAction> actions => actionsRef.Select(a => a.Value).ToList();
+    private IBattleAction chosenAction;
     
     [SerializeField] private InterfaceReference<IBattleActionSelectionStrategy> 
         actionSelectionStrategyRef;
     [SerializeField] private InterfaceReference<IBattleEntitySelectionStrategy> 
         targetSelectionStrategyRef;
+    IBattleActionSelectionStrategy actionSelectionStrategy => actionSelectionStrategyRef.Value;
+    IBattleEntitySelectionStrategy targetSelectionStrategy => targetSelectionStrategyRef.Value;
     
     void Awake()
     {
@@ -51,41 +54,40 @@ public class BattleEntity : MonoBehaviour, ISelectable
         isActive = true;
         Debug.Log($"Starting turn for {gameObject.name}");
 
-        IBattleAction action = await AwaitActionSelection();
-        await AwaitTargetSelection(action);
+        actionSelectionStrategy.onActionSelected += OnActionSelected;
+        actionSelectionStrategy.GetAction(actions);
+    }
+
+    void OnActionSelected(IBattleAction action)
+    {
+        print($"Selected action: {action}");
         
+        chosenAction = action;
+        actionSelectionStrategy.onActionSelected -= OnActionSelected;
+
+        targetSelectionStrategy.onEntitySelected += OnTargetSelected; 
+        targetSelectionStrategy.GetEntity(this, action); 
+    }
+
+    void OnTargetSelected(BattleEntity target)
+    {
+        print($"Selected target: {target}");
+        
+        targetSelectionStrategy.onEntitySelected -= OnTargetSelected; 
+        chosenAction.Strategy(this, target).Forget();
+        chosenAction.onActionEnded += OnActionEnded;
+    }
+
+    void OnActionEnded()
+    {
+        chosenAction.onActionEnded -= OnActionEnded;
         isActive = false;
     }
-
-    async UniTask<IBattleAction> AwaitActionSelection()
-    {
-        return await actionSelectionStrategyRef.Value
-            .GetAction(actions);
-    }
-
-    async UniTask AwaitTargetSelection(IBattleAction action)
-    {
-        targetSelectionCancellationTokenSource = new CancellationTokenSource();
-        try
-        {
-            BattleEntity target = await targetSelectionStrategyRef.Value
-                .GetEntity(this, action, targetSelectionCancellationTokenSource.Token);
-            
-            action.Strategy(this, target).Forget();
-        }
-        catch (OperationCanceledException e)
-        {
-            Debug.Log($"Target selection for {gameObject.name} was cancelled");
-            isActive = false;
-            StartTurn();
-        }
-    }
     
-    CancellationTokenSource targetSelectionCancellationTokenSource;
+    
     public void CancelTargetSelection()
     {
         Debug.Log($"Cancelling target selection for {gameObject.name}");
-        targetSelectionCancellationTokenSource?.Cancel();
     }
 
     private void OnDestroy()

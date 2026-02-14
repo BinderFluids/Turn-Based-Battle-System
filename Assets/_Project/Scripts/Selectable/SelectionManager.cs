@@ -26,6 +26,7 @@ public class SelectionManager : Singleton<SelectionManager>
     
     public void StartSelection(List<ISelectable> items, int index = 0, SelectionHighlighter highlighter = null)
     {
+        print($"Try Start Selection with {items.Count} items");
         if (active)
         {
             Debug.LogWarning("Selection already started");
@@ -33,7 +34,7 @@ public class SelectionManager : Singleton<SelectionManager>
         }
 
         if (highlighter == null)
-            currentHighlighter = defaultHighligher;
+            currentHighlighter ??= defaultHighligher;
         else
             currentHighlighter = highlighter;
         
@@ -69,13 +70,13 @@ public class SelectionManager : Singleton<SelectionManager>
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CurrentItem.Value.Select();
+            EndSelection();
             EventBus<SelectableChosenEvent>.Raise(
                 new SelectableChosenEvent
                 {
                     SelectedItem = CurrentItem.Value
                 }
             ); 
-            EndSelection();
         }
     }
 

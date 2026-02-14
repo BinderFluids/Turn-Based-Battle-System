@@ -10,23 +10,16 @@ public class BattleActionWheel : MonoBehaviour, IBattleActionSelectionStrategy
     [SerializeField] List<BattleActionWheelItem> items;
     
     private EventBinding<SelectableChosenEvent> chosenItemBinding;
-    private bool eventTriggered;
+    public event Action<IBattleAction> onActionSelected;
     private BattleActionWheelItem selectedItem; 
 
     private void Start()
     {
-        eventTriggered = false; 
         chosenItemBinding = new EventBinding<SelectableChosenEvent>
             (OnSelectableChosenEventRaised); 
     }
 
-    void OnSelectableChosenEventRaised(SelectableChosenEvent @event)
-    {
-        selectedItem = (BattleActionWheelItem)@event.SelectedItem; 
-        eventTriggered = true;
-    }
-
-    public async UniTask<IBattleAction> GetAction(List<IBattleAction> context)
+    public void GetAction(List<IBattleAction> context)
     {
         EventBus<SelectableChosenEvent>.Register(chosenItemBinding); 
         
@@ -34,14 +27,14 @@ public class BattleActionWheel : MonoBehaviour, IBattleActionSelectionStrategy
         SelectionManager.Instance.StartSelection(
             items.ConvertAll(i => i as ISelectable
             )); 
-        
-        await UniTask.WaitUntil(() => eventTriggered);
-        eventTriggered = false;
-
-        ActivateItems(false); 
+    }
+    
+    void OnSelectableChosenEventRaised(SelectableChosenEvent @event)
+    {
+        selectedItem = (BattleActionWheelItem)@event.SelectedItem; 
+        onActionSelected?.Invoke(selectedItem.Action); 
         EventBus<SelectableChosenEvent>.Deregister(chosenItemBinding); 
-        
-        return selectedItem.Action;
+        ActivateItems(false); 
     }
     
     void ActivateItems(bool active = true)
