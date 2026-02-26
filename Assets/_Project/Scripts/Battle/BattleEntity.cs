@@ -74,14 +74,18 @@ public class BattleEntity : MonoBehaviour, ISelectable
         print($"Selected target: {target}");
         
         targetSelectionStrategy.onEntitySelected -= OnTargetSelected; 
-        chosenAction.StartAction(this, target);
         chosenAction.onActionEnded += OnActionEnded;
+        chosenAction.StartAction(this, target);
     }
 
     void OnActionEnded()
     {
         chosenAction.onActionEnded -= OnActionEnded;
         isActive = false;
+        
+        
+        NextTurnEvent nextTurnEvent = new NextTurnEvent {previousActor = this};
+        EventBus<NextTurnEvent>.Raise(nextTurnEvent);
     }
     
     

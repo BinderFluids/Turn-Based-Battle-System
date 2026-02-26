@@ -16,8 +16,6 @@ public abstract class ScriptableBattleAction : NestedAssetParent, IBattleAction
     protected void EndAction(BattleEntity actor)
     {
         onActionEnded?.Invoke();
-        NextTurnEvent nextTurnEvent = new NextTurnEvent {previousActor = actor};
-        EventBus<NextTurnEvent>.Raise(nextTurnEvent);
     }
 
     public List<BattleEntity> GetValidTargets(BattleEntity actor)

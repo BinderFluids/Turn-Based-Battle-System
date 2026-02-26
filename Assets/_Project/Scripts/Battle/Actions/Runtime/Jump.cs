@@ -8,7 +8,8 @@ using Registry;
 [CreateAssetMenu(menuName = "Battle Action/Player/Jump", fileName = "Jump", order = 0)]
 public class Jump : ScriptableBattleAction
 {
-    [SerializeField] private float duration;
+    [SerializeField] private float approachDuration;
+    [SerializeField] private float jumpDuration;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float miniumAboveEnemy = 1f;
 
@@ -20,7 +21,7 @@ public class Jump : ScriptableBattleAction
     
     public override void StartAction(BattleEntity actor, BattleEntity target)
     {
-        Debug.Log("hit");
+        
         Transform transform = actor.transform;
         Vector3 startPos = transform.position;
         float targetHeight = Mathf.Max(transform.position.y + jumpHeight, target.transform.position.y + miniumAboveEnemy); 
@@ -30,7 +31,7 @@ public class Jump : ScriptableBattleAction
                 Tween.PositionY(
                     transform,
                     targetHeight,
-                    duration * jumpSegmentDistribution,
+                    jumpDuration * jumpSegmentDistribution,
                     jumpRiseEase
                 )
             )
@@ -38,18 +39,18 @@ public class Jump : ScriptableBattleAction
                 Tween.PositionY(
                     transform,
                     target.topPosition.y,
-                    duration * (1f - jumpSegmentDistribution),
+                    jumpDuration * (1f - jumpSegmentDistribution),
                     jumpFallEase
                 )
             );
-        Tween horizontalMovement = Tween.PositionX(transform, target.transform.position.x, duration, horizontalMovementEase);
+        Tween horizontalMovement = Tween.PositionX(transform, target.transform.position.x, jumpDuration, horizontalMovementEase);
 
-        AwaitTween(actor, transform, startPos, horizontalMovement).Forget(); 
+        AwaitTween(actor, transform, startPos, verticalMovement).Forget(); 
     }
 
-    async UniTaskVoid AwaitTween(BattleEntity actor, Transform transform, Vector3 startPos, Tween tween)
+    async UniTaskVoid AwaitTween(BattleEntity actor, Transform transform, Vector3 startPos, Sequence sequence)
     {
-        await tween;
+        await sequence;
         
         transform.position = startPos;
         EndAction(actor); 

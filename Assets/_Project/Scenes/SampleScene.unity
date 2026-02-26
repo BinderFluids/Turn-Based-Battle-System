@@ -168,7 +168,7 @@ MonoBehaviour:
   renderer: {fileID: 1797516812}
   time: 0.1
   offset: {x: 0, y: 1, z: 0}
-  ease: 0
+  ease: 18
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +677,12 @@ PrefabInstance:
       propertyPath: actionRef.underlyingValue
       value: 
       objectReference: {fileID: 11400000, guid: 58b1ae9412b7192ec90c59fd5b5d84f8, type: 2}
+    - target: {fileID: 4677230224732059456, guid: 21fe22167450d22888637e848074953f, type: 3}
+      propertyPath: m_text
+      value: 'Jump
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 5219068741339149666, guid: 21fe22167450d22888637e848074953f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.92
@@ -813,8 +819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 586756650}
   - {fileID: 394778386}
+  - {fileID: 586756650}
 --- !u!4 &847062770
 Transform:
   m_ObjectHideFlags: 0
@@ -955,7 +961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSortedEntities: []
-  manageBattle: 0
+  manageBattle: 1
 --- !u!4 &1584180567
 Transform:
   m_ObjectHideFlags: 0
@@ -1191,7 +1197,11 @@ PrefabInstance:
     - target: {fileID: 3820323513413120343, guid: 21fe22167450d22888637e848074953f, type: 3}
       propertyPath: actionRef.underlyingValue
       value: 
-      objectReference: {fileID: 11400000, guid: 58b1ae9412b7192ec90c59fd5b5d84f8, type: 2}
+      objectReference: {fileID: 11400000, guid: de1125fe147ab9359b56592f2baab9a7, type: 2}
+    - target: {fileID: 4677230224732059456, guid: 21fe22167450d22888637e848074953f, type: 3}
+      propertyPath: m_text
+      value: Damage
+      objectReference: {fileID: 0}
     - target: {fileID: 5219068741339149666, guid: 21fe22167450d22888637e848074953f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3199999
@@ -1234,7 +1244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6032274173982038539, guid: 21fe22167450d22888637e848074953f, type: 3}
       propertyPath: m_Name
-      value: Jump (1)
+      value: Damage
       objectReference: {fileID: 0}
     - target: {fileID: 6032274173982038539, guid: 21fe22167450d22888637e848074953f, type: 3}
       propertyPath: m_IsActive
