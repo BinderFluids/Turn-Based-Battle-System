@@ -2,6 +2,7 @@
   "dependencies": {
     "com.binderfluids.projectsetup": "https://github.com/BinderFluids/Project-Setup.git",
     "com.binderfluids.registry": "git+https://github.com/BinderFluids/Registry.git",
+    "com.binderfluids.scriptableevents": "https://github.com/BinderFluids/Unity-Scriptable-Events.git",
     "com.binderfluids.scriptablevariables": "git+https://github.com/BinderFluids/Unity-Scriptable-Variables.git",
     "com.cysharp.unitask": "git+https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.gitamend.improvedtimers": "git+https://github.com/adammyhre/Unity-Improved-Timers.git",

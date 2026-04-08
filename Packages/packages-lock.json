@@ -14,6 +14,13 @@
       "dependencies": {},
       "hash": "cbee95b613b005cf0fe74ab26ebcf5ea6e169378"
     },
+    "com.binderfluids.scriptableevents": {
+      "version": "https://github.com/BinderFluids/Unity-Scriptable-Events.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "06342a8cbca1604ca003fd327e2f00651b3854fe"
+    },
     "com.binderfluids.scriptablevariables": {
       "version": "git+https://github.com/BinderFluids/Unity-Scriptable-Variables.git",
       "depth": 0,
