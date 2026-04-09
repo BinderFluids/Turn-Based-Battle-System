@@ -1,9 +1,14 @@
+using System;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class StatBlock
 {
-    [field: SerializeField] public Stat FP { get; private set; }
-    [field: SerializeField] public Stat HP { get; private set; }
-    [field: SerializeField] public Stat BP { get; private set; }
+    public int BadgePoints { get; private set; }
+    
+    [field: SerializeField] public BoundedStat Health { get; private set; }
+    [field: SerializeField] public BoundedStat TeamPoints { get; private set; }
+    
+    [field: SerializeField] public Stat Speed { get; private set; }
+    [field: SerializeField] public Stat Attack { get; private set; }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Registry;
@@ -11,8 +12,8 @@ public class DamageTarget : ScriptableBattleAction
     
     public override void StartAction(BattleEntity actor, BattleEntity target)
     {
-        Debug.Log($"{actor.name} damaged {target.name} for {actor.Strength}");
-        target.HealthComponent.ChangeHealth(-actor.Strength);
+        Debug.Log($"{actor.name} damaged {target.name} for {actor.statBlock.Attack}");
+        target.statBlock.Health.ChangeValue(-actor.statBlock.Attack.GetValue());
         
         EndAction(actor); 
     }

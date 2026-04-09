@@ -4,6 +4,7 @@ using Registry;
 using UnityEngine;
 using UnityUtils;
 using System.Linq;
+using EventBus; 
 
 public class BattleManager : Singleton<BattleManager>
 {
@@ -33,7 +34,7 @@ public class BattleManager : Singleton<BattleManager>
     {
         turnSortedEntities = Registry<BattleEntity>
             .All
-            .OrderBy(e => 1f / e.Speed)
+            .OrderBy(e => 1f / e.statBlock.Speed.GetValue())
             .ToList();
     }
     
@@ -43,7 +44,7 @@ public class BattleManager : Singleton<BattleManager>
         int turnIndex = turnNumber % turnSortedEntities.Count;
         
         BattleEntity entity = turnSortedEntities[turnIndex];
-        entity.StartTurn();
+        entity.StartTurn().Forget();
     }
 
     private void OnDestroy()

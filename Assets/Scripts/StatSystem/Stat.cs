@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class Stat
@@ -9,7 +10,11 @@ public class Stat
     public Stat(int value)
         => baseValue = value;
     
-    public float GetValue()
+    public void ChangeBaseValue(int amt) => baseValue += amt;
+    public void SetBaseValue(int value) => baseValue = value;
+    public int GetBaseValue() => baseValue;
+    
+    public int GetValue()
     {
         float runningTotal = baseValue;
         
@@ -18,7 +23,7 @@ public class Stat
         foreach (IStatModifier modifier in modifiers)
             runningTotal *= modifier.Multiply(runningTotal);
         
-        return runningTotal;
+        return Mathf.CeilToInt(runningTotal);
     }
 
     public void AddModifier(IStatModifier modifier) =>

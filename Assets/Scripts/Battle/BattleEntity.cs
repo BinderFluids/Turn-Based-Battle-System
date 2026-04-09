@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
+using EventBus; 
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Registry;
@@ -16,8 +16,8 @@ public enum PhysicalBattleEntityModifier
 
 public class BattleEntity : MonoBehaviour, ISelectable
 {
-    public int Strength;
-    public int Speed;
+    public StatBlock statBlock;
+    
     private bool isActive;
     public bool IsActive => isActive;
     public PhysicalBattleEntityModifier physicalBattleEntityModifier;

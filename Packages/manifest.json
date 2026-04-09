@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.binderfluids.eventbus": "https://github.com/BinderFluids/EventBus.git",
     "com.binderfluids.projectsetup": "https://github.com/BinderFluids/Project-Setup.git",
     "com.binderfluids.registry": "git+https://github.com/BinderFluids/Registry.git",
     "com.binderfluids.scriptableevents": "https://github.com/BinderFluids/Unity-Scriptable-Events.git",

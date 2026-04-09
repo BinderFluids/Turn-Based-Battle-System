@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 using Registry;
+using UnityEngine;
 
 public abstract class ScriptableBattleAction : NestedAssetParent, IBattleAction
 {
+    [SerializeField] private InterfaceReference<IBattleActionCounterBehaviour> counterBehaviourRef;
+    
     public event Action onActionStarted;
     public event Action onActionEnded;
     
@@ -18,6 +20,7 @@ public abstract class ScriptableBattleAction : NestedAssetParent, IBattleAction
         onActionEnded?.Invoke();
     }
 
+
     public List<BattleEntity> GetValidTargets(BattleEntity actor)
     {
         List<BattleEntity> output = Registry<BattleEntity>.All.ToList();
@@ -27,5 +30,10 @@ public abstract class ScriptableBattleAction : NestedAssetParent, IBattleAction
             output = filter.Filter(actor, output);
 
         return output; 
+    }
+
+    public void Counter(BattleEntity defender)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public interface IBattleAction
 {
@@ -9,4 +10,6 @@ public interface IBattleAction
     
     void StartAction(BattleEntity actor, BattleEntity target);
     List<BattleEntity> GetValidTargets(BattleEntity actor);
+
+    void Counter(BattleEntity defender); 
 }

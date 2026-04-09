@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.binderfluids.eventbus": {
+      "version": "https://github.com/BinderFluids/EventBus.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "66f87880e95662bce56542c77696eb10f9f5cabb"
+    },
     "com.binderfluids.projectsetup": {
       "version": "https://github.com/BinderFluids/Project-Setup.git",
       "depth": 0,
