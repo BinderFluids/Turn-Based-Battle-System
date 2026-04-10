@@ -15,8 +15,8 @@ MonoBehaviour:
   counterBehaviourRef:
     underlyingValue: {fileID: 0}
   filters:
-    parentAsset: {fileID: 11400000}
-    nestedAssets: []
+  - rid: 978115875260596508
+  - rid: 978115875260596509
   approachDuration: 0.5
   jumpDuration: 2
   jumpHeight: 2
@@ -25,3 +25,13 @@ MonoBehaviour:
   jumpRiseEase: 0
   jumpFallEase: 0
   horizontalMovementEase: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 978115875260596508
+      type: {class: BattleFilterSelf, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 978115875260596509
+      type: {class: BattleFilterModifiers, ns: , asm: Assembly-CSharp}
+      data:
+        forbiddenModifiers: 0200000001000000

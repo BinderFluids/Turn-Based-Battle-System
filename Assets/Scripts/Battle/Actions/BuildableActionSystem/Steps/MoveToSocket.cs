@@ -5,19 +5,20 @@ using UnityEngine;
 
 
 
-public class MoveToSocket : SocketBattleStep
+public class MoveToSocket : BuildableBattleActionStep
 {
-    [SerializeField] private bool m_bSnapToGround;
-    [SerializeField] private float m_speed;
+    private enum MoveType { Speed, Duration }
+
+    [Tooltip("Choose whether to move at a constant speed or over a duration of time")]
+    [SerializeField] private MoveType moveType;
+    [SerializeField, Min(0)] private float movement;  
+    [SerializeField] private SocketReference socketReference;
     
     public override async UniTask Execute(BattleEntity actor, BattleEntity target)
     {
-        Vector3 goal = ParentAction.SocketData.GetSocketPositionsDictionary()[m_socket.selectedSocketName]; 
-        if (m_bSnapToGround) goal.y = actor.transform.position.y;
+        Vector3 goal = socketReference.GetSocketPosition(); 
 
-        await UniTask.WaitForSeconds(2); 
-        //yield return controller.MoveTo(goal, m_speed);
+        if (moveType == MoveType.Duration) await UniTask.WaitForSeconds(movement); 
+        //if movetype == speed then yield an actor's movement function yield return controller.MoveTo(goal, m_speed);
     }
-
-    public override string GetListDisplayName() => $"Move to Socket: {m_socket.selectedSocketName}";
 }

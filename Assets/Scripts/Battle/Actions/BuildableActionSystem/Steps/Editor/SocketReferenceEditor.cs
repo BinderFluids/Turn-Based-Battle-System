@@ -4,55 +4,103 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(SocketReference))]
-public class SocketReferenceEditor :  PropertyDrawer
+public class SocketReferenceEditor : PropertyDrawer
 {
+    private const float Spacing = 4f;
+    private const float LeftPortion = 0.30f;
+    private const float RightPortion = 0.70f;
+    private const float MinObjectFieldWidth = 120f;
+    private const float MinPopupWidth = 80f;
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        SerializedProperty socketDataProperty = property.FindPropertyRelative("m_socketData");
-        
-        //Tanner: Error handling
-        if (socketDataProperty.objectReferenceValue == null)
+        SerializedProperty socketDataProperty = property.FindPropertyRelative("socketData");
+        SerializedProperty selectedSocketNameProperty = property.FindPropertyRelative("selectedSocketName");
+
+        EditorGUI.BeginProperty(position, label, property);
+
+        Rect contentRect = EditorGUI.PrefixLabel(position, label);
+        float lineHeight = EditorGUIUtility.singleLineHeight;
+
+        SocketData socketData = socketDataProperty.objectReferenceValue as SocketData;
+        bool hasValidSocketData = socketData != null;
+
+        // Full width until valid
+        if (!hasValidSocketData)
         {
-            ThrowError(property, position, "No socket data assigned.");
+            socketDataProperty.objectReferenceValue = EditorGUI.ObjectField(
+                contentRect,
+                socketDataProperty.objectReferenceValue,
+                typeof(SocketData),
+                false
+            );
+
+            EditorGUI.EndProperty();
             return;
         }
-        SocketData socketData = socketDataProperty.objectReferenceValue as SocketData; 
-        if (socketData == null)
-        {
-            ThrowError(property, position, "Socket data is null.");
-            return;
-        }
+
         List<string> socketNames = socketData.GetSocketPositionsDictionary().Keys.ToList();
+
         if (socketNames.Count == 0)
         {
-            ThrowError(property, position, "Socket data has no items.");
+            DrawError(contentRect, "Socket data has no items.");
+            EditorGUI.EndProperty();
             return;
         }
+
         if (socketNames.Contains(null))
         {
-            ThrowError(property, position, "Socket contains null socket name.");
+            DrawError(contentRect, "Socket contains null socket name.");
+            EditorGUI.EndProperty();
             return;
         }
-        
-        //Tanner: Dropdown logic
-        SerializedProperty selectedSocketNameProperty = property.FindPropertyRelative("m_selectedSocketName");
+
+        float totalWidth = contentRect.width - Spacing;
+        float objectWidth = Mathf.Max(MinObjectFieldWidth, totalWidth * LeftPortion);
+        float popupWidth = Mathf.Max(MinPopupWidth, totalWidth * RightPortion);
+
+        // Clamp if overflow
+        float usedWidth = objectWidth + popupWidth + Spacing;
+        if (usedWidth > contentRect.width)
+        {
+            float scale = contentRect.width / usedWidth;
+            objectWidth *= scale;
+            popupWidth *= scale;
+        }
+
+        Rect objectRect = new Rect(contentRect.x, contentRect.y, objectWidth, lineHeight);
+        Rect popupRect = new Rect(objectRect.xMax + Spacing, contentRect.y, popupWidth, lineHeight);
+
+        // Left: SocketData field
+        socketDataProperty.objectReferenceValue = EditorGUI.ObjectField(
+            objectRect,
+            socketDataProperty.objectReferenceValue,
+            typeof(SocketData),
+            false
+        );
+
+        // Right: dropdown
         string selectedSocketName = selectedSocketNameProperty.stringValue;
-    
+
         int chosenIndex = 0;
-        if (selectedSocketName != string.Empty)
-            chosenIndex = Mathf.Max(0, socketNames.IndexOf(selectedSocketName));
-        
-        chosenIndex = EditorGUI.Popup(position, label.text, chosenIndex, socketNames.ToArray());
-        selectedSocketNameProperty.stringValue = socketNames[chosenIndex];
+        if (!string.IsNullOrEmpty(selectedSocketName))
+        {
+            int index = socketNames.IndexOf(selectedSocketName);
+            if (index >= 0)
+                chosenIndex = index;
+        }
+
+        int newIndex = EditorGUI.Popup(popupRect, chosenIndex, socketNames.ToArray());
+        if (newIndex >= 0 && newIndex < socketNames.Count)
+        {
+            selectedSocketNameProperty.stringValue = socketNames[newIndex];
+        }
+
+        EditorGUI.EndProperty();
     }
 
-    void ThrowError(SerializedProperty property, Rect position, string message)
+    private void DrawError(Rect position, string message)
     {
         EditorGUI.HelpBox(position, message, MessageType.Error);
-        if (GUILayout.Button("Refresh Socket Data"))
-        {
-            property.FindPropertyRelative("m_hiddenValidateValue").intValue++;
-            EditorUtility.SetDirty(property.serializedObject.targetObject);
-        }
     }
 }

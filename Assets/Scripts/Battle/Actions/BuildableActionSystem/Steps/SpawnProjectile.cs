@@ -3,22 +3,26 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 
-public class SpawnProjectile : SocketBattleStep
+public class SpawnProjectile : BuildableBattleActionStep
 {
     [SerializeField] private float m_speed;
     [SerializeField] private float m_duration;
     [SerializeField] private GameObject m_projectilePrefab;
-    private List<GameObject> m_SpawnedProjectiles = new List<GameObject>(); 
+    private List<GameObject> m_SpawnedProjectiles = new List<GameObject>();
+    private SocketReference socketReference;
+    
     
 
     public override async UniTask Execute(BattleEntity actor, BattleEntity target)
     {
-        if (m_projectilePrefab == null || target == null) return; 
+        //TODO: IMPLEMENT SOME SORT OF PROJECTILE SINGLETON
         
-        GameObject p = Instantiate(m_projectilePrefab, actor.transform.position, Quaternion.identity);
-        m_SpawnedProjectiles.Add(p);
-        Vector3 centerPos = ParentAction.SocketData.GetSocketPositionsDictionary()[m_socket.selectedSocketName]; 
-        centerPos.z = p.transform.position.z;
+        // if (m_projectilePrefab == null || target == null) return; 
+        //
+        // GameObject p = Instantiate(m_projectilePrefab, actor.transform.position, Quaternion.identity);
+        // m_SpawnedProjectiles.Add(p);
+        // Vector3 centerPos = ParentAction.SocketData.GetSocketPositionsDictionary()[m_socket.selectedSocketName]; 
+        // centerPos.z = p.transform.position.z;
                     
         // ProjectileEntity projectile = p.GetComponent<ProjectileEntity>();
         // if (projectile != null)
@@ -26,6 +30,4 @@ public class SpawnProjectile : SocketBattleStep
         //     projectile.Setup(centerPos, m_speed, m_duration);
         // }
     }
-
-    public override string GetListDisplayName() => "Spawn Projectile {projectilename}";
 }

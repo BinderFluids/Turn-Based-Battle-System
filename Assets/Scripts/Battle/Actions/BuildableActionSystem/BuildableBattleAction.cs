@@ -8,23 +8,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Battle Action/Buildable", fileName = "NewBuildableAction", order = 0)]
 public class BuildableBattleAction : ScriptableBattleAction
 {
-    [Header("Required Dependencies")]
-    [SerializeField] private SocketData socketData;
-    public SocketData SocketData => socketData;
-
-    [SerializeField] private AnimatorController animatorController;
-    public AnimatorController AnimatorController => animatorController;
-    
-    [Header("Nested Steps")]
-    [SerializeField] private NestedAssetList<BuildableBattleActionStep> steps;
+    [SerializeReference, Subclass(IsList = true)] private List<BuildableBattleActionStep> steps = new();
     private BattleEntity actor;
-
-    private void OnValidate()
-    {
-        foreach (BuildableBattleActionStep step in steps.NestedAssets)
-            step.Initialize(this); 
-    }
-
+    
     public override void StartAction(BattleEntity actor, BattleEntity target)
     {
         this.actor = actor;
@@ -33,7 +19,7 @@ public class BuildableBattleAction : ScriptableBattleAction
 
     private async UniTaskVoid ExecuteSteps(BattleEntity actor, BattleEntity target)
     {
-        foreach (BuildableBattleActionStep step in steps.NestedAssets)
+        foreach (BuildableBattleActionStep step in steps)
             await step.Execute(actor, target);
         
         EndAction(actor);

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BattleSelectionFilter : ScriptableObject, INestableAsset
+[System.Serializable]
+public abstract class BattleSelectionFilter
 {
-    public abstract string GetListDisplayName();
-    
     public abstract List<BattleEntity> Filter(BattleEntity actor, List<BattleEntity> context);
 }
