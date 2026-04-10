@@ -12,6 +12,4 @@ public class Wait : BuildableBattleActionStep
     {
         await UniTask.WaitForSeconds(duration); 
     }
-
-    public override string GetListDisplayName() => $"Wait {duration} seconds";
 }

@@ -11,7 +11,7 @@ public abstract class ScriptableBattleAction : ScriptableObject, IBattleAction
     public event Action onActionStarted;
     public event Action onActionEnded;
     
-    [SerializeField] private NestedAssetList<BattleSelectionFilter> filters;
+    [SerializeReference, Subclass(IsList = true)] private List<BattleSelectionFilter> filters; 
     
     public abstract void StartAction(BattleEntity actor, BattleEntity target);
     protected void EndAction(BattleEntity actor)
@@ -22,8 +22,7 @@ public abstract class ScriptableBattleAction : ScriptableObject, IBattleAction
 
     public List<BattleEntity> GetValidTargets(BattleEntity actor)
     {
-        List<BattleEntity> output = Registry<BattleEntity>.All.ToList();
-        IReadOnlyList<BattleSelectionFilter> filters = this.filters.NestedAssets; 
+        List<BattleEntity> output = Registry<BattleEntity>.All.ToList(); 
 
         foreach (BattleSelectionFilter filter in filters)
             output = filter.Filter(actor, output);
