@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5231047067203370916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db0c895a1fb14e93ba11deab6d77bd62, type: 3}
+  m_Name: BattleFilterModifiers
+  m_EditorClassIdentifier: Assembly-CSharp::BattleFilterModifiers
+  forbiddenModifiers: 0200000001000000
+--- !u!114 &-2445570102377964810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1aba059c7a471cb0dcfc765812cb45, type: 3}
+  m_Name: BattleFilterSelf
+  m_EditorClassIdentifier: Assembly-CSharp::BattleFilterSelf
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f57a313a8e41c5a96f198933fce800, type: 3}
+  m_Name: DamageTarget
+  m_EditorClassIdentifier: Assembly-CSharp::DamageTarget
+  counterBehaviourRef:
+    underlyingValue: {fileID: 0}
+  filters:
+    parentAsset: {fileID: 11400000}
+    nestedAssets:
+    - {fileID: -5231047067203370916}
+    - {fileID: -2445570102377964810}

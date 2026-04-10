@@ -4,15 +4,14 @@ using System.Linq;
 using Registry;
 using UnityEngine;
 
-public abstract class ScriptableBattleAction : NestedAssetParent, IBattleAction
+public abstract class ScriptableBattleAction : ScriptableObject, IBattleAction
 {
     [SerializeField] private InterfaceReference<IBattleActionCounterBehaviour> counterBehaviourRef;
     
     public event Action onActionStarted;
     public event Action onActionEnded;
     
-    public override Type nestedAssetChildType => typeof(BattleSelectionFilter);
-
+    [SerializeField] private NestedAssetList<BattleSelectionFilter> filters;
     
     public abstract void StartAction(BattleEntity actor, BattleEntity target);
     protected void EndAction(BattleEntity actor)
@@ -24,9 +23,9 @@ public abstract class ScriptableBattleAction : NestedAssetParent, IBattleAction
     public List<BattleEntity> GetValidTargets(BattleEntity actor)
     {
         List<BattleEntity> output = Registry<BattleEntity>.All.ToList();
-        List<BattleSelectionFilter> assetsAsFilters = NestedChildren.Cast<BattleSelectionFilter>().ToList();
+        IReadOnlyList<BattleSelectionFilter> filters = this.filters.NestedAssets; 
 
-        foreach (BattleSelectionFilter filter in assetsAsFilters)
+        foreach (BattleSelectionFilter filter in filters)
             output = filter.Filter(actor, output);
 
         return output; 

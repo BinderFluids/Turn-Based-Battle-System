@@ -478,16 +478,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644da525316aa891e83a6e22c4c4135a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleEntity
-  Strength: 0
-  Speed: 0
+  statBlock: {}
   physicalBattleEntityModifier: 0
   topPosition: {x: 0, y: 0, z: 0}
   healthComponent: {fileID: 0}
-  actionsRef: []
+  actionsRef:
+  - underlyingValue: {fileID: 0}
   actionSelectionStrategyRef:
-    underlyingValue: {fileID: 0}
+    underlyingValue: {fileID: 11400000, guid: 4f7fdeed4a019a5abbf3d393a55d621d, type: 2}
   targetSelectionStrategyRef:
-    underlyingValue: {fileID: 0}
+    underlyingValue: {fileID: 11400000, guid: 1ce6f468aa178ce9f8bd7fbb7516a2ba, type: 2}
 --- !u!4 &419170117
 Transform:
   m_ObjectHideFlags: 0
