@@ -53,6 +53,8 @@ public class ScriptableObjectSelector<T> : MonoBehaviour where T : ScriptableObj
 
     void _DropDownEventListener(int index)
     {
+        if (index > m_scriptableObjects.Count - 1) return; 
+        
         m_selectedObject = m_scriptableObjects[index];
         onValueChanged.Invoke(m_selectedObject);
     }
