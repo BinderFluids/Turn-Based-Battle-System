@@ -32,10 +32,10 @@ public class BattleManager : Singleton<BattleManager>
 
     private void SetSortedTurns()
     {
-        turnSortedEntities = Registry<BattleEntity>
-            .All
-            .OrderBy(e => 1f / e.statBlock.Speed.GetValue())
-            .ToList();
+        // turnSortedEntities = Registry<BattleEntity>
+        //     .All
+        //     .OrderBy(e => 1f / e.statBlock.Speed.GetValue())
+        //     .ToList();
     }
     
     private void NextTurn(NextTurnEvent nextTurnEvent)

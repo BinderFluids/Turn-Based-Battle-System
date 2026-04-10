@@ -16,8 +16,6 @@ public enum PhysicalBattleEntityModifier
 
 public class BattleEntity : MonoBehaviour, ISelectable
 {
-    public StatBlock statBlock;
-    
     private bool isActive;
     public bool IsActive => isActive;
     public PhysicalBattleEntityModifier physicalBattleEntityModifier;
