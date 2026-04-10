@@ -17,11 +17,11 @@ MonoBehaviour:
   filters:
     parentAsset: {fileID: 11400000}
     nestedAssets: []
-  approachDuration: 0
-  jumpDuration: 0
+  approachDuration: 0.5
+  jumpDuration: 2
   jumpHeight: 2
   miniumAboveEnemy: 1
-  jumpSegmentDistribution: 0
+  jumpSegmentDistribution: 0.553
   jumpRiseEase: 0
   jumpFallEase: 0
   horizontalMovementEase: 0
