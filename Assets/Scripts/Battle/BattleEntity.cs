@@ -84,6 +84,12 @@ public class BattleEntity : MonoBehaviour, ISelectable
             Debug.LogError($"Tried to start action on {gameObject.name} with null action");
             return;
         }
+
+        if (target is null)
+        {
+            Debug.LogError($"Tried to start action on {gameObject.name} with null target");
+            return;
+        }
         
         chosenAction = action; 
         action.onActionEnded += OnActionEnded;
