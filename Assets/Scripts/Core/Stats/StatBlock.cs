@@ -1,6 +1,5 @@
 namespace Core.Stats
 {
-    public enum StatType { Attack, Defense }
     
     public class StatBlock
     {
