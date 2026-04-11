@@ -25,4 +25,14 @@ namespace Core.Stats
             this.value = value;
         }
     }
+
+    public class StatResource : Stat
+    {
+        private int currentValue; 
+        
+        
+        public StatResource(StatsMediator mediator, StatType type, int value) : base(mediator, type, value)
+        {
+        }
+    }
 }

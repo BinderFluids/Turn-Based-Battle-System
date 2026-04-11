@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a480342306af76f6af0211a8f24732d, type: 3}
-  m_Name: Test Socket
+  m_Name: New socket For Derek
   m_EditorClassIdentifier: Assembly-CSharp::SocketData
   m_socketNames:
   - Mario 0
@@ -18,7 +18,7 @@ MonoBehaviour:
   - asdjfkalsdf
   - position 1
   m_socketPositions:
-  - {x: -2.9717934, y: -1.1250364}
+  - {x: 2.1227102, y: 2.0378015}
   - {x: -5.26432, y: -4.2878737}
   - {x: -0.6792668, y: -3.0991564}
-  - {x: 1.6981677, y: -1.0613551}
+  - {x: -1.8467575, y: 1.6981682}
