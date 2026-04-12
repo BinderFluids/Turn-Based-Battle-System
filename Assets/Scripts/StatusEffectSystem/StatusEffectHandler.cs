@@ -21,7 +21,7 @@ namespace StatusEffectSystem
             BattleEntity entity = turnStartEvent.entity;
             for (int i = entity.Statuses.Count - 1; i >= 0; i--)
             {
-                entity.Statuses[i].OnTurnStart(entity);   
+                entity.Statuses[i].TurnStart(entity);   
             }
         }
     }
