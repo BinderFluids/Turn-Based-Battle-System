@@ -23,8 +23,8 @@ MonoBehaviour:
     - rid: 978115875260596517
       type: {class: MoveToSocket, ns: , asm: Assembly-CSharp}
       data:
-        moveType: 0
-        movement: 0
+        moveType: 1
+        movement: 15
         socketReference:
-          socketData: {fileID: 0}
-          selectedSocketName: 
+          socketData: {fileID: 11400000, guid: 3e0a7f0b8baa68f82b4de324ef43b448, type: 2}
+          selectedSocketName: Luigi 0

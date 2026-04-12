@@ -11,6 +11,12 @@ namespace Core.Stats
 
         private void Awake()
         {
+            if (template == null)
+            {
+                Debug.LogError($"{name} is missing a StatBlockTemplate.");
+                return;
+            }
+            
             statBlock = new StatBlock(new StatsMediator(), template); 
         }
     }

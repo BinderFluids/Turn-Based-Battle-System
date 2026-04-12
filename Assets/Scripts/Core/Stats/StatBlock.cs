@@ -1,6 +1,5 @@
 namespace Core.Stats
 {
-    
     public class StatBlock
     {
         readonly StatsMediator mediator;
@@ -8,6 +7,7 @@ namespace Core.Stats
 
         public Stat Attack;
         public Stat Defense;
+        public Stat Speed; 
         public Resource Health;
 
         public StatBlock(StatsMediator mediator, StatBlockTemplate template)
@@ -15,6 +15,8 @@ namespace Core.Stats
             this.mediator = mediator;
             Attack = new Stat(mediator, StatType.Attack, template.attack); 
             Defense = new Stat(mediator, StatType.Defense, template.defense);
+            Speed = new Stat(mediator, StatType.Speed, template.speed);
+            Health = new Resource(new Stat(mediator, StatType.Health, template.health)); 
         }
     }
 }
