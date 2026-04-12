@@ -4,15 +4,19 @@ using Registry;
 using UnityEngine;
 using UnityUtils;
 using System.Linq;
-using EventBus; 
+using EventBus;
+using StatusEffectSystem;
 
 public class BattleManager : Singleton<BattleManager>
 {
     private int turnNumber = -1;
     [SerializeField] private List<BattleEntity> turnSortedEntities = new();
-    private EventBinding<NextTurnEvent> nextTurnBinding;
+    private EventBinding<TurnEndEvent> turnEndBinding;
+    private EventBinding<TurnStartEvent> turnStartBinding;
     [SerializeField] private bool manageBattle;
 
+    private StatusEffectHandler statusEffectHandler;
+    
     private void Start()
     {
         if (manageBattle)
@@ -23,8 +27,10 @@ public class BattleManager : Singleton<BattleManager>
     {
         Registry<BattleEntity>._onItemAddedNoArgs += SetSortedTurns;
 
-        nextTurnBinding = new EventBinding<NextTurnEvent>(NextTurn);
-        EventBus<NextTurnEvent>.Register(nextTurnBinding);
+        statusEffectHandler = new StatusEffectHandler();
+        
+        turnEndBinding = new EventBinding<TurnEndEvent>(NextTurn);
+        EventBus<TurnEndEvent>.Register(turnEndBinding);
         
         SetSortedTurns();
         NextTurn(default);
@@ -34,22 +40,24 @@ public class BattleManager : Singleton<BattleManager>
     {
         turnSortedEntities = Registry<BattleEntity>
             .All
-            .OrderBy(e => 1f / e.statBlock.Speed.GetValue())
+            .OrderBy(e => 1f / e.StatBlock.Speed.Value)
             .ToList();
     }
     
-    private void NextTurn(NextTurnEvent nextTurnEvent)
+    private void NextTurn(TurnEndEvent turnEndEvent)
     {
         turnNumber++;
         int turnIndex = turnNumber % turnSortedEntities.Count;
         
         BattleEntity entity = turnSortedEntities[turnIndex];
+        
+        EventBus<TurnStartEvent>.Raise(new TurnStartEvent {entity = entity});
         entity.StartTurn().Forget();
     }
 
     private void OnDestroy()
     {
         Registry<BattleEntity>._onItemAddedNoArgs -= SetSortedTurns;
-        EventBus<NextTurnEvent>.Deregister(nextTurnBinding);
+        EventBus<TurnEndEvent>.Deregister(turnEndBinding);
     }
 }
