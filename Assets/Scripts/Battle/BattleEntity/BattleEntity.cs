@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Registry;
 
-public partial class BattleEntity : MonoBehaviour, ISelectable
+public partial class BattleEntity : MonoBehaviour
 {
     private bool isActive;
     public bool IsActive => isActive;
