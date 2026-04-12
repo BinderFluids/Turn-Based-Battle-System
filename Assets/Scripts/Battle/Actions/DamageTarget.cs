@@ -12,8 +12,8 @@ public class DamageTarget : ScriptableBattleAction
     
     public override void StartAction(BattleEntity actor, BattleEntity target)
     {
-        Debug.Log($"{actor.name} damaged {target.name} for {actor.statBlock.Attack}");
-        target.statBlock.Health.ChangeValue(-actor.statBlock.Attack.GetValue());
+        // Debug.Log($"{actor.name} damaged {target.name} for {actor.statBlock.Attack}");
+        // target.statBlock.Health.ChangeValue(-actor.statBlock.Attack.GetValue());
         
         EndAction(actor); 
     }

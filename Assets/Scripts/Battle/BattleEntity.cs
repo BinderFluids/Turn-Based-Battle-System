@@ -1,31 +1,41 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Stats;
 using EventBus; 
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Registry;
-
-public enum PhysicalBattleEntityModifier
-{
-    Flying,
-    SpikyTop,
-    Underground,
-    None
-}
+using StatusEffectSystem;
 
 public class BattleEntity : MonoBehaviour, ISelectable
 {
-    public StatBlock statBlock;
-    
     private bool isActive;
     public bool IsActive => isActive;
     public PhysicalBattleEntityModifier physicalBattleEntityModifier;
 
     [SerializeField] public Vector3 topPosition;
     
-    [SerializeField] private HealthComponent healthComponent;
-    public HealthComponent HealthComponent => healthComponent;
+    [SerializeField] private StatBlockComponent statBlockComponent;
+    public StatBlock StatBlock => statBlockComponent.StatBlock;
+
+    private List<StatusEffect> statuses = new();
+    public IReadOnlyList<StatusEffect> Statuses => statuses;
+    public void AddStatus(StatusEffect status)
+    {
+        if (statuses.Any(s => s.GetType() == status.GetType())) return; 
+        
+        statuses.Add(status);
+        status.Apply(this); 
+    }
+    public void RemoveStatus(StatusEffect status)
+    {
+        if (!statuses.Contains(status)) return;
+        if (status is null) return;
+        
+        statuses.Remove(status);
+        status.Remove(this);
+    }
 
     [SerializeField] private List<InterfaceReference<IBattleAction>> actionsRef;
     private List<IBattleAction> actions => actionsRef.Select(a => a.Value).ToList();
@@ -52,12 +62,17 @@ public class BattleEntity : MonoBehaviour, ISelectable
         }
 
         isActive = true;
-        Debug.Log($"Starting turn for {gameObject.name}");
+        Debug.Log($"{gameObject.name}: My turn just started!");
 
+        if (actions.Count == 0 && gameObject.name != "Player")
+        {
+            NextTurn();
+            return; 
+        }
+        
         actionSelectionStrategy.onActionSelected += OnActionSelected;
         actionSelectionStrategy.GetAction(actions);
     }
-
     void OnActionSelected(IBattleAction action)
     {
         print($"Selected action: {action}");
@@ -68,7 +83,6 @@ public class BattleEntity : MonoBehaviour, ISelectable
         targetSelectionStrategy.onEntitySelected += OnTargetSelected; 
         targetSelectionStrategy.GetEntity(this, action); 
     }
-
     void OnTargetSelected(BattleEntity target)
     {
         print($"Selected target: {target}");
@@ -76,7 +90,6 @@ public class BattleEntity : MonoBehaviour, ISelectable
         targetSelectionStrategy.onEntitySelected -= OnTargetSelected; 
         StartAction(chosenAction, target);
     }
-
     public void StartAction(IBattleAction action, BattleEntity target)
     {
         if (action is null)
@@ -95,23 +108,30 @@ public class BattleEntity : MonoBehaviour, ISelectable
         action.onActionEnded += OnActionEnded;
         action.StartAction(this, target);
     }
-
     void OnActionEnded()
     {
         chosenAction.onActionEnded -= OnActionEnded;
-        isActive = false;
-        
-        NextTurnEvent nextTurnEvent = new NextTurnEvent {previousActor = this};
-        EventBus<NextTurnEvent>.Raise(nextTurnEvent);
+        NextTurn();
     }
-    
+
+    void NextTurn()
+    {
+        isActive = false;
+        TurnEndEvent turnEndEvent = new TurnEndEvent {entity = this};
+        EventBus<TurnEndEvent>.Raise(turnEndEvent);
+    }
+
+    public void AddHealth(int amt)
+    {
+        Debug.LogWarning($"Adding {amt} health to {gameObject.name}");
+        StatBlock.Health.Add(amt); 
+    }
     
     public void CancelTargetSelection()
     {
         Debug.LogWarning("Cancel target selection currently does nothing!");
         //Debug.Log($"Cancelling target selection for {gameObject.name}");
     }
-
     private void OnDestroy()
     {
         Registry<BattleEntity>.Remove(this); 

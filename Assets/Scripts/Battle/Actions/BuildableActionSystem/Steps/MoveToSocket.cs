@@ -3,8 +3,6 @@ using System.Collections;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-
-
 public class MoveToSocket : BuildableBattleActionStep
 {
     private enum MoveType { Speed, Duration }
