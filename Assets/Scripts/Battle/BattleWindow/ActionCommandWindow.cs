@@ -61,7 +61,7 @@ namespace Battle.BattleWindow
         {
             if (outcomeStrategy != null)
             {
-                return this.outcomeStrategy.Evaluate(this);
+                return outcomeStrategy.Evaluate(this);
             }
             
             ActionCommandOutcome outcome = new DefaultOutcomeStrategy().Evaluate(this);

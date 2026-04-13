@@ -11,6 +11,8 @@ namespace Battle.BattleWindow
     public class BattleWindowService : Singleton<BattleWindowService>
     {
         private Window currentWindow;
+        
+        [SerializeField]
         private BattleInputReader battleInputReader;
         
         private UnityAction<bool> _playerOneHandler;
@@ -18,7 +20,8 @@ namespace Battle.BattleWindow
 
         private void Start()
         {
-            this.SubscribeToEvents();
+            battleInputReader.EnableInput(InputActionType.Player);
+            SubscribeToEvents();
         }
 
         /// <summary>
@@ -48,7 +51,11 @@ namespace Battle.BattleWindow
             EventBus<ActionCommandWindowOpened>.Raise(
                 new ActionCommandWindowOpened(actionCommandWindow.Id, actionCommandWindow.Duration)
             );
-            await UniTask.WaitForSeconds(actionCommandWindow.Duration); 
+            await UniTask.DelayFrame(actionCommandWindow.Duration); 
+            
+            // TODO: BAD CODE, MAKE BETTER
+            currentWindow.Close();
+            currentWindow = null;
             return actionCommandWindow.DetermineOutcome();
         }
         

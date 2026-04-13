@@ -25,6 +25,12 @@ namespace Battle.BattleWindow
         {
             StartFrame = Time.frameCount;
         }
+
+        public void Close()
+        {
+            
+        }
+        
         public float Elapsed => Time.frameCount - StartFrame;
         public abstract void HandleInput(PlayerId player, bool isPressed);
     }
