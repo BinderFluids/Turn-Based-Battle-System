@@ -13,16 +13,30 @@ public class SelectionManager : Singleton<SelectionManager>
     private bool active = false;
 
     [SerializeField] private SelectionHighlighter defaultHighligher;
-    [SerializeField] private SelectionHighlighter currentHighlighter; 
+    [SerializeField] private SelectionHighlighter currentHighlighter;
+
+    private BoolInputData selectInputData;
+    private Vector2InputData navigateInputData;
     
+
     int GetTrueIndex(int index, List<ISelectable> items)
     {
         if (items.Count == 0) return 0; 
         int newIndex = (index % items.Count + items.Count) % items.Count;
         return newIndex;
     }
+
+    public void Configure(BoolInputData selectInputData, Vector2InputData navigateInputData)
+    {
+        this.selectInputData = selectInputData;
+        this.navigateInputData = navigateInputData;
+    }
     
-    public void StartSelection(List<ISelectable> items, int index = 0, SelectionHighlighter highlighter = null)
+    public void StartSelection(
+        List<ISelectable> items, 
+        int index = 0, 
+        SelectionHighlighter highlighter = null
+        )
     {
         print($"Try Start Selection with {items.Count} items");
         if (active)
@@ -31,10 +45,7 @@ public class SelectionManager : Singleton<SelectionManager>
             return; 
         }
 
-        if (highlighter == null)
-            currentHighlighter ??= defaultHighligher;
-        else
-            currentHighlighter = highlighter;
+        currentHighlighter = highlighter ?? defaultHighligher; 
         
         active = true; 
         activeItems = items; 
@@ -65,7 +76,7 @@ public class SelectionManager : Singleton<SelectionManager>
         
         NavigateSelectables();
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (selectInputData.WasPressedThisFrame)
         {
             CurrentItem.Value.Select();
             EndSelection();
@@ -80,8 +91,12 @@ public class SelectionManager : Singleton<SelectionManager>
 
     void NavigateSelectables()
     {
-        if (Input.GetKeyDown(KeyCode.D)) ShiftSelection(1);
-        if (Input.GetKeyDown(KeyCode.A)) ShiftSelection(-1); 
+        if (!navigateInputData.WasPressedThisFrame) return; 
+        
+        if (navigateInputData.LeftWasPressedThisFrame)
+            ShiftSelection(-1);
+        if (navigateInputData.RightWasPressedThisFrame)
+            ShiftSelection(1);
     }
 
     private UniTask currentHighlighterTask; 
