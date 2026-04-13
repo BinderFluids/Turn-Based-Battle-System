@@ -18,7 +18,7 @@ MonoBehaviour:
   - rid: 978115875260596508
   - rid: 978115875260596509
   approachDuration: 2.43
-  jumpDuration: 7.16
+  jumpDuration: 2
   jumpHeight: 2
   miniumAboveEnemy: 1
   jumpSegmentDistribution: 0.553

@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Battle.BattleWindow;
+using Battle.BattleWindow.Enums;
+using Battle.BattleWindow.OutcomeStrategy;
 using PrimeTween;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -45,12 +48,30 @@ public class Jump : ScriptableBattleAction
             );
         Tween horizontalMovement = Tween.PositionX(transform, target.transform.position.x, jumpDuration, horizontalMovementEase);
 
-        AwaitTween(actor, transform, startPos, verticalMovement).Forget(); 
+        AwaitTween(actor, transform, startPos, verticalMovement).Forget();
+
     }
+
+    async UniTask<ActionCommandOutcome> AwaitActionCommand()
+    {
+        var window = new ActionCommandWindow(
+            id: "Jump",
+            duration: 10,
+            expectedPlayerInputs: new List<PlayerId> { PlayerId.PLAYER_ONE },
+            outcomeStrategy: new DefaultOutcomeStrategy()
+        );
+
+        return await BattleWindowService.Instance.RunActionCommandAsync(window);
+    }
+
 
     async UniTaskVoid AwaitTween(BattleEntity actor, Transform transform, Vector3 startPos, Sequence sequence)
     {
         await sequence;
+        
+        ActionCommandOutcome action = await AwaitActionCommand();
+        
+        Debug.Log(action.Success);
         
         transform.position = startPos;
         EndAction(actor); 
