@@ -10,7 +10,7 @@ namespace StatusEffectSystem
     {
         private BattleEntity target;
         private List<StatusEffect> statusEffects = new(); 
-        public IReadOnlyList<StatusEffect> StatusesEffects => statusEffects;
+        public IReadOnlyList<StatusEffect> StatusEffects => statusEffects;
 
         EventBinding<TurnStartEvent> turnStartBinding;
         
