@@ -11,7 +11,7 @@ public class SocketEditorManager : MonoBehaviour
 {
     [SerializeField] private SocketHandle m_socketHandlePrefab;
 
-    private const string m_kSocketDataPath = "Assets/Resources/SocketData/";
+    private const string m_kSocketDataPath = "Assets/Data/SocketData/";
     private const string m_kDefaultNewSocketName = "New Socket";
     [SerializeField] private SocketData m_activeData;
     private List<SocketHandle> m_socketHandlesList = new();
