@@ -45,7 +45,7 @@ public class Jump : ScriptableBattleAction
             );
         Tween horizontalMovement = Tween.PositionX(transform, target.transform.position.x, jumpDuration, horizontalMovementEase);
 
-        AwaitTween(actor, transform, startPos, verticalMovement).Forget(); 
+        AwaitTween(actor, transform, startPos, verticalMovement).Forget();
     }
 
     async UniTaskVoid AwaitTween(BattleEntity actor, Transform transform, Vector3 startPos, Sequence sequence)
