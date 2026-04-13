@@ -1,6 +1,8 @@
+using System;
 using EventBus; 
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Selectable;
 using UnityEngine;
 using UnityUtils; 
 
@@ -15,8 +17,8 @@ public class SelectionManager : Singleton<SelectionManager>
     [SerializeField] private SelectionHighlighter defaultHighligher;
     [SerializeField] private SelectionHighlighter currentHighlighter;
 
-    private BoolInputData selectInputData;
-    private Vector2InputData navigateInputData;
+    [SerializeField] private InterfaceReference<ISelectableInput> input; //TODO THIS IS A PLACHOLDER
+    private ISelectableInput Input => input.Value;
     
 
     int GetTrueIndex(int index, List<ISelectable> items)
@@ -26,12 +28,6 @@ public class SelectionManager : Singleton<SelectionManager>
         return newIndex;
     }
 
-    public void Configure(BoolInputData selectInputData, Vector2InputData navigateInputData)
-    {
-        this.selectInputData = selectInputData;
-        this.navigateInputData = navigateInputData;
-    }
-    
     public void StartSelection(
         List<ISelectable> items, 
         int index = 0, 
@@ -70,32 +66,36 @@ public class SelectionManager : Singleton<SelectionManager>
         activeItems.Clear();
     }
 
+    public bool doRaiseSelectableChosenEvent; 
     private void Update()
     {
-        if (!active) return; 
-        
+        if (!active) return;
+
         NavigateSelectables();
         
-        if (selectInputData.WasPressedThisFrame)
+        if (Input.Confirm.WasPressedThisFrame)
         {
             CurrentItem.Value.Select();
             EndSelection();
-            EventBus<SelectableChosenEvent>.Raise(
+            
+            if (doRaiseSelectableChosenEvent) EventBus<SelectableChosenEvent>.Raise( //TODO THIS IS KILLING ME MAN HELP ME
                 new SelectableChosenEvent
                 {
                     SelectedItem = CurrentItem.Value
                 }
             ); 
+            
+            Debug.Log("SelectableChosenEvent.Raise() Successful");
         }
     }
 
     void NavigateSelectables()
     {
-        if (!navigateInputData.WasPressedThisFrame) return; 
+        if (!Input.Navigate.WasPressedThisFrame) return; 
         
-        if (navigateInputData.LeftWasPressedThisFrame)
+        if (Input.Navigate.LeftWasPressedThisFrame)
             ShiftSelection(-1);
-        if (navigateInputData.RightWasPressedThisFrame)
+        if (Input.Navigate.RightWasPressedThisFrame)
             ShiftSelection(1);
     }
 

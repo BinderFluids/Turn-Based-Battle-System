@@ -1,3 +1,4 @@
+using Core.Stats;
 using UnityEngine;
 
 namespace StatusEffectSystem
@@ -18,7 +19,9 @@ namespace StatusEffectSystem
 
         protected override void OnTurnStart(BattleEntity entity)
         {
-            entity.AddHealth(-damage);
+            if (entity.TryGetComponent(out StatBlockComponent statBlockComponent))
+                statBlockComponent.AddHealth(-damage);
+            
             Debug.Log($"Poisoned {entity.gameObject.name} for {damage} damage");
         }
     }

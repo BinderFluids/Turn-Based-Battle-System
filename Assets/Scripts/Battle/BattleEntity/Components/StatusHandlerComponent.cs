@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
 using StatusEffectSystem;
 
-public partial class BattleEntity
+public class StatusHandlerComponent : BattleEntityComponent
 {
     StatusEffectHandler statusEffectHandler;
 

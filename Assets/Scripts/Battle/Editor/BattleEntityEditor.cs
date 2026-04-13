@@ -16,7 +16,8 @@ public class BattleEntityEditor : Editor
         if (GUILayout.Button("Start Turn"))
         {
             BattleEntity entity = target as BattleEntity;
-            entity.StartTurn().Forget();
+            if (entity.TryGetComponent(out TurnComponent turnComponent))
+                turnComponent.StartTurn();
         }
     }
 }

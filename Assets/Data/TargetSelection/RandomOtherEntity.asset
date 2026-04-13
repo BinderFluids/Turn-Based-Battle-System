@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 680a1336ed7c4483aad4435eb9bd4c45, type: 3}
-  m_Name: ManualSelectTarget
-  m_EditorClassIdentifier: 
-  respondToSelectionEvent: 1
+  m_Script: {fileID: 11500000, guid: b2c400bee34e4263a8faad1a6c025ed0, type: 3}
+  m_Name: RandomOtherEntity
+  m_EditorClassIdentifier: Assembly-CSharp::RandomOtherTarget

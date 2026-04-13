@@ -18,7 +18,8 @@ namespace StatusEffectSystem
             
             duration--;
             if (duration == 0)
-                entity.RemoveStatusEffect(this); 
+                if (entity.TryGetComponent(out StatusHandlerComponent statusHandler))
+                    statusHandler.RemoveStatusEffect(this); 
         }
         protected virtual void OnTurnStart(BattleEntity entity) { }
     }

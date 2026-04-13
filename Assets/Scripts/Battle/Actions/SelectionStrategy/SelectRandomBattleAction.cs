@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityUtils;
@@ -11,9 +12,9 @@ public class SelectRandomBattleAction : ScriptableObject, IBattleActionSelection
 {
     public event Action<IBattleAction> onActionSelected;
 
-    public void GetAction(List<IBattleAction> context)
+    public void GetAction(IEnumerable<IBattleAction> context)
     {
-        Debug.Log($"Selecting random action from {context.Count} actions");
+        Debug.Log($"Selecting random action from {context.Count()} actions");
         onActionSelected?.Invoke(context.Random());
     }
 }

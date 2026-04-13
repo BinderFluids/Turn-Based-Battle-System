@@ -9,8 +9,12 @@ public class InflictPoison : ScriptableBattleAction
     
     public override void StartAction(BattleEntity actor, BattleEntity target)
     {
-        var statusEffectInstance = new PoisonStatusEffect(damage, duration);
-        target.AddStatusEffect(statusEffectInstance);
+        if (target.TryGetComponent(out StatusHandlerComponent statusHandler))
+        {
+            var statusEffectInstance = new PoisonStatusEffect(damage, duration);
+            statusHandler.AddStatusEffect(statusEffectInstance);
+        }
+        
         EndAction(actor);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Battle.BattleEntity;
 using PrimeTween;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -24,7 +25,12 @@ public class Jump : ScriptableBattleAction
         
         Transform transform = actor.transform;
         Vector3 startPos = transform.position;
-        float targetHeight = Mathf.Max(transform.position.y + jumpHeight, target.transform.position.y + miniumAboveEnemy); 
+        float targetHeight = Mathf.Max(transform.position.y + jumpHeight, target.transform.position.y + miniumAboveEnemy);
+
+        Vector3 topPosition = target.transform.position;  
+        if (!target.TryGetComponent(out FormationSlotComponent formationSlotComponent))
+            topPosition = formationSlotComponent.topPosition;
+        
         
         Sequence verticalMovement = Sequence.Create()
             .Chain(
@@ -38,7 +44,7 @@ public class Jump : ScriptableBattleAction
             .Chain(
                 Tween.PositionY(
                     transform,
-                    target.topPosition.y,
+                    topPosition.y,
                     jumpDuration * (1f - jumpSegmentDistribution),
                     jumpFallEase
                 )

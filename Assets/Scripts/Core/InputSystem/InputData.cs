@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -5,6 +6,7 @@ using UnityEngine.InputSystem;
 public abstract class InputData<T>
 {
     private bool enabled;
+    private bool doDebug; 
     public bool Enabled => enabled; 
     public void Enable()
     {
@@ -19,8 +21,15 @@ public abstract class InputData<T>
     {
         InputAction = inputAction;
     }
-            
     public InputAction InputAction;
+    
+    public void DoDebug(bool doDebug) => this.doDebug = doDebug;
+
+    protected void DebugLog(object message)
+    {
+        if (doDebug)
+            Debug.Log(message); 
+    }
     
     public bool IsPressed => InputAction.IsPressed();
     public bool WasPressedThisFrame => InputAction.WasPressedThisFrame();
@@ -43,18 +52,21 @@ public abstract class InputData<T>
 public class BoolInputData : InputData<bool>
 {
     public BoolInputData(InputAction inputAction) : base(inputAction) { }
+    
 
     public override void Trigger(InputAction.CallbackContext context)
     {
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                Invoke(true);
+                DebugLog("Started Input");
                 Value = true;
+                Invoke(true);
                 break;
             case InputActionPhase.Canceled:
-                Invoke(false);
+                DebugLog("Canceled Input");
                 Value = false;
+                Invoke(false);
                 break;
         }
     }

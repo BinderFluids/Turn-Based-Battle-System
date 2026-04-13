@@ -702,7 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleActionContainerComponent
   entity: {fileID: 899185835}
-  selectActionStrategyRef:
+  selectionStrategyRef:
     underlyingValue: {fileID: 11400000, guid: 4f7fdeed4a019a5abbf3d393a55d621d, type: 2}
   targetSelectionStrategyRef:
     underlyingValue: {fileID: 11400000, guid: c17b7534ee0bbd1868b74a2c9bc2cdce, type: 2}
@@ -822,7 +822,6 @@ MonoBehaviour:
   currentHighlighter: {fileID: 0}
   input:
     underlyingValue: {fileID: 11400000, guid: d565327a946beba4abafce2361776176, type: 2}
-  doRaiseSelectableChosenEvent: 1
 --- !u!4 &1192007230
 Transform:
   m_ObjectHideFlags: 0
@@ -1063,7 +1062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleActionContainerComponent
   entity: {fileID: 1916933932}
-  selectActionStrategyRef:
+  selectionStrategyRef:
     underlyingValue: {fileID: 847062769}
   targetSelectionStrategyRef:
     underlyingValue: {fileID: 11400000, guid: fad7cae9a4c726cccb70e00e209ad0d7, type: 2}

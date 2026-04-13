@@ -38,9 +38,9 @@ namespace StatusEffectSystem
             status.Remove(target);
         }
 
-        void OnTurnStart(TurnStartEvent turnStartEvent)
+        void OnTurnStart(TurnStartEvent e)
         {
-            if (turnStartEvent.entity != target) return;
+            if (e.turnEntity.Entity != target) return;
             for (int i = statusEffects.Count - 1; i >= 0; i--)
                 statusEffects[i].TurnStart(target); 
         }

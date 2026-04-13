@@ -11,13 +11,12 @@ public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
     public override event Action<BattleEntity> onEntitySelected;
     
     private EventBinding<SelectableChosenEvent> chosenEventBinding;
-    [SerializeField] private List<PhysicalBattleEntityModifier> modifiers;
+
     
     public override void GetEntity(BattleEntity actor, IBattleAction action)
     {
-        Debug.Log("Manual select target");
-        chosenEventBinding ??= new EventBinding<SelectableChosenEvent>(OnSelectableChosenEventRaised);
         
+        chosenEventBinding ??= new EventBinding<SelectableChosenEvent>(OnSelectableChosenEventRaised);
         EventBus<SelectableChosenEvent>.Register(chosenEventBinding);
         
         //Create list of selectable entities
@@ -28,6 +27,7 @@ public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
     
     void OnSelectableChosenEventRaised(SelectableChosenEvent e)
     {
+        
         BattleEntity selectedEntity = e.SelectedItem as BattleEntity;
         onEntitySelected?.Invoke(selectedEntity);
         
