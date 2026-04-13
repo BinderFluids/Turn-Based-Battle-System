@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c3c0d62779d5188297bf2be552eb8a5, type: 3}
-  m_Name: InputReader
-  m_EditorClassIdentifier: Assembly-CSharp::InputReader
+  m_Script: {fileID: 11500000, guid: 0f40f0e40f81458f9c00565f9da5985d, type: 3}
+  m_Name: BattleInputReader
+  m_EditorClassIdentifier: Assembly-CSharp::BattleInputReader
