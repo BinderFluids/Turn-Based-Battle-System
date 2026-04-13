@@ -66,7 +66,6 @@ public class SelectionManager : Singleton<SelectionManager>
         activeItems.Clear();
     }
 
-    public bool doRaiseSelectableChosenEvent; 
     private void Update()
     {
         if (!active) return;
@@ -78,7 +77,7 @@ public class SelectionManager : Singleton<SelectionManager>
             CurrentItem.Value.Select();
             EndSelection();
             
-            if (doRaiseSelectableChosenEvent) EventBus<SelectableChosenEvent>.Raise( //TODO THIS IS KILLING ME MAN HELP ME
+            EventBus<SelectableChosenEvent>.Raise( //TODO THIS IS KILLING ME MAN HELP ME
                 new SelectableChosenEvent
                 {
                     SelectedItem = CurrentItem.Value
