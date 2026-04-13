@@ -31,8 +31,6 @@ public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerAc
         InputActions.Player.SetCallbacks(this);
         
         PlayerOne = new BoolInputData(InputActions.Player.PlayerOne);
-        PlayerOne.DoDebug(true); 
-        
         PlayerTwo = new BoolInputData(InputActions.Player.PlayerTwo); 
         Move = new Vector2InputData(InputActions.Player.Move);
         
@@ -54,7 +52,6 @@ public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerAc
 
     public void OnPlayerOne(InputAction.CallbackContext context)
     {
-        Debug.Log("PlayerOne.Trigger(context)");
         PlayerOne.Trigger(context);
     }
 

@@ -21,15 +21,18 @@ public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
         
         //Create list of selectable entities
         List<ISelectable> entitiesAsSelectables = new();
-        action.GetValidTargets(actor).ForEach(e => entitiesAsSelectables.Add(e as ISelectable));
+        foreach (BattleEntity entity in action.GetValidTargets(actor))
+        {
+            if (entity.TryGetComponent(out SelectableComponent selectable))
+                entitiesAsSelectables.Add(selectable);
+        }
         SelectionManager.Instance.StartSelection(entitiesAsSelectables);
     }
     
     void OnSelectableChosenEventRaised(SelectableChosenEvent e)
     {
-        
-        BattleEntity selectedEntity = e.SelectedItem as BattleEntity;
-        onEntitySelected?.Invoke(selectedEntity);
+        SelectableComponent selectedEntity = e.SelectedItem as SelectableComponent;
+        onEntitySelected?.Invoke(selectedEntity.Entity);
         
         EventBus<SelectableChosenEvent>.Deregister(chosenEventBinding);
     }

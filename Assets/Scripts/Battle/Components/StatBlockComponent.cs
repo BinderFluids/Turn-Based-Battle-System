@@ -9,8 +9,10 @@ namespace Core.Stats
         [SerializeField] private StatBlock statBlock;
         public StatBlock StatBlock => statBlock;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             if (template == null)
             {
                 Debug.LogError($"{name} is missing a StatBlockTemplate.");

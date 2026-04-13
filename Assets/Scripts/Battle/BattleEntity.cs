@@ -12,9 +12,7 @@ public partial class BattleEntity : MonoBehaviour
 {
     public PhysicalBattleEntityModifier physicalBattleEntityModifier;
     
-
     private Dictionary<Type, IBattleEntityComponent> components;
-
     public new bool TryGetComponent<T>(out T component) where T : IBattleEntityComponent
     {
         if (components.TryGetValue(typeof(T), out var value) && value is T typed)
@@ -38,5 +36,4 @@ public partial class BattleEntity : MonoBehaviour
     {
         Registry<BattleEntity>.Remove(this); 
     }
-    
 }
