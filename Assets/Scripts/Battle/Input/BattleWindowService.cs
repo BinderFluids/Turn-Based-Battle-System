@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using EventBus;
 using UnityEngine;
 using UnityUtils;
 
@@ -7,29 +8,38 @@ namespace Battle.Input
 {
     public class BattleWindowService : Singleton<BattleWindowService>
     {
+        private Window currentWindow;
+        private EventBinding<WindowInputEvent> windowInputEventBinding;
 
-        private WindowSpec currentWindow;
+        private void Start()
+        {
+            this.SubscribeToEvents();
+        }
 
         /// <summary>
         /// Subscribe to input events so we can pass them onto who ever subscribes to the windowId.
         /// </summary>
         public void SubscribeToEvents()
         {
-            // TODO: Need to figure out input events
+            windowInputEventBinding = new EventBinding<WindowInputEvent>(HandleWindowEvent);
+            EventBus<WindowInputEvent>.Register(windowInputEventBinding);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public async UniTask<ActionCommandOutcome> RunActionCommandAsync(ActionCommandSpec actionCommandSpec)
+        private void HandleWindowEvent(WindowInputEvent e)
         {
-            // TODO: Initiate a listener for a command that will process events
-            // TODO: Fire an event that the actionCommand window has opened
-            // TODO: await for the duration of the actionCommand
-            // TODO: determine if we got a good input during that time
-            // TODO: return an outcome
-            return new ActionCommandOutcome();
+            if (currentWindow == null) return;
+            currentWindow.HandleInput(e);
+        }
+
+        /// <summary>Initiates a single ActionCommand and returns the outcome after specified duration</summary>
+        /// <returns></returns>
+        public async UniTask<ActionCommandOutcome> RunActionCommandAsync(ActionCommandWindow actionCommandWindow)
+        {
+            currentWindow = actionCommandWindow;
+            currentWindow.Open();
+            EventBus<ActionCommandWindowOpened>.Raise(new ActionCommandWindowOpened(actionCommandWindow.Id, actionCommandWindow.Duration, actionCommandWindow.Threshold));
+            await UniTask.WaitForSeconds(actionCommandWindow.Duration); 
+            return actionCommandWindow.DetermineOutcome();
         }
         
         /// <summary>
@@ -38,6 +48,12 @@ namespace Battle.Input
         public void Reset()
         {
             this.currentWindow = null;
+        }
+
+        private void OnDestroy()
+        {
+            this.currentWindow = null;
+            EventBus<WindowInputEvent>.Deregister(windowInputEventBinding);
         }
     }
 }

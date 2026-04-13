@@ -9,9 +9,12 @@ public class ActionCommandWindowOpened : IEvent
 {
     public string WindowId { get; }
     public float DurationSeconds { get; }
-    public IReadOnlyList<Battle.Input.InputType> ExpectedInputs { get; }
+    public float ThresholdSeconds { get; }
 
-    /// <summary>Relative times (seconds from window start) when input counts as valid.</summary>
-    public float ValidInputStartTime { get; }
-    public float ValidInputEndTime { get; }
+    public ActionCommandWindowOpened(string windowId, float durationSeconds, float thresholdSeconds)
+    {
+        WindowId = windowId;
+        DurationSeconds = durationSeconds;
+        ThresholdSeconds = thresholdSeconds;
+    }
 }
