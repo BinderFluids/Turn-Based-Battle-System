@@ -12,7 +12,9 @@ public class RandomOtherTarget : ScriptableObject, IBattleEntitySelectionStrateg
     public event Action<BattleEntity> onEntitySelected;
     public void GetEntity(BattleEntity actor, IBattleAction action)
     {
-        BattleEntity target = action.GetValidTargets(actor).Random();
+        var targetList = action.GetValidTargets(actor);
+        targetList.Remove(actor); 
+        BattleEntity target = targetList.Random();
         
         Debug.Log($"Select Random other target {target}");
         onEntitySelected?.Invoke(target);

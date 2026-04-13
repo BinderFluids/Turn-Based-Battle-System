@@ -17,7 +17,7 @@ public class BattleActionWheel : MonoBehaviour, IBattleActionSelectionStrategy
             (OnSelectableChosenEventRaised); 
     }
 
-    public void GetAction(List<IBattleAction> context)
+    public void GetAction(IEnumerable<IBattleAction> context)
     {
         EventBus<SelectableChosenEvent>.Register(chosenItemBinding); 
         

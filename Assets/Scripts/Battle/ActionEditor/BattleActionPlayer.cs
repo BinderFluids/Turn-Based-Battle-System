@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BattleActionPlayer : MonoBehaviour
 {
-    [SerializeField] private BattleEntity actor;
+    [SerializeField] private ActorComponent actor;
     [SerializeField] private BattleEntity target; 
     [SerializeField] private ScriptableBattleAction action;
 

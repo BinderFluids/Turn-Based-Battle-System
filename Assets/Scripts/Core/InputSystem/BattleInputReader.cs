@@ -1,8 +1,9 @@
+using Selectable;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "Input Reader/Battle Input", fileName = "BattleInputReader", order = 0)]
-public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerActions
+public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerActions, ISelectableInput
 {
     public enum PlayerInput
     {
@@ -13,7 +14,10 @@ public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerAc
     
     public BoolInputData PlayerOne;
     public BoolInputData PlayerTwo;
-    private PlayerInput currentPlayerInput; 
+    private PlayerInput currentPlayerInput;
+
+    public BoolInputData Confirm => PlayerOne;
+    public Vector2InputData Navigate => Move; 
     
     public Vector2InputData Move;
     
@@ -26,7 +30,9 @@ public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerAc
     {
         InputActions.Player.SetCallbacks(this);
         
-        PlayerOne = new BoolInputData(InputActions.Player.PlayerOne); 
+        PlayerOne = new BoolInputData(InputActions.Player.PlayerOne);
+        PlayerOne.DoDebug(true); 
+        
         PlayerTwo = new BoolInputData(InputActions.Player.PlayerTwo); 
         Move = new Vector2InputData(InputActions.Player.Move);
         
@@ -46,7 +52,13 @@ public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerAc
         return playerBoolInputData != null;
     }
 
-    public void OnPlayerOne(InputAction.CallbackContext context) => PlayerOne.Trigger(context);
+    public void OnPlayerOne(InputAction.CallbackContext context)
+    {
+        Debug.Log("PlayerOne.Trigger(context)");
+        PlayerOne.Trigger(context);
+    }
+
     public void OnPlayerTwo(InputAction.CallbackContext context) => PlayerTwo.Trigger(context);
     public void OnMove(InputAction.CallbackContext context) => Move.Trigger(context);
+    
 }

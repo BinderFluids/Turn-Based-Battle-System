@@ -10,11 +10,18 @@ using StatusEffectSystem;
 public class BattleManager : Singleton<BattleManager>
 {
     private int turnNumber = -1;
-    [SerializeField] private List<BattleEntity> turnSortedEntities = new();
+    [SerializeField] private BattleInputReader inputReader;
+    [SerializeField] private List<TurnComponent> turnEntities = new();
     private EventBinding<TurnEndEvent> turnEndBinding;
     private EventBinding<TurnStartEvent> turnStartBinding;
     [SerializeField] private bool manageBattle;
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+        inputReader.EnableInput(InputActionType.Player);
+    }
+
     private void Start()
     {
         if (manageBattle)
@@ -34,8 +41,7 @@ public class BattleManager : Singleton<BattleManager>
 
     private void SetSortedTurns()
     {
-        turnSortedEntities = Registry<BattleEntity>
-            .All
+        turnEntities = FindObjectsByType<TurnComponent>()
             .OrderBy(e => 1f / e.StatBlock.Speed.Value)
             .ToList();
     }
@@ -43,12 +49,11 @@ public class BattleManager : Singleton<BattleManager>
     private void NextTurn(TurnEndEvent turnEndEvent)
     {
         turnNumber++;
-        int turnIndex = turnNumber % turnSortedEntities.Count;
+        int turnIndex = turnNumber % turnEntities.Count;
         
-        BattleEntity entity = turnSortedEntities[turnIndex];
+        TurnComponent turnComponent = turnEntities[turnIndex];
         
-        EventBus<TurnStartEvent>.Raise(new TurnStartEvent {entity = entity});
-        entity.StartTurn().Forget();
+        EventBus<TurnStartEvent>.Raise(new TurnStartEvent {turnEntity = turnComponent});
     }
 
     private void OnDestroy()

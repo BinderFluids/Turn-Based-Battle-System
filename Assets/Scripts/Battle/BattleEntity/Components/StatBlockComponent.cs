@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.Stats
 {
-    public class StatBlockComponent : MonoBehaviour
+    public class StatBlockComponent : BattleEntityComponent
     {
         [SerializeField] private StatBlockTemplate template; 
         [SerializeField] private StatBlock statBlock;
@@ -18,6 +18,12 @@ namespace Core.Stats
             }
             
             statBlock = new StatBlock(new StatsMediator(), template); 
+        }
+        
+        public void AddHealth(int amt)
+        {
+            Debug.LogWarning($"Adding {amt} health to {gameObject.name}");
+            StatBlock.Health.Add(amt); 
         }
     }
 }
