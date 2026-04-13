@@ -4,6 +4,7 @@ using EventBus;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Registry;
+using StatusEffectSystem;
 
 public partial class BattleEntity : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public partial class BattleEntity : MonoBehaviour
     
     void Awake()
     {
+        statusEffectHandler = new StatusEffectHandler(this); 
         Registry<BattleEntity>.TryAdd(this); 
     }
 
