@@ -18,7 +18,7 @@ namespace StatusEffectSystem
             
             duration--;
             if (duration == 0)
-                entity.RemoveStatus(this); 
+                entity.RemoveStatusEffect(this); 
         }
         protected virtual void OnTurnStart(BattleEntity entity) { }
     }

@@ -14,8 +14,6 @@ public class BattleManager : Singleton<BattleManager>
     private EventBinding<TurnEndEvent> turnEndBinding;
     private EventBinding<TurnStartEvent> turnStartBinding;
     [SerializeField] private bool manageBattle;
-
-    private StatusEffectHandler statusEffectHandler;
     
     private void Start()
     {
@@ -26,8 +24,6 @@ public class BattleManager : Singleton<BattleManager>
     private void StartBattle()
     {
         Registry<BattleEntity>._onItemAddedNoArgs += SetSortedTurns;
-
-        statusEffectHandler = new StatusEffectHandler();
         
         turnEndBinding = new EventBinding<TurnEndEvent>(NextTurn);
         EventBus<TurnEndEvent>.Register(turnEndBinding);
