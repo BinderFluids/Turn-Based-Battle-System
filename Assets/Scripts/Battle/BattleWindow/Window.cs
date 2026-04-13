@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Battle.BattleWindow.Enums;
 using UnityEngine;
 
-namespace Battle.Input
+namespace Battle.BattleWindow
 {
     /// <summary>
     /// Shared data for timed action commands and responsive input windows.
@@ -11,20 +12,20 @@ namespace Battle.Input
     {
         public string Id { get; protected set; }
         
-        public List<InputType> ExpectedInputs { get; }
+        public List<PlayerId> ExpectedInputs { get; }
 
-        protected Window(string id, List<InputType> expectedInputs)
+        protected Window(string id, List<PlayerId> expectedInputs)
         {
             Id = id;
             ExpectedInputs = expectedInputs;
         }
 
-        public float OpenTime { get; private set; }
+        public int StartFrame { get; private set; }
         public void Open()
         {
-            OpenTime = Time.time;
+            StartFrame = Time.frameCount;
         }
-        public float Elapsed => Time.time - OpenTime;
-        public abstract void HandleInput(WindowInputEvent evt);
+        public float Elapsed => Time.frameCount - StartFrame;
+        public abstract void HandleInput(PlayerId player, bool isPressed);
     }
 }

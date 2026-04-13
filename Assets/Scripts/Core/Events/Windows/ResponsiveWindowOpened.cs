@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Battle.BattleWindow.Enums;
 using EventBus;
 
 /// <summary>
@@ -8,16 +9,16 @@ using EventBus;
 public class ResponsiveWindowOpened : IEvent
 {
     public string WindowId { get; }
-    public IReadOnlyList<Battle.Input.InputType> ExpectedInputs { get; }
+    public IReadOnlyList<PlayerId> ExpectedInputs { get; }
     public string Label { get; }
 
-    public ResponsiveWindowOpened(
+    public ResponsiveWindowOpened(  
         string windowId,
-        IReadOnlyList<Battle.Input.InputType> expectedInputs,
+        IReadOnlyList<PlayerId> expectedInputs,
         string label = null)
     {
         WindowId = windowId;
-        ExpectedInputs = expectedInputs ?? Array.Empty<Battle.Input.InputType>();
+        ExpectedInputs = expectedInputs ?? Array.Empty<PlayerId>();
         Label = label;
     }
 }

@@ -1,4 +1,6 @@
-namespace Battle.Input
+using Battle.BattleWindow.Enums;
+
+namespace Battle.BattleWindow
 {
     public readonly struct ActionCommandOutcome
     {

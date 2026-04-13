@@ -9,12 +9,10 @@ public class ActionCommandWindowOpened : IEvent
 {
     public string WindowId { get; }
     public float DurationSeconds { get; }
-    public float ThresholdSeconds { get; }
 
-    public ActionCommandWindowOpened(string windowId, float durationSeconds, float thresholdSeconds)
+    public ActionCommandWindowOpened(string windowId, float durationSeconds)
     {
         WindowId = windowId;
         DurationSeconds = durationSeconds;
-        ThresholdSeconds = thresholdSeconds;
     }
 }

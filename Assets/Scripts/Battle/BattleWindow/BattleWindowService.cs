@@ -1,15 +1,20 @@
 using System;
+using Battle.BattleWindow.Enums;
 using Cysharp.Threading.Tasks;
 using EventBus;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityUtils;
 
-namespace Battle.Input
+namespace Battle.BattleWindow
 {
     public class BattleWindowService : Singleton<BattleWindowService>
     {
         private Window currentWindow;
-        private EventBinding<WindowInputEvent> windowInputEventBinding;
+        private BattleInputReader battleInputReader;
+        
+        private UnityAction<bool> _playerOneHandler;
+        private UnityAction<bool> _playerTwoHandler;
 
         private void Start()
         {
@@ -21,14 +26,17 @@ namespace Battle.Input
         /// </summary>
         public void SubscribeToEvents()
         {
-            windowInputEventBinding = new EventBinding<WindowInputEvent>(HandleWindowEvent);
-            EventBus<WindowInputEvent>.Register(windowInputEventBinding);
+            _playerOneHandler = (pressed) => HandleInputEvent(PlayerId.PLAYER_ONE, pressed);
+            _playerTwoHandler = (pressed) => HandleInputEvent(PlayerId.PLAYER_TWO, pressed);
+
+            battleInputReader.PlayerOne.Action += _playerOneHandler;
+            battleInputReader.PlayerTwo.Action += _playerTwoHandler;
         }
 
-        private void HandleWindowEvent(WindowInputEvent e)
+        private void HandleInputEvent(PlayerId player, bool isPressed)
         {
             if (currentWindow == null) return;
-            currentWindow.HandleInput(e);
+            currentWindow.HandleInput(player, isPressed);
         }
 
         /// <summary>Initiates a single ActionCommand and returns the outcome after specified duration</summary>
@@ -38,7 +46,7 @@ namespace Battle.Input
             currentWindow = actionCommandWindow;
             currentWindow.Open();
             EventBus<ActionCommandWindowOpened>.Raise(
-                new ActionCommandWindowOpened(actionCommandWindow.Id, actionCommandWindow.Duration, actionCommandWindow.Threshold)
+                new ActionCommandWindowOpened(actionCommandWindow.Id, actionCommandWindow.Duration)
             );
             await UniTask.WaitForSeconds(actionCommandWindow.Duration); 
             return actionCommandWindow.DetermineOutcome();
@@ -55,7 +63,8 @@ namespace Battle.Input
         private void OnDestroy()
         {
             this.Reset();
-            EventBus<WindowInputEvent>.Deregister(windowInputEventBinding);
+            battleInputReader.PlayerOne.Action -= _playerOneHandler;
+            battleInputReader.PlayerTwo.Action -= _playerTwoHandler;
         }
     }
 }
