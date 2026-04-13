@@ -31,7 +31,7 @@ public class Jump : ScriptableBattleAction
         float targetHeight = Mathf.Max(transform.position.y + jumpHeight, target.transform.position.y + miniumAboveEnemy);
 
         Vector3 topPosition = target.transform.position;  
-        if (!target.TryGetComponent(out FormationSlotComponent formationSlotComponent))
+        if (target.TryGetComponent(out FormationSlotComponent formationSlotComponent))
             topPosition = formationSlotComponent.topPosition;
         
         
