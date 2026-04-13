@@ -12,10 +12,10 @@ namespace Battle.BattleWindow
     public class ActionCommandWindow : Window
     {
         public int Duration { get; }
-        private Dictionary<PlayerId, PlayerHoldData> holdData = new Dictionary<PlayerId, PlayerHoldData>();
+        private readonly Dictionary<PlayerId, PlayerHoldData> holdData = new Dictionary<PlayerId, PlayerHoldData>();
         private readonly IOutcomeStrategy outcomeStrategy;
 
-        public ActionCommandWindow(string id, int duration, List<PlayerId> expectedPlayerInputs, [CanBeNull] IOutcomeStrategy outcomeStrategy)
+        public ActionCommandWindow(string id, int duration, List<PlayerId> expectedPlayerInputs, IOutcomeStrategy outcomeStrategy)
             : base(id, expectedPlayerInputs)
         {
             Duration = duration;
