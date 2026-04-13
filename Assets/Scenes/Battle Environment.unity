@@ -449,6 +449,118 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &510737586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510737592}
+  - component: {fileID: 510737591}
+  - component: {fileID: 510737590}
+  - component: {fileID: 510737589}
+  - component: {fileID: 510737588}
+  - component: {fileID: 510737587}
+  m_Layer: 0
+  m_Name: BattleEntity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &510737587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510737586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27997ba8db63421ba3a0c601875cf89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TurnComponent
+  entity: {fileID: 510737591}
+  statBlockComponent: {fileID: 510737589}
+  turnStartHandle:
+    underlyingValue: {fileID: 0}
+  turnEndHandle:
+    underlyingValue: {fileID: 0}
+--- !u!114 &510737588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510737586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e9d82ebc23e4dbca8b6e6c46a68f846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusHandlerComponent
+  entity: {fileID: 510737591}
+--- !u!114 &510737589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510737586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c563e0b17292477aa9ed10152c1af541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Stats.StatBlockComponent
+  entity: {fileID: 510737591}
+  template: {fileID: 11400000, guid: bfb3153e9e7efe40bbf3db481c6085c2, type: 2}
+--- !u!114 &510737590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510737586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d293dcd6776849ebb49c6e2f43b7301c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActorComponent
+  entity: {fileID: 510737591}
+  selectActionStrategyRef:
+    underlyingValue: {fileID: 0}
+  targetSelectionStrategyRef:
+    underlyingValue: {fileID: 0}
+  actionsRef: []
+--- !u!114 &510737591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510737586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644da525316aa891e83a6e22c4c4135a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleEntity
+  physicalBattleEntityModifier: 3
+--- !u!4 &510737592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510737586}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &586756649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5219068741339149666, guid: 21fe22167450d22888637e848074953f, type: 3}
@@ -688,6 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c563e0b17292477aa9ed10152c1af541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.Stats.StatBlockComponent
+  entity: {fileID: 0}
   template: {fileID: 11400000, guid: bfb3153e9e7efe40bbf3db481c6085c2, type: 2}
 --- !u!114 &899185834
 MonoBehaviour:
@@ -720,15 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644da525316aa891e83a6e22c4c4135a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleEntity
-  actionsRef: []
-  actionSelectionStrategyRef:
-    underlyingValue: {fileID: 0}
-  targetSelectionStrategyRef:
-    underlyingValue: {fileID: 0}
-  statBlockComponent: {fileID: 899185833}
   physicalBattleEntityModifier: 0
-  components: []
-  topPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &899185836
 Transform:
   m_ObjectHideFlags: 0
@@ -1049,6 +1154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c563e0b17292477aa9ed10152c1af541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.Stats.StatBlockComponent
+  entity: {fileID: 0}
   template: {fileID: 11400000, guid: 4f58fdd88801d4828ae4b14a0f6d9362, type: 2}
 --- !u!114 &1916933931
 MonoBehaviour:
@@ -1080,15 +1186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644da525316aa891e83a6e22c4c4135a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleEntity
-  actionsRef: []
-  actionSelectionStrategyRef:
-    underlyingValue: {fileID: 0}
-  targetSelectionStrategyRef:
-    underlyingValue: {fileID: 0}
-  statBlockComponent: {fileID: 1916933930}
   physicalBattleEntityModifier: 0
-  components: []
-  topPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1916933933
 Transform:
   m_ObjectHideFlags: 0
@@ -1189,3 +1287,4 @@ SceneRoots:
   - {fileID: 847062770}
   - {fileID: 899185836}
   - {fileID: 1916933933}
+  - {fileID: 510737592}

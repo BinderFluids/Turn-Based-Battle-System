@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5673242099075302726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330901941073908655}
+  - component: {fileID: 8656314065708751728}
+  - component: {fileID: 3362557005192258134}
+  - component: {fileID: 2598638701505947080}
+  - component: {fileID: 77429669158828409}
+  - component: {fileID: 1206206866845388667}
+  m_Layer: 0
+  m_Name: Battle Entity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &330901941073908655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673242099075302726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8656314065708751728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673242099075302726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644da525316aa891e83a6e22c4c4135a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleEntity
+  physicalBattleEntityModifier: 3
+--- !u!114 &3362557005192258134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673242099075302726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d293dcd6776849ebb49c6e2f43b7301c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActorComponent
+  entity: {fileID: 8656314065708751728}
+  selectActionStrategyRef:
+    underlyingValue: {fileID: 11400000, guid: 4f7fdeed4a019a5abbf3d393a55d621d, type: 2}
+  targetSelectionStrategyRef:
+    underlyingValue: {fileID: 11400000, guid: c17b7534ee0bbd1868b74a2c9bc2cdce, type: 2}
+  actionsRef:
+  - underlyingValue: {fileID: 11400000, guid: de1125fe147ab9359b56592f2baab9a7, type: 2}
+--- !u!114 &2598638701505947080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673242099075302726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c563e0b17292477aa9ed10152c1af541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Stats.StatBlockComponent
+  entity: {fileID: 8656314065708751728}
+  template: {fileID: 11400000, guid: bfb3153e9e7efe40bbf3db481c6085c2, type: 2}
+--- !u!114 &77429669158828409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673242099075302726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e9d82ebc23e4dbca8b6e6c46a68f846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusHandlerComponent
+  entity: {fileID: 8656314065708751728}
+--- !u!114 &1206206866845388667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673242099075302726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27997ba8db63421ba3a0c601875cf89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TurnComponent
+  entity: {fileID: 8656314065708751728}
+  statBlockComponent: {fileID: 2598638701505947080}
+  turnStartHandle:
+    underlyingValue: {fileID: 0}
+  turnEndHandle:
+    underlyingValue: {fileID: 0}

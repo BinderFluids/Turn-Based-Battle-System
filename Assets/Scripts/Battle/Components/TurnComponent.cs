@@ -5,13 +5,14 @@ using Core.Stats;
 using EventBus;
 using UnityEngine;
 
+[RequireComponent(typeof(StatBlockComponent))]
 public class TurnComponent : BattleEntityComponent
 {
     [SerializeField] private StatBlockComponent statBlockComponent;
     public StatBlock StatBlock => statBlockComponent.StatBlock;
     
-    [SerializeField] private InterfaceReference<ITurnHandleStrategy> turnStartHandle; 
-    [SerializeField] private InterfaceReference<ITurnHandleStrategy> turnEndHandle;
+    [SerializeField, Tooltip("Defaults if empty")] private InterfaceReference<ITurnHandleStrategy> turnStartHandle; 
+    [SerializeField, Tooltip("Defaults if empty")] private InterfaceReference<ITurnHandleStrategy> turnEndHandle;
     
     private EventBinding<TurnStartEvent> turnStartBinding;
     private EventBinding<TurnEndEvent> turnEndBinding;
@@ -19,13 +20,21 @@ public class TurnComponent : BattleEntityComponent
     private ITurnHandleStrategy defaultTurnStartHandle = new SelectActionTurnHandle();
     private ITurnHandleStrategy defaultTurnEndHandle = new EmptyTurnHandle();
     
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         turnStartBinding = new EventBinding<TurnStartEvent>(HandleTurnStart);
         EventBus<TurnStartEvent>.Register(turnStartBinding);
         
         turnEndBinding = new EventBinding<TurnEndEvent>(HandleTurnEnd);
         EventBus<TurnEndEvent>.Register(turnEndBinding);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        statBlockComponent ??= GetComponent<StatBlockComponent>();
     }
 
     public void StartTurn()

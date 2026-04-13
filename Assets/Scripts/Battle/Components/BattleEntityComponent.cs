@@ -12,5 +12,8 @@ public abstract class BattleEntityComponent : MonoBehaviour, IBattleEntityCompon
     [SerializeField] private BattleEntity entity;
     public BattleEntity Entity => entity;
 
-    private void Start() => entity ??= GetComponent<BattleEntity>();
+
+    protected virtual void Awake() { }
+
+    protected virtual void Start() => entity ??= GetComponent<BattleEntity>();
 }
