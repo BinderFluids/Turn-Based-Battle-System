@@ -4,23 +4,21 @@ namespace Battle.Input
     {
         public bool Success { get; }
         public ActionCommandTier? Tier { get; }
-        public float? InputTime { get; }
 
-        public ActionCommandOutcome(bool success, ActionCommandTier? tier, float? inputTime)
+        public ActionCommandOutcome(bool success, ActionCommandTier? tier)
         {
             Success = success;
             Tier = tier;
-            InputTime = inputTime;
         }
 
         public static ActionCommandOutcome Fail()
         {
-            return new ActionCommandOutcome(false, null, null);
+            return new ActionCommandOutcome(false, null);
         }
 
-        public static ActionCommandOutcome Succeed(ActionCommandTier tier, float inputTime)
+        public static ActionCommandOutcome Succeed(ActionCommandTier tier)
         {
-            return new ActionCommandOutcome(true, tier, inputTime);
+            return new ActionCommandOutcome(true, tier);
         }
     }
 }

@@ -37,7 +37,9 @@ namespace Battle.Input
         {
             currentWindow = actionCommandWindow;
             currentWindow.Open();
-            EventBus<ActionCommandWindowOpened>.Raise(new ActionCommandWindowOpened(actionCommandWindow.Id, actionCommandWindow.Duration, actionCommandWindow.Threshold));
+            EventBus<ActionCommandWindowOpened>.Raise(
+                new ActionCommandWindowOpened(actionCommandWindow.Id, actionCommandWindow.Duration, actionCommandWindow.Threshold)
+            );
             await UniTask.WaitForSeconds(actionCommandWindow.Duration); 
             return actionCommandWindow.DetermineOutcome();
         }
@@ -52,7 +54,7 @@ namespace Battle.Input
 
         private void OnDestroy()
         {
-            this.currentWindow = null;
+            this.Reset();
             EventBus<WindowInputEvent>.Deregister(windowInputEventBinding);
         }
     }

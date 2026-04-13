@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Battle.Input
@@ -10,9 +11,9 @@ namespace Battle.Input
     {
         public string Id { get; protected set; }
         
-        public InputType ExpectedInputs { get; }
+        public List<InputType> ExpectedInputs { get; }
 
-        protected Window(string id, InputType expectedInputs)
+        protected Window(string id, List<InputType> expectedInputs)
         {
             Id = id;
             ExpectedInputs = expectedInputs;

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Battle.Input
 {
     /// <summary>
@@ -5,7 +7,7 @@ namespace Battle.Input
     /// </summary>
     public class ResponsiveWindow : Window
     {
-        public ResponsiveWindow(string id, InputType expectedInputs)
+        public ResponsiveWindow(string id,  List<InputType> expectedInputs)
             : base(id, expectedInputs)
         { }
 

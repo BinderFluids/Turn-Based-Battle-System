@@ -10,7 +10,10 @@ namespace Battle.Input
         public float Duration;
         public float Threshold;
 
-        public ActionCommandWindow(string id, InputType expectedInputs, float duration, float threshold)
+        private Dictionary<InputType, float> firstInputTimes = new Dictionary<InputType, float>();
+        
+
+        public ActionCommandWindow(string id, List<InputType> expectedInputs, float duration, float threshold)
             : base(id, expectedInputs)
         {
             Duration = duration;
@@ -19,12 +22,22 @@ namespace Battle.Input
 
         public override void HandleInput(WindowInputEvent evt)
         {
-            throw new System.NotImplementedException();
+            if (!ExpectedInputs.Contains(evt.InputType)) return;
+            if (firstInputTimes.ContainsKey(evt.InputType)) return;
+            
+            firstInputTimes[evt.InputType] = evt.TimeSeconds;
         }
 
         public ActionCommandOutcome DetermineOutcome()
         {
-            ActionCommandOutcome outcome = ActionCommandOutcome.Fail();
+            // It automatically fails if we dont have firstInputTimes for all the expectedInputs or if there were no inputs
+            if(firstInputTimes.Count == 0) return ActionCommandOutcome.Fail();
+            if(firstInputTimes.Count != ExpectedInputs.Count) return ActionCommandOutcome.Fail();
+            
+            // Now we need to take into account timing and threshold
+            
+            
+            ActionCommandOutcome outcome = ActionCommandOutcome.Succeed(ActionCommandTier.GOOD);
             return outcome;
         }
     }
