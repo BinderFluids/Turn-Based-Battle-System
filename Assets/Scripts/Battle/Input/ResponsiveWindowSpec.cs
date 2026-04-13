@@ -1,13 +1,10 @@
 namespace Battle.Input
 {
     /// <summary>
-    /// This defines the parameters for the responsive window
+    /// Parameters for a responsive window (closed explicitly by id, not by duration).
     /// </summary>
-    public struct ResponsiveWindowSpec
+    public class ResponsiveWindowSpec : WindowSpec
     {
-        public string Id;
-
-        // What type of response are we looking for
         public InputType Type;
     }
 }
