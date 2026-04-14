@@ -13,15 +13,26 @@ public partial class BattleEntity : MonoBehaviour
     public PhysicalBattleEntityModifier physicalBattleEntityModifier;
     
     private Dictionary<Type, IBattleEntityComponent> components;
-    public new bool TryGetComponent<T>(out T component) where T : IBattleEntityComponent
+    public new bool TryGetComponent<T>(out T component)
     {
-        if (components.TryGetValue(typeof(T), out var value) && value is T typed)
+        //Attempt to find BattleComponent from dictionary
+        if (typeof(T).IsAssignableFrom(typeof(IBattleEntityComponent)) &&
+            components.TryGetValue(typeof(T), out var foundBattleComponent) && 
+            foundBattleComponent is T typed)
         {
             component = typed;
             return true;
         }
+        
+        //Pass through to base TryGetComponent method
+        if (gameObject.TryGetComponent(out T foundComponent))
+        {
+            component = foundComponent;
+            return true; 
+        }
 
-        component = default;
+        //Return false
+        component = default; 
         return false;
     }
         
