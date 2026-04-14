@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Battle.BattleEntity;
 using Battle.BattleWindow.Enums;
 using Battle.BattleWindow.OutcomeStrategy;
 using JetBrains.Annotations;

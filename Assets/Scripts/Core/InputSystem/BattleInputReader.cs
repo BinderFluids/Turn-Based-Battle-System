@@ -1,3 +1,4 @@
+using Battle.BattleEntity;
 using Selectable;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,16 +6,9 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "Input Reader/Battle Input", fileName = "BattleInputReader", order = 0)]
 public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerActions, ISelectableInput
 {
-    public enum PlayerInput
-    {
-        PlayerOne,
-        PlayerTwo,
-        None
-    }
-    
     public BoolInputData PlayerOne;
     public BoolInputData PlayerTwo;
-    private PlayerInput currentPlayerInput;
+    private PlayerId currentPlayerInput;
 
     public BoolInputData Confirm => PlayerOne;
     public Vector2InputData Navigate => Move; 
@@ -34,16 +28,16 @@ public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerAc
         PlayerTwo = new BoolInputData(InputActions.Player.PlayerTwo); 
         Move = new Vector2InputData(InputActions.Player.Move);
         
-        SetCurrentPlayer(PlayerInput.None);
+        SetCurrentPlayer(PlayerId.None);
     }
 
-    public void SetCurrentPlayer(PlayerInput input) => currentPlayerInput = input;
+    public void SetCurrentPlayer(PlayerId input) => currentPlayerInput = input;
     public bool TryGetCurrentPlayerInput(out BoolInputData playerBoolInputData)
     {
         playerBoolInputData = currentPlayerInput switch
         {
-            PlayerInput.PlayerOne => PlayerOne,
-            PlayerInput.PlayerTwo => PlayerTwo,
+            PlayerId.PlayerOne => PlayerOne,
+            PlayerId.PlayerTwo => PlayerTwo,
             _ => null
         };
         

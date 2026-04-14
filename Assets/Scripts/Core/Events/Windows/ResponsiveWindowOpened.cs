@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Battle.BattleEntity;
 using Battle.BattleWindow.Enums;
 using EventBus;
 

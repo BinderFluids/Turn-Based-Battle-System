@@ -1,21 +1,21 @@
+using Battle.BattleEntity;
 using UnityEngine;
 
 public class PlayerEntityComponent : BattleEntityComponent
 {
-    enum PlayerInputData {PlayerOne, PlayerTwo}
-    
-    [SerializeField] private PlayerInputData playerInputData;
+    [SerializeField] private PlayerId playerID;
+    public PlayerId PlayerID => playerID;
     [SerializeField] private BattleInputReader input; 
-    [SerializeField] private BoolInputData inputData;
+    private BoolInputData inputData;
     public BoolInputData InputData => inputData;
 
     protected override void Start()
     {
         base.Start();
-        inputData = playerInputData switch
+        inputData = playerID switch
         {
-            PlayerInputData.PlayerOne => input.PlayerOne,
-            PlayerInputData.PlayerTwo => input.PlayerTwo,
+            PlayerId.PlayerOne => input.PlayerOne,
+            PlayerId.PlayerTwo => input.PlayerTwo,
             _ => throw new System.NotImplementedException()
         };
     }

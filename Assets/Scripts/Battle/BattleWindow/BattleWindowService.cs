@@ -1,4 +1,5 @@
 using System;
+using Battle.BattleEntity;
 using Battle.BattleWindow.Enums;
 using Cysharp.Threading.Tasks;
 using EventBus;
@@ -29,8 +30,8 @@ namespace Battle.BattleWindow
         /// </summary>
         public void SubscribeToEvents()
         {
-            _playerOneHandler = (pressed) => HandleInputEvent(PlayerId.PLAYER_ONE, pressed);
-            _playerTwoHandler = (pressed) => HandleInputEvent(PlayerId.PLAYER_TWO, pressed);
+            _playerOneHandler = (pressed) => HandleInputEvent(PlayerId.PlayerOne, pressed);
+            _playerTwoHandler = (pressed) => HandleInputEvent(PlayerId.PlayerTwo, pressed);
 
             battleInputReader.PlayerOne.Action += _playerOneHandler;
             battleInputReader.PlayerTwo.Action += _playerTwoHandler;
