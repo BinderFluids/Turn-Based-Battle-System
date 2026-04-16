@@ -6,9 +6,9 @@ internal class StartNode : BattleActionNode
 {
     protected override void OnDefinePorts(IPortDefinitionContext context)
     {
-        context.AddOutputPort(EXECUTION_PORT_DEFAULT_NAME)
-            .WithDisplayName(string.Empty)
+        context.AddOutputPort("Out0")
+            .WithDisplayName("Out (0)")
             .WithConnectorUI(PortConnectorUI.Arrowhead)
-            .Build(); 
+            .Build();
     }
 }

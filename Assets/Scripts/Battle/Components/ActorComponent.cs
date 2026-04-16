@@ -58,7 +58,6 @@ public class ActorComponent : BattleEntityComponent
             return;
         }
         
-        
         chosenAction = action; 
         chosenAction.onActionEnded += OnActionEnded;
         

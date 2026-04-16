@@ -11,6 +11,9 @@ using UnityEngine.UI;
 public partial class BattleEntity : MonoBehaviour
 {
     public PhysicalBattleEntityModifier physicalBattleEntityModifier;
+
+    [SerializeField] private Transform _transform; 
+    public Transform Transform => _transform;
     
     private Dictionary<Type, IBattleEntityComponent> components;
     public new bool TryGetComponent<T>(out T component)
