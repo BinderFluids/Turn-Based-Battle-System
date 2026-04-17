@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public interface IInputReader
 {
+    Vector2InputData Move { get; }
+    BoolInputData Select { get; } 
+    
     void EnableInput(InputActionType inputActionType);
 }
 

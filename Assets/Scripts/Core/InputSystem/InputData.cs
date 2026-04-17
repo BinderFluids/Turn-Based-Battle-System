@@ -97,3 +97,36 @@ public class Vector2InputData : InputData<Vector2>
         Invoke(Value);
     }
 }
+
+public class IntInputData : InputData<int>
+{
+    public IntInputData(InputAction inputAction) : base(inputAction) { }
+    
+    public override void Trigger(InputAction.CallbackContext context)
+    {
+        Value = context.ReadValue<int>();
+    }
+    
+    public bool PositiveIsPressed => Value > 0;
+    public bool NegativeIsPressed => Value < 0;
+    public bool PositiveWasReleasedThisFrame => Value > 0 && InputAction.WasReleasedThisFrame();
+    public bool NegativeWasReleasedThisFrame => Value < 0 && InputAction.WasReleasedThisFrame();
+    public bool PositiveWasPressedThisFrame => Value > 0 && InputAction.WasPressedThisFrame();
+    public bool NegativeWasPressedThisFrame => Value < 0 && InputAction.WasPressedThisFrame();
+}
+public class FloatInputData : InputData<float>
+{
+    public FloatInputData(InputAction inputAction) : base(inputAction) { }
+    
+    public override void Trigger(InputAction.CallbackContext context)
+    {
+        Value = context.ReadValue<float>();
+    }
+    
+    public bool PositiveIsPressed => Value > 0;
+    public bool NegativeIsPressed => Value < 0;
+    public bool PositiveWasReleasedThisFrame => Value > 0 && InputAction.WasReleasedThisFrame();
+    public bool NegativeWasReleasedThisFrame => Value < 0 && InputAction.WasReleasedThisFrame();
+    public bool PositiveWasPressedThisFrame => Value > 0 && InputAction.WasPressedThisFrame();
+    public bool NegativeWasPressedThisFrame => Value < 0 && InputAction.WasPressedThisFrame();
+}

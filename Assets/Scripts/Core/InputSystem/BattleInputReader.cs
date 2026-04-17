@@ -1,18 +1,14 @@
-using Battle.BattleEntity;
-using Selectable;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "Input Reader/Battle Input", fileName = "BattleInputReader", order = 0)]
-public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerActions, ISelectableInput
+public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerActions
 {
     public BoolInputData PlayerOne;
     public BoolInputData PlayerTwo;
     private PlayerId currentPlayerInput;
 
     public BoolInputData Confirm => PlayerOne;
-    public Vector2InputData Navigate => Move; 
-    
     public Vector2InputData Move;
     
     protected override void OnEnableInput(InputActionType inputActionType)
