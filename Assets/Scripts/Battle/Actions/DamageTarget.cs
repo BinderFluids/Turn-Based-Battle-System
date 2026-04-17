@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Registry;
 
-[CreateAssetMenu(menuName = "Battle Action/Damage Target", fileName = "DamageTarget", order = 0)]
+[CreateAssetMenu(menuName = "Battle/Action/Damage Target", fileName = "DamageTarget", order = 0)]
 public class DamageTarget : ScriptableBattleAction
 {
     private BattleEntity actor;

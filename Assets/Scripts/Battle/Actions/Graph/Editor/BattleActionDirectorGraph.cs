@@ -9,7 +9,7 @@ internal class BattleActionDirectorGraph : Graph
 {
     internal const string AssetExtension = "battlegraph";
 
-    [MenuItem("Assets/Create/Battle Action/Graph")]
+    [MenuItem("Assets/Create/Battle/Action/Graph")]
     static void CreateAssetFile()
     {
         GraphDatabase.PromptInProjectBrowserToCreateNewAsset<BattleActionDirectorGraph>();

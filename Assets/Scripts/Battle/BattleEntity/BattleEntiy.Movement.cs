@@ -13,4 +13,9 @@ public partial class BattleEntity
             await UniTask.Yield();
         }
     }
+
+    public async UniTask MoveHome(float speed)
+    {
+        await MoveTo(startPose.position, speed); 
+    }
 }

@@ -91,8 +91,30 @@ internal class BattleActionDirectorImporter : ScriptedImporter
             case StartNode:
                 returnedNodes.Add(new StartRuntimeNode());
                 break;
-            // case ActionNode:
-            //     break;
+            case MoveToSocketNode moveToSocketNode:
+                float speed = 1;
+                Vector3 socketPosition = Vector3.zero;
+
+                var speedPort = moveToSocketNode.GetInputPortByName("speed"); 
+                speed = GetInputPortValue<float>(speedPort);
+                var socketReferencePort = moveToSocketNode.GetInputPortByName("socketReference"); 
+                socketPosition = GetInputPortValue<SocketReference>(socketReferencePort).GetSocketPosition();
+                
+                returnedNodes.Add(new MoveToSocketRuntimeNode()
+                {
+                    Speed = speed,
+                    SocketPosition = socketPosition
+                });
+                break;
+            case WaitNode waitNode:
+                float waitTime = 1;
+                waitNode.GetNodeOptionByName("duration")?.TryGetValue(out waitTime);
+                returnedNodes.Add(new WaitRuntimeNode()
+                {
+                    Duration = waitTime
+                });
+                break;
+                
             default:
                 throw new ArgumentException($"Unsupported node type: {nodeModel.GetType()}");
         }

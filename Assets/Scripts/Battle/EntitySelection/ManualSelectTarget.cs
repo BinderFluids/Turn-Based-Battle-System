@@ -5,7 +5,7 @@ using EventBus;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "Battle Entity Selection Strategy/Manual", fileName = "ManualSelectTarget", order = 0)]
+[CreateAssetMenu(menuName = "Battle/Entity Selection/Manual", fileName = "ManualSelectTarget", order = 0)]
 public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
 {
     public override event Action<BattleEntity> onEntitySelected;
@@ -13,15 +13,14 @@ public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
     private EventBinding<SelectableChosenEvent> chosenEventBinding;
 
     
-    public override void GetEntity(BattleEntity actor, IBattleAction action)
+    public override void GetEntity(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx)
     {
-        
         chosenEventBinding ??= new EventBinding<SelectableChosenEvent>(OnSelectableChosenEventRaised);
         EventBus<SelectableChosenEvent>.Register(chosenEventBinding);
         
         //Create list of selectable entities
         List<ISelectable> entitiesAsSelectables = new();
-        foreach (BattleEntity entity in action.GetValidTargets(actor))
+        foreach (BattleEntity entity in action.GetValidTargets(actor, ctx))
         {
             if (entity.TryGetComponent(out SelectableComponent selectable))
                 entitiesAsSelectables.Add(selectable);

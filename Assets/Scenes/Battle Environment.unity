@@ -780,66 +780,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1676488145
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1676488148}
-  - component: {fileID: 1676488147}
-  - component: {fileID: 1676488146}
-  m_Layer: 0
-  m_Name: VisualScripting SceneVariables
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1676488146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676488145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 765181c9ef4b24d32a4f7cbd2ef370dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.VisualScripting.Core::Unity.VisualScripting.SceneVariables
---- !u!114 &1676488147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676488145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.VisualScripting.Core::Unity.VisualScripting.Variables
-  _data:
-    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!4 &1676488148
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676488145}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1797516809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,6 +940,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3362557005192258134, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.data[0].underlyingValue
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3707490650208733855, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -1147,13 +1091,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4f58fdd88801d4828ae4b14a0f6d9362, type: 2}
     - target: {fileID: 3362557005192258134, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
+      propertyPath: actionsRef.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362557005192258134, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: selectActionStrategyRef.underlyingValue
       value: 
       objectReference: {fileID: 847062769}
     - target: {fileID: 3362557005192258134, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: actionsRef.Array.data[0].underlyingValue
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2841676755933307327, guid: 1baf647857f9f66f3b8ddc5ffeb0bacd, type: 3}
     - target: {fileID: 3362557005192258134, guid: 4dd9a5a355a6838dc9612728e16b0e34, type: 3}
       propertyPath: targetSelectionStrategyRef.underlyingValue
       value: 
@@ -1179,4 +1127,3 @@ SceneRoots:
   - {fileID: 847062770}
   - {fileID: 4532391673308640868}
   - {fileID: 2045706299}
-  - {fileID: 1676488148}

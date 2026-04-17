@@ -1,8 +1,8 @@
 using Cysharp.Threading.Tasks;
 
-public class StartNodeExecutor : IStateMachineNodeExecutor<StartRuntimeNode>
+public class StartNodeExecutor : IStateMachineNodeExecutor
 {
-    public UniTask Execute(StartRuntimeNode node, BattleActionDirector ctx, BattleEntity actor, BattleEntity target) 
+    public UniTask Execute(object node, BattleActionDirector ctx, BattleEntity actor, BattleEntity target) 
         => UniTask.CompletedTask;
 }
 

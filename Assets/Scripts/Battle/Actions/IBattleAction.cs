@@ -9,7 +9,5 @@ public interface IBattleAction
     public event Action onActionEnded;
     
     void StartAction(BattleEntity actor, BattleEntity target);
-    List<BattleEntity> GetValidTargets(BattleEntity actor);
-
-    void Counter(BattleEntity defender); 
+    List<BattleEntity> GetValidTargets(BattleEntity actor, IEnumerable<BattleEntity> ctx); 
 }

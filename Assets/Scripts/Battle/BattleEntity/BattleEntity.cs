@@ -14,6 +14,27 @@ public partial class BattleEntity : MonoBehaviour
 
     [SerializeField] private Transform _transform; 
     public Transform Transform => _transform;
+
+    private Pose startPose; 
+    public Pose StartPose => startPose;
+    
+    
+    void Awake()
+    {
+        Registry<BattleEntity>.TryAdd(this); 
+        components = GetComponents<IBattleEntityComponent>().ToDictionary(c => c.GetType());
+    }
+
+    private void Start()
+    {
+        _transform ??= transform; 
+        startPose = new Pose(_transform.position, _transform.rotation);
+    }
+
+    private void OnDestroy()
+    {
+        Registry<BattleEntity>.Remove(this); 
+    }
     
     private Dictionary<Type, IBattleEntityComponent> components;
     public new bool TryGetComponent<T>(out T component)
@@ -37,17 +58,5 @@ public partial class BattleEntity : MonoBehaviour
         //Return false
         component = default; 
         return false;
-    }
-        
-    void Awake()
-    {
-        Registry<BattleEntity>.TryAdd(this); 
-        components = GetComponents<IBattleEntityComponent>().ToDictionary(c => c.GetType());
-    }
-
-    
-    private void OnDestroy()
-    {
-        Registry<BattleEntity>.Remove(this); 
     }
 }

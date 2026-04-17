@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using UnityEditor.Animations;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Battle Action/Buildable", fileName = "NewBuildableAction", order = 0)]
+[CreateAssetMenu(menuName = "Battle/Action/Buildable", fileName = "NewBuildableAction", order = 0)]
 public class BuildableBattleAction : ScriptableBattleAction
 {
     [SerializeReference, Subclass(IsList = true)] private List<BuildableBattleActionStep> steps = new();

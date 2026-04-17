@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-public interface IStateMachineNodeExecutor<in TNode> where TNode : RuntimeNode
+public interface IStateMachineNodeExecutor
 {
-    UniTask Execute(TNode node, BattleActionDirector ctx, BattleEntity actor, BattleEntity target);
+    UniTask Execute(object node, BattleActionDirector ctx, BattleEntity actor, BattleEntity target); 
 }

@@ -21,19 +21,14 @@ public abstract class ScriptableBattleAction : ScriptableObject, IBattleAction
     }
 
 
-    public List<BattleEntity> GetValidTargets(BattleEntity actor)
+    public List<BattleEntity> GetValidTargets(BattleEntity actor, IEnumerable<BattleEntity> ctx)
     {
-        List<BattleEntity> output = Registry<BattleEntity>.All.ToList(); 
+        List<BattleEntity> output = new List<BattleEntity>();
+        output.AddRange(ctx);
 
         foreach (BattleSelectionFilter filter in filters)
             output = filter.Filter(actor, output);
 
         return output; 
-    }
-    
-
-    public void Counter(BattleEntity defender)
-    {
-        throw new NotImplementedException();
     }
 }

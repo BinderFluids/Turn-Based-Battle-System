@@ -3,5 +3,5 @@ using UnityEngine;
 
 public class BattleActionRuntimeGraph : ScriptableObject
 {
-    [SerializeReference] public List<RuntimeNode> Nodes = new(); 
+    [SerializeReference] public List<RuntimeNode> Nodes = new();
 }
