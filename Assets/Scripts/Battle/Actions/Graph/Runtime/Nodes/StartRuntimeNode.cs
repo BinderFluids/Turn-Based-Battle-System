@@ -1,12 +1,14 @@
 using System;
 using Cysharp.Threading.Tasks;
 
-
-[Serializable]
-public class StartRuntimeNode : RuntimeNode
+namespace Battle.Actions.Graph.Runtime.Nodes
 {
-    public override UniTask Execute(BattleActionDirector ctx, BattleEntity actor, BattleEntity target)
+    [Serializable]
+    public class StartRuntimeNode : RuntimeNode
     {
-        return UniTask.CompletedTask;
+        public override UniTask Execute(BattleActionDirector ctx, global::BattleEntity actor, global::BattleEntity target)
+        {
+            return UniTask.CompletedTask;
+        }
     }
 }

@@ -2,22 +2,24 @@ using System;
 using Unity.GraphToolkit.Editor;
 using UnityEditor;
 
-
-[Serializable]
-[Graph(AssetExtension)]
-internal class BattleActionDirectorGraph : Graph
+namespace Battle.Actions.Graph.Editor
 {
-    internal const string AssetExtension = "battlegraph";
-
-    [MenuItem("Assets/Create/Battle/Action/Graph")]
-    static void CreateAssetFile()
+    [Serializable]
+    [Graph(AssetExtension)]
+    internal class BattleActionDirectorGraph : Unity.GraphToolkit.Editor.Graph
     {
-        GraphDatabase.PromptInProjectBrowserToCreateNewAsset<BattleActionDirectorGraph>();
-    }
+        internal const string AssetExtension = "battlegraph";
 
-    public override void OnGraphChanged(GraphLogger graphLogger)
-    {
-        base.OnGraphChanged(graphLogger);
-        //TODO Add error checking / validation
+        [MenuItem("Assets/Create/Battle/Action/Graph")]
+        static void CreateAssetFile()
+        {
+            GraphDatabase.PromptInProjectBrowserToCreateNewAsset<BattleActionDirectorGraph>();
+        }
+
+        public override void OnGraphChanged(GraphLogger graphLogger)
+        {
+            base.OnGraphChanged(graphLogger);
+            //TODO Add error checking / validation
+        }
     }
 }

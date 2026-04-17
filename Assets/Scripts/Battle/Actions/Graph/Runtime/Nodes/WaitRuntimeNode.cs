@@ -1,13 +1,15 @@
-
 using System;
 using Cysharp.Threading.Tasks;
 
-[Serializable]
-public class WaitRuntimeNode : RuntimeNode
+namespace Battle.Actions.Graph.Runtime.Nodes
 {
-    public float Duration;
-    public override async UniTask Execute(BattleActionDirector ctx, BattleEntity actor, BattleEntity target)
+    [Serializable]
+    public class WaitRuntimeNode : RuntimeNode
     {
-        await UniTask.WaitForSeconds(Duration);
+        public float Duration;
+        public override async UniTask Execute(BattleActionDirector ctx, global::BattleEntity actor, global::BattleEntity target)
+        {
+            await UniTask.WaitForSeconds(Duration);
+        }
     }
 }

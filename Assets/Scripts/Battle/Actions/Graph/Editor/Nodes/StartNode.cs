@@ -1,14 +1,17 @@
 using System;
 using Unity.GraphToolkit.Editor;
 
-[Serializable]
-internal class StartNode : BattleActionNode
+namespace Battle.Actions.Graph.Editor.Nodes
 {
-    protected override void OnDefinePorts(IPortDefinitionContext context)
+    [Serializable]
+    internal class StartNode : BattleActionNode
     {
-        context.AddOutputPort("Out0")
-            .WithDisplayName("Out (0)")
-            .WithConnectorUI(PortConnectorUI.Arrowhead)
-            .Build();
+        protected override void OnDefinePorts(IPortDefinitionContext context)
+        {
+            context.AddOutputPort("Out0")
+                .WithDisplayName("Out (0)")
+                .WithConnectorUI(PortConnectorUI.Arrowhead)
+                .Build();
+        }
     }
 }

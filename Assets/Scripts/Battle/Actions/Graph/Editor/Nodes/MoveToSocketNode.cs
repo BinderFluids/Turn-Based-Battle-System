@@ -1,23 +1,26 @@
 using System;
 using Unity.GraphToolkit.Editor;
 
-[Serializable]
-internal class MoveToSocketNode : BattleActionNode
+namespace Battle.Actions.Graph.Editor.Nodes
 {
-    protected override void OnDefinePorts(IPortDefinitionContext context)
+    [Serializable]
+    internal class MoveToSocketNode : BattleActionNode
     {
-        base.OnDefinePorts(context);
+        protected override void OnDefinePorts(IPortDefinitionContext context)
+        {
+            base.OnDefinePorts(context);
         
-        context.AddInputPort("speed")
-            .WithDisplayName("Speed")
-            .WithDataType(typeof(float))
-            .WithConnectorUI(PortConnectorUI.Arrowhead)
-            .Build();
+            context.AddInputPort("speed")
+                .WithDisplayName("Speed")
+                .WithDataType(typeof(float))
+                .WithConnectorUI(PortConnectorUI.Arrowhead)
+                .Build();
         
-        context.AddInputPort("socketReference")
-            .WithDisplayName("Socket Reference")
-            .WithDataType(typeof(SocketReference))
-            .WithConnectorUI(PortConnectorUI.Arrowhead)
-            .Build();
+            context.AddInputPort("socketReference")
+                .WithDisplayName("Socket Reference")
+                .WithDataType(typeof(SocketReference))
+                .WithConnectorUI(PortConnectorUI.Arrowhead)
+                .Build();
+        }
     }
 }

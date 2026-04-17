@@ -1,7 +1,11 @@
 using System.Collections.Generic;
+using Battle.Actions.Graph.Runtime.Nodes;
 using UnityEngine;
 
-public class BattleActionRuntimeGraph : ScriptableObject
+namespace Battle.Actions.Graph.Runtime
 {
-    [SerializeReference] public List<RuntimeNode> Nodes = new();
+    public class BattleActionRuntimeGraph : ScriptableObject
+    {
+        [SerializeReference] public List<RuntimeNode> Nodes = new();
+    }
 }
