@@ -1,7 +1,7 @@
 using StatusEffectSystem;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Battle Action/Inflict Status", fileName = "InflictStatus")]
+[CreateAssetMenu(menuName = "Battle/Action/Inflict Status", fileName = "InflictStatus")]
 public class InflictPoison : ScriptableBattleAction
 {
     [SerializeField] private int damage;

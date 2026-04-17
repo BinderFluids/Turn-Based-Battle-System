@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -6,13 +7,13 @@ using Registry;
 using UnityEngine;
 using UnityUtils;
 
-[CreateAssetMenu(menuName = "Battle Entity Selection Strategy/Random Other", fileName = "RandomOtherEntity", order = 0)]
+[CreateAssetMenu(menuName = "Battle/Entity Selection/Random Other", fileName = "RandomOtherEntity", order = 0)]
 public class RandomOtherTarget : ScriptableObject, IBattleEntitySelectionStrategy
 {
     public event Action<BattleEntity> onEntitySelected;
-    public void GetEntity(BattleEntity actor, IBattleAction action)
+    public void GetEntity(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx)
     {
-        var targetList = action.GetValidTargets(actor);
+        var targetList = action.GetValidTargets(actor, ctx); 
         targetList.Remove(actor); 
         BattleEntity target = targetList.Random();
         

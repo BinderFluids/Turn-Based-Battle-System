@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleEntity
   physicalBattleEntityModifier: 3
+  _transform: {fileID: 330901941073908655}
 --- !u!114 &3362557005192258134
 MonoBehaviour:
   m_ObjectHideFlags: 0

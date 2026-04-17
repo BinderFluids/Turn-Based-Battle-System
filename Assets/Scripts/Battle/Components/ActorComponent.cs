@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Registry;
 
 
 public class ActorComponent : BattleEntityComponent
@@ -32,7 +33,7 @@ public class ActorComponent : BattleEntityComponent
         actionSelectionStrategy.onActionSelected -= OnActionSelected;
         
         targetSelectionStrategy.onEntitySelected += OnTargetSelected; 
-        targetSelectionStrategy.GetEntity(Entity, action); 
+        targetSelectionStrategy.GetEntity(Entity, action, Registry<BattleEntity>.All); 
     }
 
     
@@ -57,7 +58,6 @@ public class ActorComponent : BattleEntityComponent
             Debug.LogError($"Tried to start action on {gameObject.name} with null target");
             return;
         }
-        
         
         chosenAction = action; 
         chosenAction.onActionEnded += OnActionEnded;
