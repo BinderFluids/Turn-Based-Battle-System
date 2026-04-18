@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a201ad002cc9fad93ba52be591dd4f, type: 3}
   m_Name: TransformHandleSettings
   m_EditorClassIdentifier: com.orkunmanap.runtime-transform-handles::TransformHandles.TransformHandleSettings
-  enableShortcuts: 1
+  enableShortcuts: 0
   positionKey: 119
   rotationKey: 101
   scaleKey: 114

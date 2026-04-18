@@ -14,4 +14,6 @@ public class SocketEditorManager : Singleton<SocketEditorManager>
         currentSocket = socket;
         onSocketSelected?.Invoke(socket);
     } 
+    
+    
 }
