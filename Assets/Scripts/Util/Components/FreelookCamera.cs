@@ -31,6 +31,12 @@ public class FreelookCamera : MonoBehaviour
         Gizmos.DrawLine(_transform.position, _transform.position + _transform.forward * 10); 
     }
 
+    public void Drag(Vector3 delta)
+    {
+        Vector3 move = new Vector3(delta.x * dragSpeed, delta.y * dragSpeed, 0f);
+        transform.Translate(-move);
+    }
+    
     void Update()
     {
         cinemachineInputAxisController.Controllers[0].Enabled = input.ActivateCameraRotation.Value;
@@ -46,13 +52,15 @@ public class FreelookCamera : MonoBehaviour
 
         if (!isPanning)
         {
-            dragOrigin = Input.mousePosition;
+            dragOrigin = input.MousePosition;
             isPanning = true;
             return;
         }
-
-        Vector3 delta = Input.mousePosition - dragOrigin;
+        
+        Vector3 delta = input.MousePosition - dragOrigin;
         Vector3 move = new Vector3(delta.x * dragSpeed, delta.y * dragSpeed, 0f);
+
+        Drag(delta);
 
         transform.Translate(-move, Space.Self);
 

@@ -1,0 +1,31 @@
+
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+
+public class SocketCursor : MonoBehaviour
+{
+    [SerializeField] private UnityEvent<SocketHandle> onSocketSelected;
+    [SerializeField] private SocketEditorInputReader input; 
+    
+    private void Update()
+    {
+        if (EventSystem.current.IsPointerOverGameObject()) return; 
+        
+        if (input.Select.WasPressedThisFrame)
+        {
+            if (!Physics.Raycast(input.MouseRay, out var hit))
+            {
+                onSocketSelected?.Invoke(null);
+                return;
+            }
+            if (!hit.collider.TryGetComponent(out SocketHandle socketHandle)) 
+            {
+                onSocketSelected?.Invoke(null);
+                return;
+            }
+            
+            onSocketSelected?.Invoke(socketHandle);
+        }
+    }
+}

@@ -7,8 +7,16 @@ public class ConstantScreenSize : MonoBehaviour
     [SerializeField] private Transform _transform; 
     [SerializeField, Range(0.03f, 0.1f)] private float targetSize;
 
+    private void Start()
+    {
+        if (camera == null)
+            camera = Camera.main.transform;
+    }
+
     private void Update()
     {
+        if (camera == null) return;
+        
         var size = (camera.position - transform.position).magnitude;
         _transform.localScale = Vector3.one * targetSize * size;
     }

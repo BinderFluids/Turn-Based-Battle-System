@@ -154,6 +154,15 @@ public partial class @SocketEditorInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""30ce9f9a-c47e-4f01-8f7a-3f2fcd2ff652"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -310,6 +319,17 @@ public partial class @SocketEditorInput: IInputActionCollection2, IDisposable
                     ""action"": ""ActiveCameraPan"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7766365d-736a-4979-b103-0fe81d128d24"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -325,6 +345,7 @@ public partial class @SocketEditorInput: IInputActionCollection2, IDisposable
         m_Actions_ForwardMovement = m_Actions.FindAction("ForwardMovement", throwIfNotFound: true);
         m_Actions_ActivateCameraRotation = m_Actions.FindAction("ActivateCameraRotation", throwIfNotFound: true);
         m_Actions_ActiveCameraPan = m_Actions.FindAction("ActiveCameraPan", throwIfNotFound: true);
+        m_Actions_Select = m_Actions.FindAction("Select", throwIfNotFound: true);
     }
 
     ~@SocketEditorInput()
@@ -412,6 +433,7 @@ public partial class @SocketEditorInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_ForwardMovement;
     private readonly InputAction m_Actions_ActivateCameraRotation;
     private readonly InputAction m_Actions_ActiveCameraPan;
+    private readonly InputAction m_Actions_Select;
     /// <summary>
     /// Provides access to input actions defined in input action map "Actions".
     /// </summary>
@@ -451,6 +473,10 @@ public partial class @SocketEditorInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Actions/ActiveCameraPan".
         /// </summary>
         public InputAction @ActiveCameraPan => m_Wrapper.m_Actions_ActiveCameraPan;
+        /// <summary>
+        /// Provides access to the underlying input action "Actions/Select".
+        /// </summary>
+        public InputAction @Select => m_Wrapper.m_Actions_Select;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -498,6 +524,9 @@ public partial class @SocketEditorInput: IInputActionCollection2, IDisposable
             @ActiveCameraPan.started += instance.OnActiveCameraPan;
             @ActiveCameraPan.performed += instance.OnActiveCameraPan;
             @ActiveCameraPan.canceled += instance.OnActiveCameraPan;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         /// <summary>
@@ -530,6 +559,9 @@ public partial class @SocketEditorInput: IInputActionCollection2, IDisposable
             @ActiveCameraPan.started -= instance.OnActiveCameraPan;
             @ActiveCameraPan.performed -= instance.OnActiveCameraPan;
             @ActiveCameraPan.canceled -= instance.OnActiveCameraPan;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         /// <summary>
@@ -619,5 +651,12 @@ public partial class @SocketEditorInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnActiveCameraPan(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

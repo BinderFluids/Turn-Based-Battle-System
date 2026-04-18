@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public class SocketData : ScriptableObject
+public class SocketPositionMap : ScriptableObject
 {
     [SerializeReference, HideInInspector] private List<string> m_socketNames = new();
     [SerializeReference, HideInInspector] private List<Vector2> m_socketPositions = new();

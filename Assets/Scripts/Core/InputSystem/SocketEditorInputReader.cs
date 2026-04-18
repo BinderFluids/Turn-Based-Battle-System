@@ -11,9 +11,11 @@ public class SocketEditorInputReader : InputReader<SocketEditorInput>, SocketEdi
     public BoolInputData DeleteSocket;
     public BoolInputData ActivateCameraRotation;
     public BoolInputData ActivateCameraPan; 
+    public BoolInputData Select;
     public FloatInputData ForwardMovement; 
     
-    public Vector3 MouseWorldPosition => Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+    public Vector3 MousePosition => Mouse.current.position.ReadValue();
+    public Ray MouseRay => Camera.main.ScreenPointToRay(MousePosition);
     
     protected override void OnEnableInput(InputActionType inputActionType)
     {
@@ -30,6 +32,7 @@ public class SocketEditorInputReader : InputReader<SocketEditorInput>, SocketEdi
         DeleteSocket = new BoolInputData(InputActions.Actions.DeleteSocket);
         ActivateCameraRotation = new BoolInputData(InputActions.Actions.ActivateCameraRotation);
         ActivateCameraPan = new BoolInputData(InputActions.Actions.ActiveCameraPan);
+        Select = new BoolInputData(InputActions.Actions.Select);
         ForwardMovement = new FloatInputData(InputActions.Actions.ForwardMovement);
     }
 
@@ -40,4 +43,5 @@ public class SocketEditorInputReader : InputReader<SocketEditorInput>, SocketEdi
     public void OnForwardMovement(InputAction.CallbackContext context) => ForwardMovement.Trigger(context);
     public void OnActivateCameraRotation(InputAction.CallbackContext context) => ActivateCameraRotation.Trigger(context);
     public void OnActiveCameraPan(InputAction.CallbackContext context) => ActivateCameraPan.Trigger(context);
+    public void OnSelect(InputAction.CallbackContext context) => Select.Trigger(context);
 }
