@@ -1,16 +1,48 @@
-
+using TransformHandles;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class SocketCursor : Singleton<SocketCursor>
 {
-    [SerializeField] private UnityEvent<SocketHandle> onSocketSelected;
-    [SerializeField] private SocketEditorInputReader input; 
     
+    private TransformHandleManager transformHandleManager;
+    
+    [SerializeField] private Handle handle; 
+    [SerializeField] private UnityEvent<SocketHandle> onSocketSelected;
+    [SerializeField] private SocketEditorInputReader input;
+
+    [SerializeField] private bool handleIsBeingInteractedWith; 
+    private UnityAction<Handle> onSocketSelectedAction;
+    private UnityAction<Handle> onSocketDeselectedAction;
+    
+    private void Start()
+    {
+        transformHandleManager = TransformHandleManager.Instance;
+        
+        handle = transformHandleManager.CreateHandle(transform); 
+        
+        onSocketSelectedAction = _ => handleIsBeingInteractedWith = true;
+        onSocketDeselectedAction = _ => handleIsBeingInteractedWith = false;
+        
+        handle.OnInteractionStartUnityEvent.AddListener(onSocketSelectedAction);
+        handle.OnInteractionEndUnityEvent.AddListener(onSocketDeselectedAction);
+        
+        DisableHandle();
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        handle.OnInteractionStartUnityEvent.RemoveListener(onSocketSelectedAction);
+        handle.OnInteractionEndUnityEvent.RemoveListener(onSocketDeselectedAction);
+    }
+
     private void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) return; 
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
+        if (handleIsBeingInteractedWith) return; 
         
         if (input.Select.WasPressedThisFrame)
         {
@@ -31,7 +63,24 @@ public class SocketCursor : Singleton<SocketCursor>
 
     public void SelectSocket(SocketHandle socketHandle)
     {
-        if (socketHandle == null) return; 
+        if (socketHandle == null)
+        {
+            DisableHandle(); 
+            return;
+        }
+
+        EnableHandle(socketHandle.transform);
         onSocketSelected?.Invoke(socketHandle);
+    }
+
+    void EnableHandle(Transform target)
+    {
+        handle.Enable(target); 
+        //handle.target.gameObject.SetActive(true); 
+    }
+    void DisableHandle()
+    {
+        //handle.target.gameObject.SetActive(false); 
+        handle.Disable(); 
     }
 }

@@ -5,21 +5,9 @@ using UnityEngine.Events;
 
 public class SocketHandle : MonoBehaviour
 {
-    private Handle handle;
-    private event Action<Handle> selectHandle;
-    
-    public void Initialize(string name, Handle handle)
+    public void Initialize(string name)
     {
         gameObject.name = name;
-        this.handle = handle;
-        
-        selectHandle = _ => SelectThisHandle(); 
-        handle.OnInteractionStartEvent += selectHandle; 
-    }
-
-    private void OnDestroy()
-    {
-        handle.OnInteractionStartEvent -= selectHandle; 
     }
 
     public void SnapToGround()
@@ -30,7 +18,6 @@ public class SocketHandle : MonoBehaviour
     void SetPosition(Vector3 position)
     {
         transform.position = position;
-        handle.target.position = position; 
     }
 
     void SelectThisHandle()
