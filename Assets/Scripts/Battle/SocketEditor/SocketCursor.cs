@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class SocketCursor : MonoBehaviour
+public class SocketCursor : Singleton<SocketCursor>
 {
     [SerializeField] private UnityEvent<SocketHandle> onSocketSelected;
     [SerializeField] private SocketEditorInputReader input; 
@@ -16,16 +16,22 @@ public class SocketCursor : MonoBehaviour
         {
             if (!Physics.Raycast(input.MouseRay, out var hit))
             {
-                onSocketSelected?.Invoke(null);
+                SelectSocket(null); 
                 return;
             }
-            if (!hit.collider.TryGetComponent(out SocketHandle socketHandle)) 
+            if (!hit.collider.TryGetComponent(out SocketHandle socketHandle))
             {
-                onSocketSelected?.Invoke(null);
+                SelectSocket(null); 
                 return;
             }
-            
-            onSocketSelected?.Invoke(socketHandle);
+
+            SelectSocket(socketHandle); 
         }
+    }
+
+    public void SelectSocket(SocketHandle socketHandle)
+    {
+        if (socketHandle == null) return; 
+        onSocketSelected?.Invoke(socketHandle);
     }
 }

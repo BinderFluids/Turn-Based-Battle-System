@@ -43,6 +43,6 @@ public class SocketWindow : MonoBehaviour
     public void SnapSocketToGround()
     {
         Vector3 socketPos = SocketEditorManager.Instance.CurrentSocket.transform.position;
-        SocketEditorManager.Instance.CurrentSocket.transform.position = new Vector3(socketPos.x, 0, socketPos.z);
+        SocketEditorManager.Instance.CurrentSocket.SnapToGround();
     }
 }

@@ -1,14 +1,23 @@
 using System;
+using System.Net.Sockets;
+using TransformHandles;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class SocketCreator : MonoBehaviour
 {
+    private TransformHandleManager transformHandleManager;
+    
     [SerializeField] private Camera cam; 
     [SerializeField] private SocketHandle socketPrefab;
     [SerializeField] private SocketEditorInputReader input;
     [SerializeField] private UnityEvent<SocketHandle> onSocketCreated;
-    
+
+    private void Start()
+    {
+        transformHandleManager = TransformHandleManager.Instance; 
+    }
+
     private void Update()
     {
         if (input.CreateSocket.WasPressedThisFrame)
@@ -18,10 +27,14 @@ public class SocketCreator : MonoBehaviour
         }
     }
 
-    public SocketHandle CreateSocket(Vector3 position)
+    public void CreateSocket(Vector3 position)
     {
-        var newSocketHandle = Instantiate(socketPrefab, position, Quaternion.identity);
-        onSocketCreated?.Invoke(newSocketHandle); 
-        return newSocketHandle;
+        SocketHandle newSocketHandle = Instantiate(socketPrefab, position, Quaternion.identity);  
+        GameObject socketHandleGameObject = newSocketHandle.gameObject;
+        Handle handle = transformHandleManager.CreateHandle(socketHandleGameObject.transform); 
+        
+        newSocketHandle.Initialize(socketHandleGameObject.name, handle);
+        
+        onSocketCreated?.Invoke(newSocketHandle);
     }
 }
