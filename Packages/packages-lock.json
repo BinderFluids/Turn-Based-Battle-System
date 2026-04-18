@@ -69,6 +69,13 @@
       "source": "local-tarball",
       "dependencies": {}
     },
+    "com.orkunmanap.runtime-transform-handles": {
+      "version": "https://github.com/manaporkun/UnityRuntimeTransformHandles.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c216825c3c185cc7ca224b58e229734fb3646e3b"
+    },
     "com.unity.2d.animation": {
       "version": "14.0.3",
       "depth": 1,
