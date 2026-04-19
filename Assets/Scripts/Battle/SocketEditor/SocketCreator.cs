@@ -6,10 +6,12 @@ using UnityEngine.Events;
 
 public class SocketCreator : MonoBehaviour
 {
+    private string defaultname; 
+    
     [SerializeField] private Camera cam; 
     [SerializeField] private SocketHandle socketPrefab;
     [SerializeField] private SocketEditorInputReader input;
-    [SerializeField] private UnityEvent<SocketHandle> onSocketCreated;
+    [SerializeField] public UnityEvent<SocketHandle> onSocketCreated;
     
     private void Update()
     {
@@ -20,13 +22,15 @@ public class SocketCreator : MonoBehaviour
         }
     }
 
-    public void CreateSocket(Vector3 position)
+    public SocketHandle CreateSocket(Vector3 position, string name = "")
     {
         SocketHandle newSocketHandle = Instantiate(socketPrefab, position, Quaternion.identity);  
         GameObject socketHandleGameObject = newSocketHandle.gameObject;
         
-        newSocketHandle.Initialize(socketHandleGameObject.name);
+        newSocketHandle.Initialize(name == "" ? defaultname : name);
         
         onSocketCreated?.Invoke(newSocketHandle);
+
+        return newSocketHandle; 
     }
 }

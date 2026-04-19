@@ -1,13 +1,14 @@
-using System;
-using TransformHandles;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SocketHandle : MonoBehaviour
 {
+    [SerializeField] private GameObject hoverName;
+    [SerializeField] private TMP_Text nameText; 
+    
     public void Initialize(string name)
     {
-        gameObject.name = name;
+        SetName(name); 
     }
 
     public void SnapToGround()
@@ -20,9 +21,17 @@ public class SocketHandle : MonoBehaviour
         transform.position = position;
     }
 
+    public void SetName(string name)
+    {
+        gameObject.name = name;
+        nameText.text = name;
+    }
+
     void SelectThisHandle()
     {
         Debug.Log("selc");
         SocketCursor.Instance.SelectSocket(this); 
     }
+
+    public void EnableHoverName(bool enabled) => hoverName.SetActive(enabled);
 }

@@ -20,7 +20,7 @@ public class SocketWindow : MonoBehaviour
     void UpdateCurrentSocketName(string newName)
     {
         if (SocketEditorManager.Instance.CurrentSocket == null) return; 
-        SocketEditorManager.Instance.CurrentSocket.name = newName;
+        SocketEditorManager.Instance.CurrentSocket.SetName(newName);
     }
 
     public void Open(SocketHandle socketHandle)

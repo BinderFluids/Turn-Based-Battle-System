@@ -9,7 +9,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Draggable
+  - 
   - Water
   - UI
   - TransformHandle
@@ -36,8 +36,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - 2D Socket Editor
+  - 3D Socket Editor
   m_SortingLayers:
   - name: Default
     uniqueID: 0

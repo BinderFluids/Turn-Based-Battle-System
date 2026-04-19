@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a480342306af76f6af0211a8f24732d, type: 3}
-  m_Name: New Socket
-  m_EditorClassIdentifier: Assembly-CSharp::SocketData
+  m_Name: "test test test\u200B"
+  m_EditorClassIdentifier: Assembly-CSharp::SocketPositionMap
   m_socketNames:
-  - 0
-  - 1
-  - 2
-  - 3
+  - Mario 0
+  - Luigi 0
+  - asdjfkalsdf
+  - test test test
   m_socketPositions:
-  - {x: -0.42454192, y: -0.5094502}
-  - {x: -2.5047972, y: -2.3562078}
-  - {x: 1.8679847, y: -2.9717934}
-  - {x: 2.016574, y: 1.2311715}
+  - {x: 2.1227102, y: 2.0378015}
+  - {x: -5.26432, y: -4.2878737}
+  - {x: -0.6792668, y: -3.0991564}
+  - {x: -1.8467575, y: 1.6981682}

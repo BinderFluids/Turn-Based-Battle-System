@@ -11,6 +11,7 @@ public class SocketCursor : Singleton<SocketCursor>
     [SerializeField] private Handle handle; 
     [SerializeField] private UnityEvent<SocketHandle> onSocketSelected;
     [SerializeField] private SocketEditorInputReader input;
+    [SerializeField] private SocketHandle currentlyHoveredSocketHandle; 
 
     [SerializeField] private bool handleIsBeingInteractedWith; 
     private UnityAction<Handle> onSocketSelectedAction;
@@ -31,17 +32,30 @@ public class SocketCursor : Singleton<SocketCursor>
         DisableHandle();
     }
 
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-        handle.OnInteractionStartUnityEvent.RemoveListener(onSocketSelectedAction);
-        handle.OnInteractionEndUnityEvent.RemoveListener(onSocketDeselectedAction);
-    }
-
     private void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        SocketHandle previouslyHoveredSocketHandle = currentlyHoveredSocketHandle;
 
+        if (Physics.Raycast(input.MouseRay, out var hover))
+        {
+            if (hover.collider.TryGetComponent(out currentlyHoveredSocketHandle))
+            {
+                currentlyHoveredSocketHandle.EnableHoverName(true);
+            }
+            else
+            {
+                previouslyHoveredSocketHandle?.EnableHoverName(false);
+                currentlyHoveredSocketHandle = null;
+            }
+        }
+        else
+        {
+            previouslyHoveredSocketHandle?.EnableHoverName(false);
+            currentlyHoveredSocketHandle = null;
+        }
+        
+        
+        if (EventSystem.current.IsPointerOverGameObject()) return;
         if (handleIsBeingInteractedWith) return; 
         
         if (input.Select.WasPressedThisFrame)
@@ -60,7 +74,6 @@ public class SocketCursor : Singleton<SocketCursor>
             SelectSocket(socketHandle); 
         }
     }
-
     public void SelectSocket(SocketHandle socketHandle)
     {
         if (socketHandle == null)
@@ -83,4 +96,14 @@ public class SocketCursor : Singleton<SocketCursor>
         //handle.target.gameObject.SetActive(false); 
         handle.Disable(); 
     }
+    
+    
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        handle.OnInteractionStartUnityEvent.RemoveListener(onSocketSelectedAction);
+        handle.OnInteractionEndUnityEvent.RemoveListener(onSocketDeselectedAction);
+    }
+
+
 }

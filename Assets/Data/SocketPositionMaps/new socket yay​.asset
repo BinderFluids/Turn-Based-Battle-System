@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a480342306af76f6af0211a8f24732d, type: 3}
+  m_Name: "new socket yay\u200B"
+  m_EditorClassIdentifier: Assembly-CSharp::SocketPositionMap
+  m_socketNames:
+  - new socket yay
+  - Luigi 0
+  - asdjfkalsdf
+  - position 1
+  m_socketPositions:
+  - {x: 2.1227102, y: 2.0378015}
+  - {x: -5.26432, y: -4.2878737}
+  - {x: -0.6792668, y: -3.0991564}
+  - {x: -2.159814, y: 3.321907}

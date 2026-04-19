@@ -1,6 +1,7 @@
 using System;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
 using UnityUtils;
 
@@ -42,7 +43,8 @@ public class FreelookCamera : MonoBehaviour
         cinemachineInputAxisController.Controllers[0].Enabled = input.ActivateCameraRotation.Value;
         cinemachineInputAxisController.Controllers[1].Enabled = input.ActivateCameraRotation.Value;
 
-        _transform.Translate(_transform.forward * input.ForwardMovement.Value, Space.World); 
+        if (!EventSystem.current.IsPointerOverGameObject())
+            _transform.Translate(_transform.forward * input.ForwardMovement.Value, Space.World); 
 
         if (!input.ActivateCameraPan.Value)
         {

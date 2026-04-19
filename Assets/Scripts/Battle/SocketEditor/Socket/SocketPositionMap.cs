@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class SocketPositionMap : ScriptableObject
 {
-    [SerializeReference, HideInInspector] private List<string> m_socketNames = new();
-    [SerializeReference, HideInInspector] private List<Vector2> m_socketPositions = new();
+    [SerializeReference] private List<string> m_socketNames = new();
+    [SerializeReference] private List<Vector2> m_socketPositions = new();
 
 #if UNITY_EDITOR
     public void Clear()
