@@ -5,11 +5,10 @@ using UnityEngine;
 
 namespace Battle.Actions.Graph.Runtime
 {
-    public class BattleActionDirector : MonoBehaviour, IBattleAction
+    public class BattleActionDirector : BattleEntityComponent, IBattleAction
     {
         [Header("Graph")] public BattleActionRuntimeGraph RuntimeGraph;
-    
-
+        
         public event Action onActionStarted;
         public event Action onActionEnded;
         public async void StartAction(global::BattleEntity actor, global::BattleEntity target)

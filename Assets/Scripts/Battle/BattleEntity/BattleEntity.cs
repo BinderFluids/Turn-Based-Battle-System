@@ -27,7 +27,8 @@ public partial class BattleEntity : MonoBehaviour
 
     private void Start()
     {
-        _transform ??= transform; 
+        if (_transform == null)
+            _transform = transform; 
         startPose = new Pose(_transform.position, _transform.rotation);
     }
 

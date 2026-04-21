@@ -1,0 +1,1 @@
+public class SocketPositionMapWindow : ScriptableObjectWindow<SocketPositionMap> { }

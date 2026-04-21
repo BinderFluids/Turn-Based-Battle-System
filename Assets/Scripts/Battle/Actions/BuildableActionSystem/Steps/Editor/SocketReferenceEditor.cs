@@ -14,7 +14,7 @@ public class SocketReferenceEditor : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        SerializedProperty socketDataProperty = property.FindPropertyRelative("socketData");
+        SerializedProperty socketDataProperty = property.FindPropertyRelative("socketPositionMap");
         SerializedProperty selectedSocketNameProperty = property.FindPropertyRelative("selectedSocketName");
 
         EditorGUI.BeginProperty(position, label, property);
@@ -22,8 +22,8 @@ public class SocketReferenceEditor : PropertyDrawer
         Rect contentRect = EditorGUI.PrefixLabel(position, label);
         float lineHeight = EditorGUIUtility.singleLineHeight;
 
-        SocketData socketData = socketDataProperty.objectReferenceValue as SocketData;
-        bool hasValidSocketData = socketData != null;
+        SocketPositionMap socketPositionMap = socketDataProperty.objectReferenceValue as SocketPositionMap;
+        bool hasValidSocketData = socketPositionMap != null;
 
         // Full width until valid
         if (!hasValidSocketData)
@@ -31,7 +31,7 @@ public class SocketReferenceEditor : PropertyDrawer
             socketDataProperty.objectReferenceValue = EditorGUI.ObjectField(
                 contentRect,
                 socketDataProperty.objectReferenceValue,
-                typeof(SocketData),
+                typeof(SocketPositionMap),
                 false
             );
 
@@ -39,7 +39,7 @@ public class SocketReferenceEditor : PropertyDrawer
             return;
         }
 
-        List<string> socketNames = socketData.GetSocketPositionsDictionary().Keys.ToList();
+        List<string> socketNames = socketPositionMap.GetSocketPositionsDictionary().Keys.ToList();
 
         if (socketNames.Count == 0)
         {
@@ -75,7 +75,7 @@ public class SocketReferenceEditor : PropertyDrawer
         socketDataProperty.objectReferenceValue = EditorGUI.ObjectField(
             objectRect,
             socketDataProperty.objectReferenceValue,
-            typeof(SocketData),
+            typeof(SocketPositionMap),
             false
         );
 

@@ -2,7 +2,6 @@ using System;
 using EventBus; 
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Selectable;
 using UnityEngine;
 using UnityUtils; 
 
@@ -17,8 +16,8 @@ public class SelectionManager : Singleton<SelectionManager>
     [SerializeField] private SelectionHighlighter defaultHighligher;
     [SerializeField] private SelectionHighlighter currentHighlighter;
 
-    [SerializeField] private InterfaceReference<ISelectableInput> input; //TODO THIS IS A PLACHOLDER
-    private ISelectableInput Input => input.Value;
+    [SerializeField] private InterfaceReference<IInputReader> input; //TODO THIS IS A PLACHOLDER
+    private IInputReader Input => input.Value;
     
 
     int GetTrueIndex(int index, List<ISelectable> items)
@@ -72,7 +71,7 @@ public class SelectionManager : Singleton<SelectionManager>
 
         NavigateSelectables();
         
-        if (Input.Confirm.WasPressedThisFrame)
+        if (Input.Select.WasPressedThisFrame)
         {
             CurrentItem.Value.Select();
             EndSelection();
@@ -90,11 +89,11 @@ public class SelectionManager : Singleton<SelectionManager>
 
     void NavigateSelectables()
     {
-        if (!Input.Navigate.WasPressedThisFrame) return; 
+        if (!Input.Move.WasPressedThisFrame) return; 
         
-        if (Input.Navigate.LeftWasPressedThisFrame)
+        if (Input.Move.LeftWasPressedThisFrame)
             ShiftSelection(-1);
-        if (Input.Navigate.RightWasPressedThisFrame)
+        if (Input.Move.RightWasPressedThisFrame)
             ShiftSelection(1);
     }
 
