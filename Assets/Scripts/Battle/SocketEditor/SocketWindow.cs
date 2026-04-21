@@ -17,6 +17,9 @@ public class SocketWindow : MonoBehaviour
         socketNameField.onValueChanged.RemoveListener(UpdateCurrentSocketName);
     }
 
+    public void SnapToGameObject(GameObject gameObject) => SocketEditorManager.Instance.CurrentSocket.SnapToGameObject(gameObject);
+    public void SnapSocketToGround() => SocketEditorManager.Instance.CurrentSocket.SnapToGround();
+
     void UpdateCurrentSocketName(string newName)
     {
         if (SocketEditorManager.Instance.CurrentSocket == null) return; 
@@ -40,9 +43,4 @@ public class SocketWindow : MonoBehaviour
         windowContainer.SetActive(false);
     }
 
-    public void SnapSocketToGround()
-    {
-        Vector3 socketPos = SocketEditorManager.Instance.CurrentSocket.transform.position;
-        SocketEditorManager.Instance.CurrentSocket.SnapToGround();
-    }
 }

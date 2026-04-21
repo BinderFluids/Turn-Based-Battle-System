@@ -4,14 +4,16 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Battle.SocketEditor
 {
     public class SocketPositionMapGenerator : MonoBehaviour
     {
-        [SerializeField] private SocketPositionMap activeData; 
         private readonly string SOCKET_DATA_PATH = "Assets/Data/SocketPositionMaps";
         private readonly string DEFAULT_SOCKET_NAME = "DefaultSocket";
+        
+        [SerializeField] private UnityEvent<SocketPositionMap> onSocketMapGenerated;
         
         public SocketPositionMap Generate(string dataName, IEnumerable<SocketHandle> handles)
         {
@@ -36,7 +38,8 @@ namespace Battle.SocketEditor
             string newName = dataName;
             string pathName = newName == string.Empty ? DEFAULT_SOCKET_NAME : newName;
             string path = Path.Combine(SOCKET_DATA_PATH, $"{pathName}.asset");
-
+            SocketPositionMap map; 
+            
             if (!File.Exists(path))
             {
                 Debug.Log("Creating new asset at " + path + "");
@@ -44,17 +47,17 @@ namespace Battle.SocketEditor
                 AssetDatabase.CreateAsset(newData, path);
                 AssetDatabase.SaveAssets();
                 
-                activeData = newData;
+                map = newData;
             }
             else
-                activeData = AssetDatabase.LoadAssetAtPath<SocketPositionMap>(path);
+                map = AssetDatabase.LoadAssetAtPath<SocketPositionMap>(path);
             
             
-            EditorUtility.SetDirty(activeData); 
+            EditorUtility.SetDirty(map); 
             
-            activeData.Clear();
+            map.Clear();
             foreach (var handle in handles)
-                activeData.AddSocket(handle.name, handle.transform.position);
+                map.AddSocket(handle.name, handle.transform.position);
             
             //Tanner: Save the asset
             AssetDatabase.SaveAssets(); 
@@ -65,8 +68,9 @@ namespace Battle.SocketEditor
             foreach (SocketHandle handle in handles)
                 Debug.Log($"Socket: {handle.name} Position: {handle.transform.position}");
             Debug.Log("--- End Save Socket Data! ---");
-            
-            return activeData;
+
+            onSocketMapGenerated?.Invoke(map); 
+            return map;
         }
 
 

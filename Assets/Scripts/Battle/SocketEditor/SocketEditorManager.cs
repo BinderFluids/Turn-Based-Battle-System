@@ -33,7 +33,10 @@ public class SocketEditorManager : Singleton<SocketEditorManager>
     private void Start()
     {
         creator.onSocketCreated.AddListener(HandleSocketCreated);
-        SetCurrentSocketMap(defaultSocketMap);
+        if (defaultSocketMap == null)
+            SetCurrentSocketMap(generator.Generate("Default", sockets));
+        else
+            SetCurrentSocketMap(defaultSocketMap);
     }
 
     public void SetCurrentSocketMap(SocketPositionMap map)

@@ -27,11 +27,11 @@ public class ScriptableObjectWindow<T> : MonoBehaviour where T : ScriptableObjec
     {
         options.Clear();
         //loop through options list backwards
-        for (int i = optionContainer.childCount - 1; i >= 0; i--)
+        for (int i = options.Count - 1; i >= 0; i--)
         {
-            if (!optionContainer.GetChild(i).gameObject.activeSelf) continue; 
+            ScriptableObjectWindowOption<T> option = options[i];
+            if (!option.gameObject.activeSelf) continue; 
             
-            ScriptableObjectWindowOption<T> option = optionContainer.GetChild(i).GetComponent<ScriptableObjectWindowOption<T>>();
             option.onOptionSelected -= TriggerOptionSelected;
             Destroy(option.gameObject);
         }

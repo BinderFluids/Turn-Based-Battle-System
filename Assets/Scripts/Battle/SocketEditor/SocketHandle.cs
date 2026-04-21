@@ -16,6 +16,11 @@ public class SocketHandle : MonoBehaviour
         SetPosition(new Vector3(transform.position.x, 0, transform.position.z));
     }
 
+    public void SnapToGameObject(GameObject gameObject)
+    {
+        SetPosition(gameObject.transform.position);
+    }
+
     void SetPosition(Vector3 position)
     {
         transform.position = position;

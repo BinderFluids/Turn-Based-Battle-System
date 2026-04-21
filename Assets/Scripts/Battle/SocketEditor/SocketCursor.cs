@@ -7,13 +7,15 @@ public class SocketCursor : Singleton<SocketCursor>
 {
     
     private TransformHandleManager transformHandleManager;
-    
+
+    [SerializeField] private Camera socketOverlayCamera; 
     [SerializeField] private Handle handle; 
     [SerializeField] private UnityEvent<SocketHandle> onSocketSelected;
     [SerializeField] private SocketEditorInputReader input;
     [SerializeField] private SocketHandle currentlyHoveredSocketHandle; 
-
-    [SerializeField] private bool handleIsBeingInteractedWith; 
+    
+    [SerializeField] private bool handleIsBeingInteractedWith;
+    [SerializeField] private LayerMask socketLayerMask; 
     private UnityAction<Handle> onSocketSelectedAction;
     private UnityAction<Handle> onSocketDeselectedAction;
     
@@ -35,8 +37,9 @@ public class SocketCursor : Singleton<SocketCursor>
     private void Update()
     {
         SocketHandle previouslyHoveredSocketHandle = currentlyHoveredSocketHandle;
+        Ray ray = socketOverlayCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(input.MouseRay, out var hover))
+        if (Physics.Raycast(ray, out var hover, ~socketLayerMask))
         {
             if (hover.collider.TryGetComponent(out currentlyHoveredSocketHandle))
             {
@@ -60,7 +63,7 @@ public class SocketCursor : Singleton<SocketCursor>
         
         if (input.Select.WasPressedThisFrame)
         {
-            if (!Physics.Raycast(input.MouseRay, out var hit))
+            if (!Physics.Raycast(ray, out var hit/*, socketLayerMask*/))
             {
                 SelectSocket(null); 
                 return;

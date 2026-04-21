@@ -36,8 +36,8 @@ TagManager:
   - 
   - 
   - 
-  - 2D Socket Editor
-  - 3D Socket Editor
+  - 
+  - Socket
   m_SortingLayers:
   - name: Default
     uniqueID: 0

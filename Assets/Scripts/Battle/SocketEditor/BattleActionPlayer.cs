@@ -1,16 +1,37 @@
+using Battle.Actions.Graph.Runtime;
 using UnityEngine;
 
 public class BattleActionPlayer : MonoBehaviour
 {
-    [SerializeField] private ActorComponent actor;
-    [SerializeField] private BattleEntity target; 
+    [SerializeField] private BattleEntity actor; 
+    [SerializeField] private BattleEntity target;
     [SerializeField] private ScriptableBattleAction action;
 
-    public void SetAction(ScriptableBattleAction action) => this.action = action;
-    public void SetTarget(BattleEntity target) => this.target = target;
-    
-    public void StartAction()
+    public void SetActor(BattleEntity actor) => this.actor = actor;
+
+    public void PlayGraph(BattleActionRuntimeGraph graph)
     {
-        actor.StartAction(action, target); 
+        Debug.Log("try play graph");
+        
+        if (actor.TryGetComponent(out BattleActionDirector director))
+        {
+            Debug.Log("Playing graph");
+            
+            director.RuntimeGraph = graph;
+            director.StartAction(actor, target);
+        }
     }
+
+    public void PlayAction(ScriptableBattleAction action)
+    {
+        Debug.Log("try play action");   
+        if (actor.TryGetComponent(out ActorComponent actorComponent))
+        {
+            Debug.Log("Playing action");
+            
+            actorComponent.StartAction(action, target);
+        }
+    }
+    
+    
 }

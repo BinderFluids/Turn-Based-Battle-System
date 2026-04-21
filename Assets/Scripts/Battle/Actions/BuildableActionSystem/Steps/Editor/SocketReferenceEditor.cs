@@ -14,7 +14,7 @@ public class SocketReferenceEditor : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        SerializedProperty socketDataProperty = property.FindPropertyRelative("socketData");
+        SerializedProperty socketDataProperty = property.FindPropertyRelative("socketPositionMap");
         SerializedProperty selectedSocketNameProperty = property.FindPropertyRelative("selectedSocketName");
 
         EditorGUI.BeginProperty(position, label, property);

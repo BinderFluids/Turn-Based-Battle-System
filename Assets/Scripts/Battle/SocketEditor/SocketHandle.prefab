@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 4891943184746099482}
   - component: {fileID: 3526280244082839164}
   - component: {fileID: 3555450176803253706}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: SocketHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
