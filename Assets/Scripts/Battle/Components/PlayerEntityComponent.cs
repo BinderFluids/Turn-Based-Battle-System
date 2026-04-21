@@ -1,4 +1,3 @@
-using Battle.BattleEntity;
 using UnityEngine;
 
 public class PlayerEntityComponent : BattleEntityComponent

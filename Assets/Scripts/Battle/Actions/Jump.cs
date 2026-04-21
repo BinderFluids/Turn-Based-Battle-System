@@ -1,13 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using Battle.BattleEntity;
 using Battle.BattleWindow;
-using Battle.BattleWindow.Enums;
 using Battle.BattleWindow.OutcomeStrategy;
-using PrimeTween;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Registry;
 
 [CreateAssetMenu(menuName = "Battle/Action/Player/Jump", fileName = "Jump", order = 0)]
 public class Jump : ScriptableBattleAction

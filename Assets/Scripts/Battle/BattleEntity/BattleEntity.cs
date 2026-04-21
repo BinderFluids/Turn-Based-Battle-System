@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EventBus; 
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Registry;
-using StatusEffectSystem;
-using UnityEngine.UI;
 
 public partial class BattleEntity : MonoBehaviour
 {

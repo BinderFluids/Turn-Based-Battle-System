@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Battle.BattleEntity;
-using Battle.BattleWindow.Enums;
 
 namespace Battle.BattleWindow
 {

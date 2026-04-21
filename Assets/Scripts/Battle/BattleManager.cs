@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
+using EventBus;
 using Registry;
 using UnityEngine;
 using UnityUtils;
-using System.Linq;
-using EventBus;
-using StatusEffectSystem;
 
 public class BattleManager : Singleton<BattleManager>
 {

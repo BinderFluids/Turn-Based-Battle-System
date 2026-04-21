@@ -1,5 +1,4 @@
 using System;
-using Battle.BattleEntity;
 using Battle.BattleWindow.Enums;
 
 namespace Battle.BattleWindow.OutcomeStrategy

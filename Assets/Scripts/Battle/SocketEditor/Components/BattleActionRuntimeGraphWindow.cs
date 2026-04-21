@@ -1,3 +1,3 @@
-using Battle.Actions.Graph.Runtime;
+using Battle.Graph.Runtime;
 
 public class BattleActionRuntimeGraphWindow : ScriptableObjectWindow<BattleActionRuntimeGraph> {}

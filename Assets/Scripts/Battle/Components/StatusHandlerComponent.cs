@@ -1,5 +1,3 @@
-using StatusEffectSystem;
-
 public class StatusHandlerComponent : BattleEntityComponent
 {
     StatusEffectHandler statusEffectHandler;

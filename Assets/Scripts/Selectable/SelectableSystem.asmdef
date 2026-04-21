@@ -1,13 +1,13 @@
 {
-    "name": "Battle.SocketEditor",
-    "rootNamespace": "Battle.SocketEditor",
+    "name": "SelectableSystem",
+    "rootNamespace": "SelectableSystem",
     "references": [
+        "GUID:3fdfe6dde2c72ef439fd6cb6d5dca5c8",
         "GUID:9bf89cd96f4050c46b99ab3ed5018426",
-        "GUID:69fd95a57929a201fb32f8fef9b1aad1",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:0d339d55a04a3284ebb59a9263fbea79",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:51142552874e1af0daed9c11084233e7",
-        "GUID:4307f53044263cf4b835bd812fc161a4"
+        "GUID:40adeae3f8805877eb697259a72ba748",
+        "GUID:d35b0935137438e728a4652ce39ed9ee"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

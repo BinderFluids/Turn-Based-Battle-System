@@ -1,10 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Core.Stats;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Registry;
 
 [CreateAssetMenu(menuName = "Battle/Action/Damage Target", fileName = "DamageTarget", order = 0)]
 public class DamageTarget : ScriptableBattleAction

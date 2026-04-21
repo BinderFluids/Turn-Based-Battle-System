@@ -1,4 +1,3 @@
-using StatusEffectSystem;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Battle/Action/Inflict Status", fileName = "InflictStatus")]
