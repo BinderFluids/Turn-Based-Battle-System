@@ -306,7 +306,7 @@ MonoBehaviour:
       type: {class: 'Constant`1[[SocketReference, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
       data:
         m_Value:
-          socketPositionMap: {fileID: 11400000, guid: 0615aca6efe5a7991a7fa126f00084e5, type: 2}
+          socketPositionMap: {fileID: 0}
           selectedSocketName: Mario 0
     - rid: 978116085969584257
       type: {class: MoveToSocketNode, ns: Battle.Actions.Graph.Editor.Nodes, asm: Assembly-CSharp-Editor}
@@ -389,7 +389,7 @@ MonoBehaviour:
       type: {class: 'Constant`1[[SocketReference, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: UnityEditor.GraphToolkitModule}
       data:
         m_Value:
-          socketPositionMap: {fileID: 11400000, guid: 0615aca6efe5a7991a7fa126f00084e5, type: 2}
+          socketPositionMap: {fileID: 0}
           selectedSocketName: Luigi 0
     - rid: 978116085969584262
       type: {class: MoveToSocketNode, ns: Battle.Actions.Graph.Editor.Nodes, asm: Assembly-CSharp-Editor}

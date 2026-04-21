@@ -2,6 +2,7 @@ using System;
 using EventBus; 
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using SerializedInterface;
 using UnityEngine;
 using UnityUtils; 
 

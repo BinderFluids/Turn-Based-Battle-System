@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Registry;
+using SerializedInterface;
 using UnityEngine;
 
 public abstract class ScriptableBattleAction : ScriptableObject, IBattleAction
