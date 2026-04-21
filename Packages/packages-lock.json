@@ -75,6 +75,13 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.seaeees.simple-folder-icon": {
+      "version": "https://github.com/SeaeeesSan/SimpleFolderIcon.git?path=Packages/com.seaeees.simple-folder-icon",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "61962458dcd75068bd2324cf2ba5fc547d9e1ed8"
+    },
     "com.unity.2d.animation": {
       "version": "14.0.3",
       "depth": 1,
