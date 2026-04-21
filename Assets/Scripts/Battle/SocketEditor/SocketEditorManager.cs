@@ -1,10 +1,6 @@
-
-using System;
 using System.Collections.Generic;
 using Battle.SocketEditor;
 using TMPro;
-using UnityEditor;
-using UnityUtils;
 using UnityEngine;
 using UnityEngine.Events;
 
