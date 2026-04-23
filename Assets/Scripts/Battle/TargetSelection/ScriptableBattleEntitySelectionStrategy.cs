@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Battle.Interfaces;
 using UnityEngine;
 
-public abstract class ScriptableBattleEntitySelectionStrategy : ScriptableObject, IBattleEntitySelectionStrategy
+namespace Battle.TargetSelection
 {
-    public abstract event Action<BattleEntity> onEntitySelected;
-    public abstract void GetEntity(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx); 
+    public abstract class ScriptableBattleEntitySelectionStrategy : ScriptableObject, IBattleEntitySelectionStrategy
+    {
+        public abstract event Action<BattleEntity> onEntitySelected;
+        public abstract void GetEntity(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx); 
+    }
 }

@@ -1,9 +1,11 @@
+using Battle.Events.Windows;
 using Cysharp.Threading.Tasks;
+using EventBus;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityUtils;
 
-namespace Battle.BattleWindow
+namespace Battle
 {
     public class BattleWindowService : Singleton<BattleWindowService>
     {

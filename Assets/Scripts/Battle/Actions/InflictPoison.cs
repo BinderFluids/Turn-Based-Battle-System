@@ -1,19 +1,23 @@
+using Battle;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Battle/Action/Inflict Status", fileName = "InflictStatus")]
-public class InflictPoison : ScriptableBattleAction
+namespace Battle.Actions
 {
-    [SerializeField] private int damage;
-    [SerializeField] private int duration; 
-    
-    public override void StartAction(BattleEntity actor, BattleEntity target)
+    [CreateAssetMenu(menuName = "Battle/Action/Inflict Status", fileName = "InflictStatus")]
+    public class InflictPoison : ScriptableBattleAction
     {
-        if (target.TryGetComponent(out StatusHandlerComponent statusHandler))
+        [SerializeField] private int damage;
+        [SerializeField] private int duration; 
+    
+        public override void StartAction(BattleEntity actor, BattleEntity target)
         {
-            var statusEffectInstance = new PoisonStatusEffect(damage, duration);
-            statusHandler.AddStatusEffect(statusEffectInstance);
-        }
+            if (target.TryGetComponent(out StatusHandlerComponent statusHandler))
+            {
+                var statusEffectInstance = new PoisonStatusEffect(damage, duration);
+                statusHandler.AddStatusEffect(statusEffectInstance);
+            }
         
-        EndAction(actor);
+            EndAction(actor);
+        }
     }
 }

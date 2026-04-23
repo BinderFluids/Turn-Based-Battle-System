@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Battle.Actions.Graph.Runtime.Nodes
+namespace Battle.Graph.Runtime.Nodes
 {
     [Serializable]
     public class MoveToSocketRuntimeNode : RuntimeNode
@@ -10,7 +10,7 @@ namespace Battle.Actions.Graph.Runtime.Nodes
         public Vector3 SocketPosition;
         public float Speed;
 
-        public override async UniTask Execute(BattleActionDirector ctx, global::BattleEntity actor, global::BattleEntity target)
+        public override async UniTask Execute(BattleActionDirector ctx, BattleEntity actor, global::Battle.BattleEntity target)
         {
             await actor.MoveTo(SocketPosition, Speed); 
         }

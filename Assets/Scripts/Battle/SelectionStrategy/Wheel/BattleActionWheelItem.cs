@@ -1,18 +1,22 @@
 using System;
+using Battle.Interfaces;
 using SerializedInterface;
 using UnityEngine;
 
-public class BattleActionWheelItem : MonoBehaviour, ISelectable
+namespace Battle.SelectionStrategy
 {
-    [SerializeField] private InterfaceReference<IBattleAction> actionRef;
-    public IBattleAction Action => actionRef.Value;
-    
-    public event Action OnSelected;
-    public void Select() => OnSelected?.Invoke();
-
-    public void OnHover(bool hovering)
+    public class BattleActionWheelItem : MonoBehaviour, ISelectable
     {
-        if (!hovering) return;
-        Debug.Log($"Hovering over: {gameObject.name}");
+        [SerializeField] private InterfaceReference<IBattleAction> actionRef;
+        public IBattleAction Action => actionRef.Value;
+    
+        public event Action OnSelected;
+        public void Select() => OnSelected?.Invoke();
+
+        public void OnHover(bool hovering)
+        {
+            if (!hovering) return;
+            Debug.Log($"Hovering over: {gameObject.name}");
+        }
     }
 }

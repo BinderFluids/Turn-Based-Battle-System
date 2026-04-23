@@ -1,4 +1,4 @@
-namespace Battle.BattleWindow.OutcomeStrategy
+namespace Battle
 {
     public interface IOutcomeStrategy
     {

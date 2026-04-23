@@ -1,18 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battle.Interfaces;
 using UnityEngine;
-using UnityUtils; 
+using UnityUtils;
 
-
-[CreateAssetMenu(menuName = "Battle/Action/Selection Strategy/Random   ", fileName = "SelectRandomBattleAction", order = 0)]
-public class SelectRandomBattleAction : ScriptableObject, IBattleActionSelectionStrategy
+namespace Battle.SelectionStrategy
 {
-    public event Action<IBattleAction> onActionSelected;
-
-    public void GetAction(IEnumerable<IBattleAction> context)
+    [CreateAssetMenu(menuName = "Battle/Action/Selection Strategy/Random   ", fileName = "SelectRandomBattleAction", order = 0)]
+    public class SelectRandomBattleAction : ScriptableObject, IBattleActionSelectionStrategy
     {
-        Debug.Log($"Selecting random action from {context.Count()} actions");
-        onActionSelected?.Invoke(context.Random());
+        public event Action<IBattleAction> onActionSelected;
+
+        public void GetAction(IEnumerable<IBattleAction> context)
+        {
+            Debug.Log($"Selecting random action from {context.Count()} actions");
+            onActionSelected?.Invoke(context.Random());
+        }
     }
 }

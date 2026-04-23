@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-public interface IBattleActionSelectionStrategy
+namespace Battle.Interfaces
 {
-    public event Action<IBattleAction> onActionSelected;
+    public interface IBattleActionSelectionStrategy
+    {
+        public event Action<IBattleAction> onActionSelected;
     
-    void GetAction(IEnumerable<IBattleAction> context);
+        void GetAction(IEnumerable<IBattleAction> context);
+    }
 }

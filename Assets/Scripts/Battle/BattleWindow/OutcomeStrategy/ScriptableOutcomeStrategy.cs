@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Battle.BattleWindow.OutcomeStrategy
+namespace Battle
 {
     public abstract class ScriptableOutcomeStrategy : ScriptableObject, IOutcomeStrategy
     {

@@ -1,16 +1,7 @@
 using UnityEngine;
 
-namespace Battle.BattleEntity
+namespace Battle.Components
 {
-    public enum FormationSlots
-    {
-        Top,
-        Bottom,
-        Front,
-        Back,
-        Middle
-    }
-    
     public class FormationSlotComponent : BattleEntityComponent
     {
         public Vector2 topPosition; 

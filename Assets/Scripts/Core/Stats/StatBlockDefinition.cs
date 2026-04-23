@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Core.Stats
 {
     [CreateAssetMenu(menuName = "Stats/Template", fileName = "StatBlockTemplate", order = 0)]
-    public class StatBlockTemplate : ScriptableObject
+    public class StatBlockDefinition : ScriptableObject
     {
         [Min(1)] public int attack;
         public int defense;

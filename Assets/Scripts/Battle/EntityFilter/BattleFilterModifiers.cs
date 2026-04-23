@@ -1,14 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
+using Battle.Enums;
 using UnityEngine;
 
-[System.Serializable]
-public class BattleFilterModifiers : BattleSelectionFilter
+namespace Battle
 {
-    [SerializeField] private List<PhysicalBattleEntityModifier> forbiddenModifiers;
-    
-    public override List<BattleEntity> Filter(BattleEntity actor, List<BattleEntity> context)
+    [System.Serializable]
+    public class BattleFilterModifiers : BattleSelectionFilter
     {
-        return context.Where(e => !forbiddenModifiers.Contains(e.physicalBattleEntityModifier)).ToList();
+        [SerializeField] private List<PhysicalBattleEntityModifier> forbiddenModifiers;
+    
+        public override List<BattleEntity> Filter(BattleEntity actor, List<BattleEntity> context)
+        {
+            return context.Where(e => !forbiddenModifiers.Contains(e.physicalBattleEntityModifier)).ToList();
+        }
     }
 }

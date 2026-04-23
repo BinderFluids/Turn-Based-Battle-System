@@ -1,7 +1,10 @@
 
 using EventBus;
 
-public struct TurnEndEvent : IEvent
+namespace Battle.Events
 {
-    public TurnComponent turnEntity; 
+    public struct TurnEndEvent : IEvent
+    {
+        public BattleEntity turnEntity; 
+    }
 }

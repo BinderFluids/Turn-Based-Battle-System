@@ -1,7 +1,9 @@
-
-public enum PlayerId
+namespace Core.Enums
 {
-    PlayerOne,
-    PlayerTwo,
-    None
+    public enum PlayerId
+    {
+        PlayerOne,
+        PlayerTwo,
+        None
+    }
 }

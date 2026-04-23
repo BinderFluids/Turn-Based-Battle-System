@@ -1,3 +1,4 @@
-using Battle.Graph.Runtime;
-
-public class BattleActionRuntimeGraphWindow : ScriptableObjectWindow<BattleActionRuntimeGraph> {}
+namespace Battle.SocketEditor.Components
+{
+    public class BattleActionRuntimeGraphWindow : ScriptableObjectWindow<BattleActionRuntimeGraph> {}
+}

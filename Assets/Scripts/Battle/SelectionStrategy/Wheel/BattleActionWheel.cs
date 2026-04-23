@@ -1,43 +1,47 @@
 using System;
 using System.Collections.Generic;
+using Battle.Interfaces;
 using EventBus;
 using UnityEngine;
 
-public class BattleActionWheel : MonoBehaviour, IBattleActionSelectionStrategy
+namespace Battle.SelectionStrategy
 {
-    [SerializeField] List<BattleActionWheelItem> items;
+    public class BattleActionWheel : MonoBehaviour, IBattleActionSelectionStrategy
+    {
+        [SerializeField] List<BattleActionWheelItem> items;
     
-    private EventBinding<SelectableChosenEvent> chosenItemBinding;
-    public event Action<IBattleAction> onActionSelected;
-    private BattleActionWheelItem selectedItem; 
+        private EventBinding<SelectableChosenEvent> chosenItemBinding;
+        public event Action<IBattleAction> onActionSelected;
+        private BattleActionWheelItem selectedItem; 
 
-    private void Start()
-    {
-        chosenItemBinding = new EventBinding<SelectableChosenEvent>
-            (OnSelectableChosenEventRaised); 
-    }
+        private void Start()
+        {
+            chosenItemBinding = new EventBinding<SelectableChosenEvent>
+                (OnSelectableChosenEventRaised); 
+        }
 
-    public void GetAction(IEnumerable<IBattleAction> context)
-    {
-        EventBus<SelectableChosenEvent>.Register(chosenItemBinding); 
+        public void GetAction(IEnumerable<IBattleAction> context)
+        {
+            EventBus<SelectableChosenEvent>.Register(chosenItemBinding); 
         
-        ActivateItems();
-        SelectionManager.Instance.StartSelection(
-            items.ConvertAll(i => i as ISelectable
-            )); 
-    }
+            ActivateItems();
+            SelectionManager.Instance.StartSelection(
+                items.ConvertAll(i => i as ISelectable
+                )); 
+        }
     
-    void OnSelectableChosenEventRaised(SelectableChosenEvent @event)
-    {
-        selectedItem = (BattleActionWheelItem)@event.SelectedItem; 
-        onActionSelected?.Invoke(selectedItem.Action); 
-        EventBus<SelectableChosenEvent>.Deregister(chosenItemBinding); 
-        ActivateItems(false); 
-    }
+        void OnSelectableChosenEventRaised(SelectableChosenEvent @event)
+        {
+            selectedItem = (BattleActionWheelItem)@event.SelectedItem; 
+            onActionSelected?.Invoke(selectedItem.Action); 
+            EventBus<SelectableChosenEvent>.Deregister(chosenItemBinding); 
+            ActivateItems(false); 
+        }
     
-    void ActivateItems(bool active = true)
-    {
-        foreach (var item in items)
-            item.gameObject.SetActive(active); 
+        void ActivateItems(bool active = true)
+        {
+            foreach (var item in items)
+                item.gameObject.SetActive(active); 
+        }
     }
 }

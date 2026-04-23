@@ -1,21 +1,26 @@
+using Battle.Components;
+using Core.Enums;
 using UnityEngine;
 
-public class PlayerEntityComponent : BattleEntityComponent
+namespace Battle.Components
 {
-    [SerializeField] private PlayerId playerID;
-    public PlayerId PlayerID => playerID;
-    [SerializeField] private BattleInputReader input; 
-    private BoolInputData inputData;
-    public BoolInputData InputData => inputData;
-
-    protected override void Start()
+    public class PlayerEntityComponent : BattleEntityComponent
     {
-        base.Start();
-        inputData = playerID switch
+        [SerializeField] private PlayerId playerID;
+        public PlayerId PlayerID => playerID;
+        [SerializeField] private BattleInputReader input; 
+        private BoolInputData inputData;
+        public BoolInputData InputData => inputData;
+
+        protected override void Start()
         {
-            PlayerId.PlayerOne => input.PlayerOne,
-            PlayerId.PlayerTwo => input.PlayerTwo,
-            _ => throw new System.NotImplementedException()
-        };
+            base.Start();
+            inputData = playerID switch
+            {
+                PlayerId.PlayerOne => input.PlayerOne,
+                PlayerId.PlayerTwo => input.PlayerTwo,
+                _ => throw new System.NotImplementedException()
+            };
+        }
     }
 }

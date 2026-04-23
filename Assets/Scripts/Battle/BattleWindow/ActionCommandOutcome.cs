@@ -1,6 +1,6 @@
-using Battle.BattleWindow.Enums;
+using Battle.Enums;
 
-namespace Battle.BattleWindow
+namespace Battle
 {
     public readonly struct ActionCommandOutcome
     {

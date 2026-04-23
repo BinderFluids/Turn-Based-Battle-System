@@ -1,4 +1,7 @@
-public interface IBattleActionCounterBehaviour
+namespace Battle.Interfaces
 {
-    public void Counter(BattleEntity actor, BattleEntity defender);
+    public interface IBattleActionCounterBehaviour
+    {
+        public void Counter(BattleEntity actor, BattleEntity defender);
+    }
 }

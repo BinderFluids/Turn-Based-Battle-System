@@ -1,37 +1,41 @@
-using Battle.Actions.Graph.Runtime;
+using Battle;
 using UnityEngine;
 
-public class BattleActionPlayer : MonoBehaviour
+namespace Battle.SocketEditor
 {
-    [SerializeField] private BattleEntity actor; 
-    [SerializeField] private BattleEntity target;
-    [SerializeField] private ScriptableBattleAction action;
-
-    public void SetActor(BattleEntity actor) => this.actor = actor;
-
-    public void PlayGraph(BattleActionRuntimeGraph graph)
+    public class BattleActionPlayer : MonoBehaviour
     {
-        Debug.Log("try play graph");
+        [SerializeField] private BattleEntity actor; 
+        [SerializeField] private BattleEntity target;
+        [SerializeField] private ScriptableBattleAction action;
+
+        public void SetActor(BattleEntity actor) => this.actor = actor;
         
-        if (actor.TryGetComponent(out BattleActionDirector director))
+        
+        public void PlayGraph(BattleActionRuntimeGraph graph)
         {
-            Debug.Log("Playing graph");
+            Debug.Log("try play graph");
+        
+            if (actor.TryGetComponent(out BattleActionDirector director))
+            {
+                Debug.Log("Playing graph");
             
-            director.RuntimeGraph = graph;
-            director.StartAction(actor, target);
+                director.RuntimeGraph = graph;
+                director.StartAction(actor, target);
+            }
         }
-    }
 
-    public void PlayAction(ScriptableBattleAction action)
-    {
-        Debug.Log("try play action");   
-        if (actor.TryGetComponent(out ActorComponent actorComponent))
+        public void PlayAction(ScriptableBattleAction action)
         {
-            Debug.Log("Playing action");
+            Debug.Log("try play action");   
+            if (actor.TryGetComponent(out ActorComponent actorComponent))
+            {
+                Debug.Log("Playing action");
             
-            actorComponent.StartAction(action, target);
+                actorComponent.StartAction(action, target);
+            }
         }
+    
+    
     }
-    
-    
 }

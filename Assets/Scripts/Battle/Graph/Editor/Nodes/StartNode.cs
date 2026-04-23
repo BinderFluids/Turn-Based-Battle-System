@@ -1,7 +1,7 @@
 using System;
 using Unity.GraphToolkit.Editor;
 
-namespace Battle.Actions.Graph.Editor.Nodes
+namespace Battle.Graph.Editor.Battle.Nodes
 {
     [Serializable]
     internal class StartNode : BattleActionNode

@@ -1,7 +1,10 @@
-public class StatusHandlerComponent : BattleEntityComponent
+namespace Battle.Components
 {
-    StatusEffectHandler statusEffectHandler;
+    public class StatusHandlerComponent : BattleEntityComponent
+    {
+        StatusEffectHandler statusEffectHandler;
 
-    public void AddStatusEffect(StatusEffect statusEffect) => statusEffectHandler.AddStatus(statusEffect); 
-    public void RemoveStatusEffect(StatusEffect statusEffect) => statusEffectHandler.RemoveStatus(statusEffect);
+        public void AddStatusEffect(StatusEffect statusEffect) => statusEffectHandler.AddStatus(statusEffect); 
+        public void RemoveStatusEffect(StatusEffect statusEffect) => statusEffectHandler.RemoveStatus(statusEffect);
+    }
 }

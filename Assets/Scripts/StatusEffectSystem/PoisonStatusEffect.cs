@@ -1,3 +1,5 @@
+using Battle;
+using Battle.Components;
 using Core.Stats;
 using UnityEngine;
 

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Battle.BattleWindow.OutcomeStrategy;
 using UnityEngine;
 
-namespace Battle.BattleWindow
+namespace Battle
 {
     /// <summary>
     /// Parameters for an action command (timed window, expected input band).

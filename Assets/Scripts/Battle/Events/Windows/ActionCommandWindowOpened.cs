@@ -1,16 +1,19 @@
 using EventBus;
 
-/// <summary>
-/// Raised when a timed action command window starts. UI should show prompts and timing feedback.
-/// </summary>
-public class ActionCommandWindowOpened : IEvent
+namespace Battle.Events.Windows
 {
-    public string WindowId { get; }
-    public float DurationSeconds { get; }
-
-    public ActionCommandWindowOpened(string windowId, float durationSeconds)
+    /// <summary>
+    /// Raised when a timed action command window starts. UI should show prompts and timing feedback.
+    /// </summary>
+    public class ActionCommandWindowOpened : IEvent
     {
-        WindowId = windowId;
-        DurationSeconds = durationSeconds;
+        public string WindowId { get; }
+        public float DurationSeconds { get; }
+
+        public ActionCommandWindowOpened(string windowId, float durationSeconds)
+        {
+            WindowId = windowId;
+            DurationSeconds = durationSeconds;
+        }
     }
 }

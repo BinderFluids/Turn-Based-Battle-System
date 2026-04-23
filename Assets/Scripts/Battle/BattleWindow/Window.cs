@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Battle.BattleWindow
+namespace Battle
 {
     /// <summary>
     /// Shared data for timed action commands and responsive input windows.

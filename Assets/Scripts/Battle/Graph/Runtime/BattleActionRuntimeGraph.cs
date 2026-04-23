@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Battle.Actions.Graph.Runtime.Nodes;
+using Battle.Graph.Runtime.Nodes;
 using UnityEngine;
 
-namespace Battle.Actions.Graph.Runtime
+namespace Battle.Graph.Runtime
 {
     public class BattleActionRuntimeGraph : ScriptableObject
     {

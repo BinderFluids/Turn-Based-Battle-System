@@ -1,3 +1,4 @@
-using UnityEngine;
-
-public class BattleActionWindowOption : ScriptableObjectWindowOption<ScriptableBattleAction> { }
+namespace Battle.SocketEditor.Components
+{
+    public class BattleActionWindowOption : ScriptableObjectWindowOption<ScriptableBattleAction> { }
+}

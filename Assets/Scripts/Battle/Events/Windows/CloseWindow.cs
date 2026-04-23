@@ -1,11 +1,14 @@
 using EventBus;
 
-public class CloseWindow : IEvent
+namespace Battle.Events.Windows
 {
-    public string WindowId { get; }
-
-    public CloseWindow(string windowId = null)
+    public class CloseWindow : IEvent
     {
-        WindowId = windowId;
+        public string WindowId { get; }
+
+        public CloseWindow(string windowId = null)
+        {
+            WindowId = windowId;
+        }
     }
 }

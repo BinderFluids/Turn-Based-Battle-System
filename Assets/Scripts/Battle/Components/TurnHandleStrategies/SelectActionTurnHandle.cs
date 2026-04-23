@@ -1,39 +1,42 @@
+using Battle.Actions;
 using UnityEngine;
-using EventBus; 
 
-public class SelectActionTurnHandle : ITurnHandleStrategy
+namespace Battle.Components.TurnHandleStrategies
 {
-    TurnComponent turnComponent;
-    ActorComponent actionComponent;
-    
-    public void Handle(TurnComponent component)
+    public class SelectActionTurnHandle : ITurnHandleStrategy
     {
-        turnComponent = component;
-        if (!component.TryGetComponent(out actionComponent))
+        TurnComponent turnComponent;
+        ActorComponent actionComponent;
+    
+        public void Handle(TurnComponent component)
         {
-            Debug.LogWarning($"{component.gameObject.name}: No action container component found on turn component");
-            ActionEnded();
-            return; 
+            turnComponent = component;
+            if (!component.TryGetComponent(out actionComponent))
+            {
+                Debug.LogWarning($"{component.gameObject.name}: No action container component found on turn component");
+                ActionEnded();
+                return; 
+            }
+
+            actionComponent.onActionEnded += ActionEnded; 
+            actionComponent.SelectAction();
         }
 
-        actionComponent.onActionEnded += ActionEnded; 
-        actionComponent.SelectAction();
+        void ActionEnded()
+        {
+            if (actionComponent != null)
+                actionComponent.onActionEnded -= ActionEnded; 
+        
+            TurnEndEvent turnEndEvent = new TurnEndEvent {turnEntity = turnComponent};
+            EventBus<TurnEndEvent>.Raise(turnEndEvent);
+        }
     }
 
-    void ActionEnded()
+    public class NextTurnHandle : ITurnHandleStrategy
     {
-        if (actionComponent != null)
-            actionComponent.onActionEnded -= ActionEnded; 
+        public void Handle(TurnComponent component)
+        {
         
-        TurnEndEvent turnEndEvent = new TurnEndEvent {turnEntity = turnComponent};
-        EventBus<TurnEndEvent>.Raise(turnEndEvent);
-    }
-}
-
-public class NextTurnHandle : ITurnHandleStrategy
-{
-    public void Handle(TurnComponent component)
-    {
-        
+        }
     }
 }

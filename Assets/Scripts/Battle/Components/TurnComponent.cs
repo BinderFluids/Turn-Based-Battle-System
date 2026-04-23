@@ -1,72 +1,82 @@
-using Core.Stats;
+using Battle.Components.TurnHandleStrategies;
+using Battle.Events;
+using UnityEngine;
 using EventBus;
 using SerializedInterface;
-using UnityEngine;
 
-[RequireComponent(typeof(StatBlockComponent))]
-public class TurnComponent : BattleEntityComponent
+namespace Battle.Components
 {
-    [SerializeField] private StatBlockComponent statBlockComponent;
-    public StatBlock StatBlock => statBlockComponent.StatBlock;
-    
-    [SerializeField, Tooltip("Defaults if empty")] private InterfaceReference<ITurnHandleStrategy> turnStartHandle; 
-    [SerializeField, Tooltip("Defaults if empty")] private InterfaceReference<ITurnHandleStrategy> turnEndHandle;
-    
-    private EventBinding<TurnStartEvent> turnStartBinding;
-    private EventBinding<TurnEndEvent> turnEndBinding;
-    
-    private ITurnHandleStrategy defaultTurnStartHandle = new SelectActionTurnHandle();
-    private ITurnHandleStrategy defaultTurnEndHandle = new EmptyTurnHandle();
-    
-    protected override void Awake()
+    [RequireComponent(typeof(StatBlockComponent))]
+    public class TurnComponent : BattleEntityComponent
     {
-        base.Awake();
-        
-        turnStartBinding = new EventBinding<TurnStartEvent>(HandleTurnStart);
-        EventBus<TurnStartEvent>.Register(turnStartBinding);
-        
-        turnEndBinding = new EventBinding<TurnEndEvent>(HandleTurnEnd);
-        EventBus<TurnEndEvent>.Register(turnEndBinding);
-    }
 
-    protected override void Start()
-    {
-        base.Start();
-        statBlockComponent ??= GetComponent<StatBlockComponent>();
-    }
-
-    public void StartTurn()
-    {
-        if (turnStartHandle.UnderlyingValue == null)
+        [SerializeField] private bool takeTurn; 
+        [SerializeField, Tooltip("Defaults if empty")] private InterfaceReference<ITurnHandleStrategy> turnStartHandle; 
+        [SerializeField, Tooltip("Defaults if empty")] private InterfaceReference<ITurnHandleStrategy> turnEndHandle;
+    
+        private EventBinding<TurnStartEvent> turnStartBinding;
+        private EventBinding<TurnEndEvent> turnEndBinding;
+    
+        private ITurnHandleStrategy defaultTurnStartHandle = new SelectActionTurnHandle();
+        private ITurnHandleStrategy defaultTurnEndHandle = new EmptyTurnHandle();
+        
+        private EventBinding<RequestTurnEntitiesEvent> requestTurnEntitiesBinding;
+        
+    
+        protected override void Awake()
         {
-            Debug.LogWarning($"{gameObject.name}: TurnStartHandle is null, using default: {defaultTurnStartHandle.GetType().Name}");
-            defaultTurnStartHandle.Handle(this);
-        }
-        else
-            turnStartHandle.Value.Handle(this);
-    }
-    
-    void HandleTurnStart(TurnStartEvent e)
-    {
-        if (e.turnEntity != this) return;
-        StartTurn();
-    } 
-    void HandleTurnEnd(TurnEndEvent e)
-    {
-        if (e.turnEntity != this) return;
+            base.Awake();
         
-        if (turnEndHandle.UnderlyingValue == null)
-        {
-            Debug.LogWarning($"{gameObject.name}: TurnEndHandle is null, using default: {defaultTurnEndHandle.GetType().Name}");
-            defaultTurnEndHandle.Handle(this);
+            turnStartBinding = new EventBinding<TurnStartEvent>(HandleTurnStart);
+            EventBus<TurnStartEvent>.Register(turnStartBinding);
+        
+            turnEndBinding = new EventBinding<TurnEndEvent>(HandleTurnEnd);
+            EventBus<TurnEndEvent>.Register(turnEndBinding);
+            
+            requestTurnEntitiesBinding = new EventBinding<RequestTurnEntitiesEvent>(OnRequestTurnEntities);
+            EventBus<RequestTurnEntitiesEvent>.Register(requestTurnEntitiesBinding);
         }
-        else
-            turnEndHandle.Value.Handle(this);
-    }
 
-    private void OnDestroy()
-    {
-        EventBus<TurnStartEvent>.Deregister(turnStartBinding);
-        EventBus<TurnEndEvent>.Deregister(turnEndBinding);
+        void OnRequestTurnEntities(RequestTurnEntitiesEvent e)
+        {
+            if (takeTurn)
+                EventBus<ReturnTurnEntityEvent>.Raise(new ReturnTurnEntityEvent { entity = Entity });
+        }
+
+        public void StartTurn()
+        {
+            if (turnStartHandle.UnderlyingValue == null)
+            {
+                Debug.LogWarning($"{gameObject.name}: TurnStartHandle is null, using default: {defaultTurnStartHandle.GetType().Name}");
+                defaultTurnStartHandle.Handle(this);
+            }
+            else
+                turnStartHandle.Value.Handle(this);
+        }
+    
+        void HandleTurnStart(TurnStartEvent e)
+        {
+            if (e.turnEntity != Entity) return;
+            StartTurn();
+        } 
+        void HandleTurnEnd(TurnEndEvent e)
+        {
+            if (e.turnEntity != Entity) return;
+        
+            if (turnEndHandle.UnderlyingValue == null)
+            {
+                Debug.LogWarning($"{gameObject.name}: TurnEndHandle is null, using default: {defaultTurnEndHandle.GetType().Name}");
+                defaultTurnEndHandle.Handle(this);
+            }
+            else
+                turnEndHandle.Value.Handle(this);
+        }
+
+        private void OnDestroy()
+        {
+            EventBus<TurnStartEvent>.Deregister(turnStartBinding);
+            EventBus<TurnEndEvent>.Deregister(turnEndBinding);
+            EventBus<RequestTurnEntitiesEvent>.Deregister(requestTurnEntitiesBinding); 
+        }
     }
 }

@@ -2,7 +2,7 @@ using System;
 using Unity.GraphToolkit.Editor;
 using UnityEditor;
 
-namespace Battle.Actions.Graph.Editor
+namespace Battle.Graph.Editor.Battle
 {
     [Serializable]
     [Graph(AssetExtension)]

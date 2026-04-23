@@ -1,59 +1,69 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Battle;
+using Battle.Enums;
+using Battle.Components;
 using Registry;
+using UnityEngine;
 
-public partial class BattleEntity : MonoBehaviour
+namespace Battle
 {
-    public PhysicalBattleEntityModifier physicalBattleEntityModifier;
-
-    [SerializeField] private Transform _transform; 
-    public Transform Transform => _transform;
-
-    private Pose startPose; 
-    public Pose StartPose => startPose;
-    
-    
-    void Awake()
+    public partial class BattleEntity : MonoBehaviour
     {
-        Registry<BattleEntity>.TryAdd(this); 
-        components = GetComponents<IBattleEntityComponent>().ToDictionary(c => c.GetType());
-    }
-
-    private void Start()
-    {
-        if (_transform == null)
-            _transform = transform; 
-        startPose = new Pose(_transform.position, _transform.rotation);
-    }
-
-    private void OnDestroy()
-    {
-        Registry<BattleEntity>.Remove(this); 
-    }
-    
-    private Dictionary<Type, IBattleEntityComponent> components;
-    public new bool TryGetComponent<T>(out T component)
-    {
-        //Attempt to find BattleComponent from dictionary
-        if (typeof(T).IsAssignableFrom(typeof(IBattleEntityComponent)) &&
-            components.TryGetValue(typeof(T), out var foundBattleComponent) && 
-            foundBattleComponent is T typed)
-        {
-            component = typed;
-            return true;
-        }
+        private static List<BattleEntity> entities = new();
+        public static IReadOnlyList<BattleEntity> Entities => entities;
         
-        //Pass through to base TryGetComponent method
-        if (gameObject.TryGetComponent(out T foundComponent))
+        public PhysicalBattleEntityModifier physicalBattleEntityModifier;
+
+        [SerializeField] private Transform _transform; 
+        public Transform Transform => _transform;
+
+        private Pose startPose; 
+        public Pose StartPose => startPose;
+    
+    
+        void Awake()
         {
-            component = foundComponent;
-            return true; 
+            entities.Add(this); 
+            components = GetComponents<BattleEntityComponent>()
+                .ToDictionary(c => c.GetType());
         }
 
-        //Return false
-        component = default; 
-        return false;
+        private void Start()
+        {
+            if (_transform == null)
+                _transform = transform; 
+            startPose = new Pose(_transform.position, _transform.rotation);
+        }
+
+        private void OnDestroy()
+        {
+            Registry<BattleEntity>.Remove(this); 
+        }
+    
+        private Dictionary<Type, BattleEntityComponent> components;
+        public new bool TryGetComponent<T>(out T component)
+        {
+            //Attempt to find BattleComponent from dictionary
+            if (typeof(T).IsAssignableFrom(typeof(BattleEntityComponent)) &&
+                components.TryGetValue(typeof(T), out var foundBattleComponent) && 
+                foundBattleComponent is T typed)
+            {
+                component = typed;
+                return true;
+            }
+        
+            //Pass through to base TryGetComponent method
+            if (gameObject.TryGetComponent(out T foundComponent))
+            {
+                component = foundComponent;
+                return true; 
+            }
+
+            //Return false
+            component = default; 
+            return false;
+        }
     }
 }

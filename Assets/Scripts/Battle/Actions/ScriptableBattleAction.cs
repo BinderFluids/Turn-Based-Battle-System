@@ -1,32 +1,37 @@
 using System;
 using System.Collections.Generic;
+using Battle;
+using Battle.Interfaces;
 using SerializedInterface;
 using UnityEngine;
 
-public abstract class ScriptableBattleAction : ScriptableObject, IBattleAction
+namespace Battle.Actions
 {
-    [SerializeField] private InterfaceReference<IBattleActionCounterBehaviour> counterBehaviourRef;
-    
-    public event Action onActionStarted;
-    public event Action onActionEnded;
-    
-    [SerializeReference, Subclass(IsList = true)] private List<BattleSelectionFilter> filters; 
-    
-    public abstract void StartAction(BattleEntity actor, BattleEntity target);
-    protected void EndAction(BattleEntity actor)
+    public abstract class ScriptableBattleAction : ScriptableObject, IBattleAction
     {
-        onActionEnded?.Invoke();
-    }
+        [SerializeField] private InterfaceReference<IBattleActionCounterBehaviour> counterBehaviourRef;
+    
+        public event Action onActionStarted;
+        public event Action onActionEnded;
+    
+        [SerializeReference, Subclass(IsList = true)] private List<BattleSelectionFilter> filters; 
+    
+        public abstract void StartAction(BattleEntity actor, BattleEntity target);
+        protected void EndAction(BattleEntity actor)
+        {
+            onActionEnded?.Invoke();
+        }
 
 
-    public List<BattleEntity> GetValidTargets(BattleEntity actor, IEnumerable<BattleEntity> ctx)
-    {
-        List<BattleEntity> output = new List<BattleEntity>();
-        output.AddRange(ctx);
+        public List<BattleEntity> GetValidTargets(BattleEntity actor, IEnumerable<BattleEntity> ctx)
+        {
+            List<BattleEntity> output = new List<BattleEntity>();
+            output.AddRange(ctx);
 
-        foreach (BattleSelectionFilter filter in filters)
-            output = filter.Filter(actor, output);
+            foreach (BattleSelectionFilter filter in filters)
+                output = filter.Filter(actor, output);
 
-        return output; 
+            return output; 
+        }
     }
 }

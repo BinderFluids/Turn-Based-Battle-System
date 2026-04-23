@@ -1,5 +1,6 @@
-using UnityEngine;
-
-public class ScriptableBattleActionSelector : ScriptableObjectSelector<ScriptableBattleAction>
+namespace Battle.SocketEditor
 {
+    public class ScriptableBattleActionSelector : ScriptableObjectSelector<ScriptableBattleAction>
+    {
+    }
 }

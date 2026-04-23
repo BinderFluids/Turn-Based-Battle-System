@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 
-[System.Serializable]
-public class BattleFilterSelf : BattleSelectionFilter
+namespace Battle
 {
-    public override List<BattleEntity> Filter(BattleEntity actor, List<BattleEntity> context)
+    [System.Serializable]
+    public class BattleFilterSelf : BattleSelectionFilter
     {
-        return context.Where(e => e != actor).ToList();
+        public override List<BattleEntity> Filter(BattleEntity actor, List<BattleEntity> context)
+        {
+            return context.Where(e => e != actor).ToList();
+        }
     }
 }

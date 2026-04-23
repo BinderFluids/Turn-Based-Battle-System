@@ -1,27 +1,32 @@
+using Core.Stats;
 using UnityEngine;
+using Battle.Components;
 
-[CreateAssetMenu(menuName = "Battle/Action/Damage Target", fileName = "DamageTarget", order = 0)]
-public class DamageTarget : ScriptableBattleAction
+namespace Battle.Actions
 {
-    private BattleEntity actor;
-    
-    public override void StartAction(BattleEntity actor, BattleEntity target)
+    [CreateAssetMenu(menuName = "Battle/Action/Damage Target", fileName = "DamageTarget", order = 0)]
+    public class DamageTarget : ScriptableBattleAction
     {
-        
-        if (!actor.TryGetComponent<StatBlockComponent>(out var actorStatBlockComponent))
+        private BattleEntity actor;
+    
+        public override void StartAction(BattleEntity actor, BattleEntity target)
         {
-            Debug.LogError($"{actor.name} does not have a stat block component");
-            return;
-        }
-        if (!target.TryGetComponent<StatBlockComponent>(out var targetStatBlockComponent))
-        {
-            Debug.LogError($"{target.name} does not have a stat block component");
-            return;
-        }
         
-        Debug.Log($"{actor.name} damaged {target.name} for {actorStatBlockComponent.StatBlock.Attack.Value}");
-        targetStatBlockComponent.StatBlock.Health.Add(-actorStatBlockComponent.StatBlock.Attack.Value);
+            if (!actor.TryGetComponent<StatBlockComponent>(out var actorStatBlockComponent))
+            {
+                Debug.LogError($"{actor.name} does not have a stat block component");
+                return;
+            }
+            if (!target.TryGetComponent<StatBlockComponent>(out var targetStatBlockComponent))
+            {
+                Debug.LogError($"{target.name} does not have a stat block component");
+                return;
+            }
         
-        EndAction(actor); 
+            Debug.Log($"{actor.name} damaged {target.name} for {actorStatBlockComponent.StatBlock.Attack.Value}");
+            targetStatBlockComponent.StatBlock.Health.Add(-actorStatBlockComponent.StatBlock.Attack.Value);
+        
+            EndAction(actor); 
+        }
     }
 }

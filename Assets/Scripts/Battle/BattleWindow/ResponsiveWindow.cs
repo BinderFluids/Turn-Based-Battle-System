@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Battle.BattleWindow
+namespace Battle
 {
     /// <summary>
     /// Parameters for a responsive window (closed explicitly by id, not by duration).

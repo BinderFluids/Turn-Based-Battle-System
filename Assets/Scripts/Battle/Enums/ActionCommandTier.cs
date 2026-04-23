@@ -1,4 +1,4 @@
-namespace Battle.BattleWindow.Enums
+namespace Battle.Enums
 {
     public enum ActionCommandTier
     {

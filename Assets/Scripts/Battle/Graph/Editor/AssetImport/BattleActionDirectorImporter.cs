@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Battle.Actions.Graph.Editor.Nodes;
-using Battle.Actions.Graph.Runtime;
-using Battle.Actions.Graph.Runtime.Nodes;
+using Battle.Socket;
+using Battle.Graph.Editor.Battle.Nodes;
+using Battle.Graph.Runtime;
+using Battle.Graph.Runtime.Nodes;
 using Unity.GraphToolkit.Editor;
 using UnityEditor.AssetImporters;
 using UnityEngine;
 
-namespace Battle.Actions.Graph.Editor.AssetImport
+namespace Battle.Graph.Editor.Battle.AssetImport
 {
     [ScriptedImporter(1, BattleActionDirectorGraph.AssetExtension)]
     internal class BattleActionDirectorImporter : ScriptedImporter

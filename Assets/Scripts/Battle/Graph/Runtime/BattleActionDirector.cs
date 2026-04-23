@@ -1,17 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battle.Interfaces;
+using Battle.Components;
 using UnityEngine;
 
-namespace Battle.Actions.Graph.Runtime
+namespace Battle.Graph.Runtime
 {
     public class BattleActionDirector : BattleEntityComponent, IBattleAction
     {
+        [SerializeField] private BattleEntity entity;
+        public BattleEntity Entity => entity;
+        
         [Header("Graph")] public BattleActionRuntimeGraph RuntimeGraph;
         
         public event Action onActionStarted;
         public event Action onActionEnded;
-        public async void StartAction(global::BattleEntity actor, global::BattleEntity target)
+        public async void StartAction(global::Battle.BattleEntity actor, global::Battle.BattleEntity target)
         {
             onActionStarted?.Invoke();
         
@@ -30,9 +35,10 @@ namespace Battle.Actions.Graph.Runtime
             onActionEnded?.Invoke();
         }
 
-        public List<global::BattleEntity> GetValidTargets(global::BattleEntity actor, IEnumerable<global::BattleEntity> ctx)
+        public List<global::Battle.BattleEntity> GetValidTargets(global::Battle.BattleEntity actor, IEnumerable<global::Battle.BattleEntity> ctx)
         {
             return ctx.ToList(); 
         }
+
     }
 }

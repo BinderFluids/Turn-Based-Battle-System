@@ -1,10 +1,13 @@
 using UnityEngine;
 
-[System.Serializable]
-public class SocketReference
+namespace Battle.Socket
 {
-    [SerializeField] private SocketPositionMap socketPositionMap;
-    [SerializeField, HideInInspector] private string selectedSocketName; 
+    [System.Serializable]
+    public class SocketReference
+    {
+        [SerializeField] private SocketPositionMap socketPositionMap;
+        [SerializeField, HideInInspector] private string selectedSocketName; 
 
-    public Vector3 GetSocketPosition() => socketPositionMap.GetSocketPositionsDictionary()[selectedSocketName];
+        public Vector3 GetSocketPosition() => socketPositionMap.GetSocketPositionsDictionary()[selectedSocketName];
+    }
 }

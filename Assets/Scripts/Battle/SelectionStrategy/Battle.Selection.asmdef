@@ -1,6 +1,6 @@
 {
-    "name": "Battle.Actions.Selection",
-    "rootNamespace": "",
+    "name": "Battle.Selection",
+    "rootNamespace": "Battle.Selection",
     "references": [
         "GUID:69fd95a57929a201fb32f8fef9b1aad1",
         "GUID:5fefbf96c31bf55e88585fa4112bab12",
