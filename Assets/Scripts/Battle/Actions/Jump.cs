@@ -59,7 +59,8 @@ namespace Battle.Actions
         async UniTask<ActionCommandOutcome> AwaitActionCommand(BattleEntity actor)
         {
             PlayerId playerId = PlayerId.PlayerOne;
-            playerId = RequestHub<RequestPlayerId>.Request(actor).PlayerId;  
+            if (RequestHub<RequestPlayerId>.TryRequest(actor, out var request))
+                playerId = request.PlayerId; 
         
         
             var window = new ActionCommandWindow(

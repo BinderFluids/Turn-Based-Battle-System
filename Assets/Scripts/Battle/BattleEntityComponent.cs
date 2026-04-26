@@ -1,7 +1,7 @@
 using Battle;
 using UnityEngine;
 
-namespace Battle.Components
+namespace Battle
 {
     [RequireComponent(typeof(BattleEntity))]
     public abstract class BattleEntityComponent : MonoBehaviour

@@ -17,11 +17,15 @@ namespace Battle.Actions
             this.actor = actor;
             this.target = target;
 
+            int actorAttackValue = 1;
+            if (RequestHub<RequestAttackValue>.TryRequest(actor, out var request))
+                actorAttackValue = request.AttackValue;                 
+            
             EventBus<ChangeEntityHealthEvent>.Raise(new ChangeEntityHealthEvent
             {
                 Source = actor,
                 Target = target,
-                Damage = RequestHub<RequestAttackValue>.Request(actor).AttackValue
+                Damage = actorAttackValue
             });
             
             EndAction(actor); 

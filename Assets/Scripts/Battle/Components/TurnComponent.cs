@@ -10,7 +10,8 @@ namespace Battle.Components
     public class TurnComponent : BattleEntityComponent
     {
 
-        [SerializeField] private bool takeTurn; 
+        [SerializeField] private bool takeTurn;
+        public bool TakeTurn => takeTurn; 
         [SerializeField, Tooltip("Will default if empty")] private InterfaceReference<ITurnHandleStrategy> turnStartHandle; 
         [SerializeField, Tooltip("Will default if empty")] private InterfaceReference<ITurnHandleStrategy> turnEndHandle;
     
@@ -19,8 +20,6 @@ namespace Battle.Components
     
         private ITurnHandleStrategy defaultTurnStartHandle = new SelectActionTurnHandle();
         private ITurnHandleStrategy defaultTurnEndHandle = new EmptyTurnHandle();
-        
-        private EventBinding<RequestTurnEntitiesEvent> requestTurnEntitiesBinding;
         
     
         protected override void Awake()
@@ -32,15 +31,6 @@ namespace Battle.Components
         
             turnEndBinding = new EventBinding<TurnEndEvent>(HandleTurnEnd);
             EventBus<TurnEndEvent>.Register(turnEndBinding);
-            
-            requestTurnEntitiesBinding = new EventBinding<RequestTurnEntitiesEvent>(OnRequestTurnEntities);
-            EventBus<RequestTurnEntitiesEvent>.Register(requestTurnEntitiesBinding);
-        }
-
-        void OnRequestTurnEntities(RequestTurnEntitiesEvent e)
-        {
-            if (takeTurn)
-                EventBus<ReturnTurnEntityEvent>.Raise(new ReturnTurnEntityEvent { entity = Entity });
         }
 
         public void StartTurn()
@@ -56,11 +46,13 @@ namespace Battle.Components
     
         void HandleTurnStart(TurnStartEvent e)
         {
+            if (!takeTurn) return; 
             if (e.Entity != Entity) return;
             StartTurn();
         } 
         void HandleTurnEnd(TurnEndEvent e)
         {
+            if (!takeTurn) return; 
             if (e.turnEntity != Entity) return;
         
             if (turnEndHandle.UnderlyingValue == null)
@@ -76,7 +68,6 @@ namespace Battle.Components
         {
             EventBus<TurnStartEvent>.Deregister(turnStartBinding);
             EventBus<TurnEndEvent>.Deregister(turnEndBinding);
-            EventBus<RequestTurnEntitiesEvent>.Deregister(requestTurnEntitiesBinding); 
         }
     }
 }

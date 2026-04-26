@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Battle.Interfaces;
 using Battle.TargetSelection;
-using Battle.Components;
 using SerializedInterface;
 using UnityEngine;
 
@@ -37,7 +36,7 @@ namespace Battle.Actions
             actionSelectionStrategy.onActionSelected -= OnActionSelected;
         
             targetSelectionStrategy.onEntitySelected += OnTargetSelected;
-            targetSelectionStrategy.GetEntity(Entity, action, BattleEntity.Entities); 
+            targetSelectionStrategy.GetEntity(Entity, action, BattleEntity.AllEntities); 
         }
     
         void OnTargetSelected(BattleEntity target)

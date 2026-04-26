@@ -5,6 +5,7 @@ using UnityEngine;
 namespace RequestHub
 {
     public interface IRequest  { }
+    public interface IDefaultRequest<T> : IRequest where T : IRequest { }
 
     public interface IRequestProvider { }
 
@@ -21,14 +22,15 @@ namespace RequestHub
         public static void Deregister(IRequestProvider provider) => providerDelegateDictionary.Remove(provider);
         public static void Clear() => providerDelegateDictionary.Clear();
 
-        public static T Request(IRequestProvider provider)
+        public static bool TryRequest(IRequestProvider provider, out T request)
         {
+            request = default; 
+            
             if (!providerDelegateDictionary.TryGetValue(provider, out ProvideRequestDelegate provideRequestDelegate))
-                throw new ArgumentException($"Provider '{provider}' is not registered in RequestHub"); 
+                return false; 
             
-            T value =  provideRequestDelegate();
-            
-            return value; 
+            request =  provideRequestDelegate();
+            return true; 
         }
     }
 }

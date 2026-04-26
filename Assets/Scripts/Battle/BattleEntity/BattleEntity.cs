@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Battle.Enums;
-using Battle.Components;
 using Battle.Events;
 using Registry;
 using RequestHub;
@@ -12,8 +11,8 @@ namespace Battle
 {
     public partial class BattleEntity : MonoBehaviour, IRequestProvider, IDamageSource
     {
-        private static List<BattleEntity> entities = new();
-        public static IReadOnlyList<BattleEntity> Entities => entities;
+        private static List<BattleEntity> _allEntities = new();
+        public static IReadOnlyList<BattleEntity> AllEntities => _allEntities;
         
         public PhysicalBattleEntityModifier physicalBattleEntityModifier;
 
@@ -26,7 +25,7 @@ namespace Battle
     
         void Awake()
         {
-            entities.Add(this); 
+            _allEntities.Add(this); 
             components = GetComponents<BattleEntityComponent>()
                 .ToDictionary(c => c.GetType());
         }

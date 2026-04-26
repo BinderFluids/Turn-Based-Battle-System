@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using RequestHub; 
 using Battle.Events;
+using Battle.Requests;
 using EventBus;
 using Registry;
 using UnityEngine;
@@ -16,17 +18,12 @@ namespace Battle
         private EventBinding<TurnEndEvent> turnEndBinding;
         private EventBinding<TurnStartEvent> turnStartBinding;
         [SerializeField] private bool manageBattle;
-
-        private EventBinding<ReturnTurnEntityEvent> returnTurnEntityBinding;
         
         protected override void Awake()
         {
             base.Awake();
             
             inputReader.EnableInput(InputActionType.Player);
-            
-            returnTurnEntityBinding = new EventBinding<ReturnTurnEntityEvent>(OnReturnTurnEntityEventRaised);
-            EventBus<ReturnTurnEntityEvent>.Register(returnTurnEntityBinding);
         }
 
         private void Start()
@@ -46,14 +43,22 @@ namespace Battle
             NextTurn(default);
         }
 
-        void OnReturnTurnEntityEventRaised(ReturnTurnEntityEvent e)
-        {
-            turnEntities.Add(e.entity);
-        }
 
         private void SetSortedTurns()
         {
+            turnEntities.Clear();
             
+            Dictionary<BattleEntity, int> entityBySpeed = new Dictionary<BattleEntity, int>();
+            foreach (BattleEntity entity in BattleEntity.AllEntities)
+            {
+                if (RequestHub<RequestSpeedValue>.TryRequest(entity, out var request))
+                {
+                    entityBySpeed.Add(entity, request.SpeedValue);
+                    turnEntities.Add(entity); 
+                } 
+            }
+            
+            turnEntities = turnEntities.OrderByDescending(e => entityBySpeed[e]).ToList();
         }
     
         private void NextTurn(TurnEndEvent turnEndEvent)
@@ -68,7 +73,6 @@ namespace Battle
         private void OnDestroy()
         {
             Registry<BattleEntity>._onItemAddedNoArgs -= SetSortedTurns;
-            EventBus<ReturnTurnEntityEvent>.Deregister(returnTurnEntityBinding);
             EventBus<TurnEndEvent>.Deregister(turnEndBinding);
         }
     }

@@ -1,5 +1,3 @@
-using Battle.Components;
-
 namespace Battle.StatusEffect
 {
     public class StatusHandlerComponent : BattleEntityComponent

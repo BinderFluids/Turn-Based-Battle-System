@@ -11,15 +11,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/StatBlockRequests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/DamageTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/DamageTarget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/StatBlockComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/StatBlockComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/AttackEntityEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/ChangeEntityHealthEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/AttackEntityEvent.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/ChangeEntityHealthEvent.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/RequestAttackValue.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/RequestAttackValue.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/StatBlockRequests.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/StatusEffect/PoisonStatusEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/StatusEffect/PoisonStatusEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Jump.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Jump.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntityComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntityComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/TurnComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/TurnComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/RequestTurnEntitiesEvent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/RequestTurnEntitiesEvent.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Graph/Runtime/BattleActionDirector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Graph/Runtime/BattleActionDirector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/StatusEffect/StatusHandlerComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/StatusEffect/StatusHandlerComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/SelectableComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/SelectableComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RequestHub/RequestHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RequestHub/RequestHub.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +123,7 @@
       <workItem from="1776917762070" duration="1676000" />
       <workItem from="1776972507369" duration="7259000" />
       <workItem from="1777163897038" duration="17012000" />
-      <workItem from="1777240238140" duration="302000" />
+      <workItem from="1777240238140" duration="1633000" />
     </task>
     <servers />
   </component>

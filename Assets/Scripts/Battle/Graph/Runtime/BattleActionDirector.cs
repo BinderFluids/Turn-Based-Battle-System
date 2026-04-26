@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Battle.Interfaces;
-using Battle.Components;
 using UnityEngine;
 
 namespace Battle.Graph.Runtime
@@ -16,7 +15,7 @@ namespace Battle.Graph.Runtime
         
         public event Action onActionStarted;
         public event Action onActionEnded;
-        public async void StartAction(global::Battle.BattleEntity actor, global::Battle.BattleEntity target)
+        public async void StartAction(BattleEntity actor, BattleEntity target)
         {
             onActionStarted?.Invoke();
         
