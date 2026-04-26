@@ -1,4 +1,4 @@
-namespace Battle.BattleWindow
+namespace Battle.Window
 {
     public struct PlayerHoldData
     {

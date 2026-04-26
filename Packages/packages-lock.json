@@ -75,6 +75,13 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.seaeees.simple-folder-icon": {
+      "version": "https://github.com/SeaeeesSan/SimpleFolderIcon.git?path=Packages/com.seaeees.simple-folder-icon",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "61962458dcd75068bd2324cf2ba5fc547d9e1ed8"
+    },
     "com.unity.2d.animation": {
       "version": "14.0.3",
       "depth": 1,
@@ -254,7 +261,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.39",
+      "version": "3.0.40",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -423,16 +430,6 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
-    },
-    "com.unity.visualscripting": {
-      "version": "1.9.11",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

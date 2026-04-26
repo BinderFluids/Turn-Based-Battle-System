@@ -3,110 +3,113 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class SocketCursor : Singleton<SocketCursor>
+namespace Battle.SocketEditor
 {
-    
-    private TransformHandleManager transformHandleManager;
-
-    [SerializeField] private Camera socketOverlayCamera; 
-    [SerializeField] private Handle handle; 
-    [SerializeField] private UnityEvent<SocketHandle> onSocketSelected;
-    [SerializeField] private SocketEditorInputReader input;
-    [SerializeField] private SocketHandle currentlyHoveredSocketHandle; 
-    
-    [SerializeField] private bool handleIsBeingInteractedWith;
-    [SerializeField] private LayerMask socketLayerMask; 
-    private UnityAction<Handle> onSocketSelectedAction;
-    private UnityAction<Handle> onSocketDeselectedAction;
-    
-    private void Start()
+    public class SocketCursor : Singleton<SocketCursor>
     {
-        transformHandleManager = TransformHandleManager.Instance;
-        
-        handle = transformHandleManager.CreateHandle(transform); 
-        
-        onSocketSelectedAction = _ => handleIsBeingInteractedWith = true;
-        onSocketDeselectedAction = _ => handleIsBeingInteractedWith = false;
-        
-        handle.OnInteractionStartUnityEvent.AddListener(onSocketSelectedAction);
-        handle.OnInteractionEndUnityEvent.AddListener(onSocketDeselectedAction);
-        
-        DisableHandle();
-    }
+    
+        private TransformHandleManager transformHandleManager;
 
-    private void Update()
-    {
-        SocketHandle previouslyHoveredSocketHandle = currentlyHoveredSocketHandle;
-        Ray ray = socketOverlayCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out var hover, ~socketLayerMask))
+        [SerializeField] private Camera socketOverlayCamera; 
+        [SerializeField] private Handle handle; 
+        [SerializeField] private UnityEvent<SocketHandle> onSocketSelected;
+        [SerializeField] private SocketEditorInputReader input;
+        [SerializeField] private SocketHandle currentlyHoveredSocketHandle; 
+    
+        [SerializeField] private bool handleIsBeingInteractedWith;
+        [SerializeField] private LayerMask socketLayerMask; 
+        private UnityAction<Handle> onSocketSelectedAction;
+        private UnityAction<Handle> onSocketDeselectedAction;
+    
+        private void Start()
         {
-            if (hover.collider.TryGetComponent(out currentlyHoveredSocketHandle))
+            transformHandleManager = TransformHandleManager.Instance;
+        
+            handle = transformHandleManager.CreateHandle(transform); 
+        
+            onSocketSelectedAction = _ => handleIsBeingInteractedWith = true;
+            onSocketDeselectedAction = _ => handleIsBeingInteractedWith = false;
+        
+            handle.OnInteractionStartUnityEvent.AddListener(onSocketSelectedAction);
+            handle.OnInteractionEndUnityEvent.AddListener(onSocketDeselectedAction);
+        
+            DisableHandle();
+        }
+
+        private void Update()
+        {
+            SocketHandle previouslyHoveredSocketHandle = currentlyHoveredSocketHandle;
+            Ray ray = socketOverlayCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out var hover, ~socketLayerMask))
             {
-                currentlyHoveredSocketHandle.EnableHoverName(true);
+                if (hover.collider.TryGetComponent(out currentlyHoveredSocketHandle))
+                {
+                    currentlyHoveredSocketHandle.EnableHoverName(true);
+                }
+                else
+                {
+                    previouslyHoveredSocketHandle?.EnableHoverName(false);
+                    currentlyHoveredSocketHandle = null;
+                }
             }
             else
             {
                 previouslyHoveredSocketHandle?.EnableHoverName(false);
                 currentlyHoveredSocketHandle = null;
             }
-        }
-        else
-        {
-            previouslyHoveredSocketHandle?.EnableHoverName(false);
-            currentlyHoveredSocketHandle = null;
-        }
         
         
-        if (EventSystem.current.IsPointerOverGameObject()) return;
-        if (handleIsBeingInteractedWith) return; 
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+            if (handleIsBeingInteractedWith) return; 
         
-        if (input.Select.WasPressedThisFrame)
-        {
-            if (!Physics.Raycast(ray, out var hit/*, socketLayerMask*/))
+            if (input.Select.WasPressedThisFrame)
             {
-                SelectSocket(null); 
+                if (!Physics.Raycast(ray, out var hit/*, socketLayerMask*/))
+                {
+                    SelectSocket(null); 
+                    return;
+                }
+                if (!hit.collider.TryGetComponent(out SocketHandle socketHandle))
+                {
+                    SelectSocket(null); 
+                    return;
+                }
+
+                SelectSocket(socketHandle); 
+            }
+        }
+        public void SelectSocket(SocketHandle socketHandle)
+        {
+            if (socketHandle == null)
+            {
+                DisableHandle(); 
                 return;
             }
-            if (!hit.collider.TryGetComponent(out SocketHandle socketHandle))
-            {
-                SelectSocket(null); 
-                return;
-            }
 
-            SelectSocket(socketHandle); 
+            EnableHandle(socketHandle.transform);
+            onSocketSelected?.Invoke(socketHandle);
         }
-    }
-    public void SelectSocket(SocketHandle socketHandle)
-    {
-        if (socketHandle == null)
+
+        void EnableHandle(Transform target)
         {
-            DisableHandle(); 
-            return;
+            handle.Enable(target); 
+            //handle.target.gameObject.SetActive(true); 
+        }
+        void DisableHandle()
+        {
+            //handle.target.gameObject.SetActive(false); 
+            handle.Disable(); 
+        }
+    
+    
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            handle.OnInteractionStartUnityEvent.RemoveListener(onSocketSelectedAction);
+            handle.OnInteractionEndUnityEvent.RemoveListener(onSocketDeselectedAction);
         }
 
-        EnableHandle(socketHandle.transform);
-        onSocketSelected?.Invoke(socketHandle);
-    }
 
-    void EnableHandle(Transform target)
-    {
-        handle.Enable(target); 
-        //handle.target.gameObject.SetActive(true); 
     }
-    void DisableHandle()
-    {
-        //handle.target.gameObject.SetActive(false); 
-        handle.Disable(); 
-    }
-    
-    
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-        handle.OnInteractionStartUnityEvent.RemoveListener(onSocketSelectedAction);
-        handle.OnInteractionEndUnityEvent.RemoveListener(onSocketDeselectedAction);
-    }
-
-
 }

@@ -16,11 +16,16 @@ namespace Core.Stats
             this.maxValue = maxValue;
             value = maxValue.Value;
         }
-
         public Resource(int value, Stat maxValue)
         {
             this.maxValue = maxValue;
             this.value = Mathf.Clamp(value, 0, maxValue.Value);
+        }
+
+        public Resource(int value, int maxValue, StatType statType, StatsMediator mediator)
+        {
+            this.value = value;
+            this.maxValue = new Stat(mediator, statType, maxValue);
         }
         
         public void Add(int amount) => value = Mathf.Clamp(value + amount, 0, maxValue.Value);

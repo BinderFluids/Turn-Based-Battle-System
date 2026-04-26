@@ -10,13 +10,13 @@ namespace Core.Stats
         public Stat Speed; 
         public Resource Health;
 
-        public StatBlock(StatsMediator mediator, StatBlockTemplate template)
+        public StatBlock(StatsMediator mediator, StatBlockDefinition definition)
         {
             this.mediator = mediator;
-            Attack = new Stat(mediator, StatType.Attack, template.attack); 
-            Defense = new Stat(mediator, StatType.Defense, template.defense);
-            Speed = new Stat(mediator, StatType.Speed, template.speed);
-            Health = new Resource(new Stat(mediator, StatType.Health, template.health)); 
+            Attack = new Stat(mediator, StatType.Attack, definition.attack); 
+            Defense = new Stat(mediator, StatType.Defense, definition.defense);
+            Speed = new Stat(mediator, StatType.Speed, definition.speed);
+            Health = new Resource(new Stat(mediator, StatType.Health, definition.health)); 
         }
     }
 }

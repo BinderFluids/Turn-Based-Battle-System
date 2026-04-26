@@ -1,0 +1,20 @@
+{
+    "name": "Battle.TargetSelection",
+    "rootNamespace": "",
+    "references": [
+        "GUID:69fd95a57929a201fb32f8fef9b1aad1",
+        "GUID:9bf89cd96f4050c46b99ab3ed5018426",
+        "GUID:d35b0935137438e728a4652ce39ed9ee",
+        "GUID:5fefbf96c31bf55e88585fa4112bab12",
+        "GUID:3fdfe6dde2c72ef439fd6cb6d5dca5c8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

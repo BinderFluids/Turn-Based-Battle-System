@@ -1,29 +1,69 @@
 using System;
+using Battle.Requests;
+using Battle.Events; 
+using Core.Stats;
 using UnityEngine;
-using Core.Stats; 
+using EventBus;
+using RequestHub; 
 
-public class StatBlockComponent : BattleEntityComponent
+
+
+
+namespace Battle.Components
 {
-    [SerializeField] private StatBlockTemplate template; 
-    [SerializeField] private StatBlock statBlock;
-    public StatBlock StatBlock => statBlock;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        
-        if (template == null)
-        {
-            Debug.LogError($"{name} is missing a StatBlockTemplate.");
-            return;
-        }
-        
-        statBlock = new StatBlock(new StatsMediator(), template); 
-    }
     
-    public void AddHealth(int amt)
+    public class StatBlockComponent : BattleEntityComponent
     {
-        Debug.LogWarning($"Adding {amt} health to {gameObject.name}");
-        StatBlock.Health.Add(amt); 
+        [SerializeField] private StatBlockDefinition definition; 
+        [SerializeField] private StatBlock statBlock;
+        public StatBlock StatBlock => statBlock;
+
+        private EventBinding<ChangeEntityHealthEvent> attackEntityBinding;
+        
+    
+        protected override void Awake()
+        {
+            base.Awake();
+        
+            if (definition == null)
+            {
+                Debug.LogError($"{name} is missing a StatBlockDefinition.");
+                return;
+            }
+        
+            statBlock = new StatBlock(new StatsMediator(), definition);
+
+            attackEntityBinding = new EventBinding<ChangeEntityHealthEvent>(HandleAttackEntityEvent);
+            EventBus<ChangeEntityHealthEvent>.Register(attackEntityBinding); 
+            
+            RequestHub<RequestAttackValue>
+                .Register(Entity, () => new RequestAttackValue {AttackValue = statBlock.Attack.Value});
+            RequestHub<RequestDefenseValue>
+                .Register(Entity, () => new  RequestDefenseValue {DefenseValue = statBlock.Defense.Value});
+            RequestHub<RequestSpeedValue>
+                .Register(Entity, () => new RequestSpeedValue {SpeedValue = statBlock.Speed.Value});
+        }
+
+        
+        void HandleAttackEntityEvent(ChangeEntityHealthEvent e)
+        {
+            if (e.Target != Entity) return;
+            AddHealth(e.Damage); 
+        }
+    
+        public void AddHealth(int amt)
+        {
+            Debug.LogWarning($"Adding {amt} health to {gameObject.name}");
+            StatBlock.Health.Add(amt); 
+        }
+
+        private void OnDestroy()
+        {
+            EventBus<ChangeEntityHealthEvent>.Deregister(attackEntityBinding); 
+            
+            RequestHub<RequestAttackValue>.Deregister(Entity); 
+            RequestHub<RequestDefenseValue>.Deregister(Entity);
+            RequestHub<RequestSpeedValue>.Deregister(Entity);
+        }
     }
 }

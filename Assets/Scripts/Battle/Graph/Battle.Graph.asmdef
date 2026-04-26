@@ -1,0 +1,16 @@
+{
+    "name": "Battle.Graph",
+    "rootNamespace": "Battle.Graph",
+    "references": [
+        "GUID:69fd95a57929a201fb32f8fef9b1aad1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

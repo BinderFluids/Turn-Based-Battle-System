@@ -1,33 +1,34 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Core.Stats;
-using Cysharp.Threading.Tasks;
+using Battle.Events;
+using Battle.Requests;
+using EventBus; 
 using UnityEngine;
-using Registry;
+using RequestHub;
 
-[CreateAssetMenu(menuName = "Battle/Action/Damage Target", fileName = "DamageTarget", order = 0)]
-public class DamageTarget : ScriptableBattleAction
+namespace Battle.Actions
 {
-    private BattleEntity actor;
-    
-    public override void StartAction(BattleEntity actor, BattleEntity target)
+    [CreateAssetMenu(menuName = "Battle/Action/Damage Target", fileName = "DamageTarget", order = 0)]
+    public class DamageTarget : ScriptableBattleAction
     {
-        
-        if (!actor.TryGetComponent<StatBlockComponent>(out var actorStatBlockComponent))
+        private BattleEntity actor;
+        private BattleEntity target;
+    
+        public override void StartAction(BattleEntity actor, BattleEntity target)
         {
-            Debug.LogError($"{actor.name} does not have a stat block component");
-            return;
+            this.actor = actor;
+            this.target = target;
+
+            int actorAttackValue = 1;
+            if (RequestHub<RequestAttackValue>.TryRequest(actor, out var request))
+                actorAttackValue = request.AttackValue;                 
+            
+            EventBus<ChangeEntityHealthEvent>.Raise(new ChangeEntityHealthEvent
+            {
+                Source = actor,
+                Target = target,
+                Damage = actorAttackValue
+            });
+            
+            EndAction(actor); 
         }
-        if (!target.TryGetComponent<StatBlockComponent>(out var targetStatBlockComponent))
-        {
-            Debug.LogError($"{target.name} does not have a stat block component");
-            return;
-        }
-        
-        Debug.Log($"{actor.name} damaged {target.name} for {actorStatBlockComponent.StatBlock.Attack.Value}");
-        targetStatBlockComponent.StatBlock.Health.Add(-actorStatBlockComponent.StatBlock.Attack.Value);
-        
-        EndAction(actor); 
     }
 }

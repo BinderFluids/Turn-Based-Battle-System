@@ -1,0 +1,18 @@
+{
+    "name": "Battle.Graph.Runtime",
+    "rootNamespace": "Battle.Graph.Runtime",
+    "references": [
+        "GUID:69fd95a57929a201fb32f8fef9b1aad1",
+        "GUID:c47a74abc3007e58ebf1b2cc7f62a729",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

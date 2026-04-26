@@ -1,11 +1,8 @@
 using System.Collections.Generic;
-using Battle.BattleEntity;
-using Battle.BattleWindow.Enums;
-using Battle.BattleWindow.OutcomeStrategy;
-using JetBrains.Annotations;
+using Core.Enums;
 using UnityEngine;
 
-namespace Battle.BattleWindow
+namespace Battle.Window
 {
     /// <summary>
     /// Parameters for an action command (timed window, expected input band).
