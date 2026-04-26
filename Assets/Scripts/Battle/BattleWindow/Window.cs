@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Core.Enums;
 using UnityEngine;
 
-namespace Battle
+namespace Battle.Window
 {
     /// <summary>
     /// Shared data for timed action commands and responsive input windows.

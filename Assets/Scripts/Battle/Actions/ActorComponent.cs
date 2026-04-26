@@ -39,7 +39,6 @@ namespace Battle.Actions
             targetSelectionStrategy.onEntitySelected += OnTargetSelected;
             targetSelectionStrategy.GetEntity(Entity, action, BattleEntity.Entities); 
         }
-
     
         void OnTargetSelected(BattleEntity target)
         {

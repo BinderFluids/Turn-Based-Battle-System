@@ -1,5 +1,7 @@
 using Battle.Actions;
+using Battle.Events;
 using UnityEngine;
+using EventBus; 
 
 namespace Battle.Components.TurnHandleStrategies
 {
@@ -27,7 +29,7 @@ namespace Battle.Components.TurnHandleStrategies
             if (actionComponent != null)
                 actionComponent.onActionEnded -= ActionEnded; 
         
-            TurnEndEvent turnEndEvent = new TurnEndEvent {turnEntity = turnComponent};
+            TurnEndEvent turnEndEvent = new TurnEndEvent { turnEntity = turnComponent.Entity };
             EventBus<TurnEndEvent>.Raise(turnEndEvent);
         }
     }

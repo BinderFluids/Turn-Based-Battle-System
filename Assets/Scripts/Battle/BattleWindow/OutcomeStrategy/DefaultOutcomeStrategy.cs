@@ -1,7 +1,8 @@
 using System;
 using Battle.Enums;
+using Core.Enums;
 
-namespace Battle
+namespace Battle.Window
 {
     public class DefaultOutcomeStrategy : IOutcomeStrategy
     {

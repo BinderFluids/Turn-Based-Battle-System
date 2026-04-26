@@ -1,6 +1,7 @@
-using Core.Stats;
+using Battle.Events;
+using EventBus; 
 using UnityEngine;
-using Battle.Components;
+using RequestHub;
 
 namespace Battle.Actions
 {
@@ -8,24 +9,20 @@ namespace Battle.Actions
     public class DamageTarget : ScriptableBattleAction
     {
         private BattleEntity actor;
+        private BattleEntity target;
     
         public override void StartAction(BattleEntity actor, BattleEntity target)
         {
-        
-            if (!actor.TryGetComponent<StatBlockComponent>(out var actorStatBlockComponent))
+            this.actor = actor;
+            this.target = target;
+
+            EventBus<AttackEntityEvent>.Raise(new AttackEntityEvent
             {
-                Debug.LogError($"{actor.name} does not have a stat block component");
-                return;
-            }
-            if (!target.TryGetComponent<StatBlockComponent>(out var targetStatBlockComponent))
-            {
-                Debug.LogError($"{target.name} does not have a stat block component");
-                return;
-            }
-        
-            Debug.Log($"{actor.name} damaged {target.name} for {actorStatBlockComponent.StatBlock.Attack.Value}");
-            targetStatBlockComponent.StatBlock.Health.Add(-actorStatBlockComponent.StatBlock.Attack.Value);
-        
+                Source = actor,
+                Target = target,
+                Damage = RequestHub<RequestAttackValue>.Request(actor).AttackValue
+            });
+            
             EndAction(actor); 
         }
     }

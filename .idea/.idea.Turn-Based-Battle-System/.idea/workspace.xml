@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/RequestAttackValue.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/RequestAttackValue.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Events/SelectableChosenEvent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Highlighters/FollowSelection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Highlighters/SelectionDescriber.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Selectable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionHighlighter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Battle.Actions.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Battle.Actions.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/DamageTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/DamageTarget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandOutcome.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandOutcome.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/BattleWindowService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/BattleWindowService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/DefaultOutcomeStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/DefaultOutcomeStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/IOutcomeStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/IOutcomeStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/ScriptableOutcomeStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/ScriptableOutcomeStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/PlayerHoldData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/PlayerHoldData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ResponsiveWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ResponsiveWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Window.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Window.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/StatBlockComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/StatBlockComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/TurnHandleStrategies/SelectActionTurnHandle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/TurnHandleStrategies/SelectActionTurnHandle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/SelectableComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/SelectableComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/Wheel/BattleActionWheel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/Wheel/BattleActionWheel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/Wheel/BattleActionWheelItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/Wheel/BattleActionWheelItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Battle.SocketEditor.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Battle.SocketEditor.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/BattleActionPlayer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/BattleActionPlayer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Components/BattleActionRuntimeGraphWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Components/BattleActionRuntimeGraphWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Components/BattleActionRuntimeGraphWindowOption.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Components/BattleActionRuntimeGraphWindowOption.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Components/BattleActionWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Components/BattleActionWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Components/BattleActionWindowOption.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/Components/BattleActionWindowOption.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/ScriptableBattleActionSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SocketEditor/ScriptableBattleActionSelector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ManualSelectTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ManualSelectTarget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/RandomOtherTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/RandomOtherTarget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/BattleInputReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/BattleInputReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Events.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Events.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Events/SelectableChosenEvent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Events/SelectableChosenEvent.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Events/SelectableChosenEvent.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Highlighters.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Highlighters.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Highlighters/FollowSelection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Highlighters/FollowSelection.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Highlighters/FollowSelection.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Highlighters/SelectableSystem.Highlighters.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Highlighters/SelectableSystem.Highlighters.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Highlighters/SelectableSystem.Highlighters.asmdef.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Highlighters/SelectableSystem.Highlighters.asmdef.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Highlighters/SelectionDescriber.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Highlighters/SelectionDescriber.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Highlighters/SelectionDescriber.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Selectable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/Selectable.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Selectable.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/SelectableSystem.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectableSystem.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/SelectableSystem.asmdef.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectableSystem.asmdef.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/SelectionHighlighter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/SelectionHighlighter.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionHighlighter.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/SelectionManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Selectable/SelectionManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionManager.cs.meta" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/AttackEntityEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.binderfluids.eventbus@66f87880e956/Editor/EventBusUtil.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.binderfluids.eventbus@66f87880e956/Runtime/EventBinding.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.binderfluids.eventbus@66f87880e956/Runtime/EventBus.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.binderfluids.eventbus@66f87880e956/Runtime/Events.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.binderfluids.eventbus@66f87880e956/Runtime/PredefinedAssemblyUtil.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3Ck7Xxyvym978IxVOomgb7kbn4W" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;chore/assembly-definitions-and-namespaces&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$USER_HOME$/Unity/Hub/Editor/6000.4.1f1/Editor/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$USER_HOME$/Unity/Hub/Editor/6000.4.1f1/Editor/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="" />
+      <created>1776917759011</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1776917759011</updated>
+      <workItem from="1776917762070" duration="1676000" />
+      <workItem from="1776972507369" duration="7259000" />
+      <workItem from="1777163897038" duration="3386000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

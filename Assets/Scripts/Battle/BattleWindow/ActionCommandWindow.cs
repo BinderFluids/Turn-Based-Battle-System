@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Core.Enums;
 using UnityEngine;
 
-namespace Battle
+namespace Battle.Window
 {
     /// <summary>
     /// Parameters for an action command (timed window, expected input band).
