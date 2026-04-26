@@ -10,7 +10,10 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="" />
+    <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/SelectRandomBattleAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/SelectRandomBattleAction.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +111,7 @@
       <workItem from="1776917762070" duration="1676000" />
       <workItem from="1776972507369" duration="7259000" />
       <workItem from="1777163897038" duration="17012000" />
-      <workItem from="1777240238140" duration="3403000" />
+      <workItem from="1777240238140" duration="3995000" />
     </task>
     <servers />
   </component>

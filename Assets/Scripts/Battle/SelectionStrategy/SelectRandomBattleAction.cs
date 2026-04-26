@@ -7,7 +7,7 @@ using UnityUtils;
 
 namespace Battle.SelectionStrategy
 {
-    [CreateAssetMenu(menuName = "Battle/Action/Selection Strategy/Random   ", fileName = "SelectRandomBattleAction", order = 0)]
+    [CreateAssetMenu(menuName = "Battle/Action/Selection Strategy/Random", fileName = "SelectRandomBattleAction", order = 0)]
     public class SelectRandomBattleAction : ScriptableObject, IBattleActionSelectionStrategy
     {
         public event Action<IBattleAction> onActionSelected;
