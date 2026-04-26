@@ -1,7 +1,6 @@
 using Battle;
-using Battle.Components;
 
-namespace StatusEffectSystem
+namespace Battle.StatusEffect
 {
     public abstract class StatusEffect
     {

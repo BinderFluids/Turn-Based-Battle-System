@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using Battle.Interfaces;
 using EventBus;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using SelectableSystem;
+using SelectableSystem.Events;
 
 namespace Battle.TargetSelection
 {
@@ -11,7 +12,6 @@ namespace Battle.TargetSelection
     public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
     {
         public override event Action<BattleEntity> onEntitySelected;
-    
         private EventBinding<SelectableChosenEvent> chosenEventBinding;
 
     

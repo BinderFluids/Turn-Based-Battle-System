@@ -4,8 +4,8 @@ namespace Battle.Events
 {
     public struct AttackEntityEvent : IEvent
     {
+        public IDamageSource Source;
         public BattleEntity Target;
-        public BattleEntity Source;
         public int Damage; 
     }
 }

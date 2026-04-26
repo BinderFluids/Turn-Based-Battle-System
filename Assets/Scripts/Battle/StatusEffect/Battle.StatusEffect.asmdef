@@ -1,13 +1,10 @@
 {
-    "name": "Battle.Components",
-    "rootNamespace": "Battle.Components",
+    "name": "Battle.StatusEffect",
+    "rootNamespace": "",
     "references": [
-        "GUID:69fd95a57929a201fb32f8fef9b1aad1",
-        "GUID:d9b17fac3f209fa75be8fcc94fce2f84",
-        "GUID:d35b0935137438e728a4652ce39ed9ee",
-        "GUID:40adeae3f8805877eb697259a72ba748",
         "GUID:9bf89cd96f4050c46b99ab3ed5018426",
-        "GUID:71d4f8d8b1b47854586598aa2c4dfc2b"
+        "GUID:69fd95a57929a201fb32f8fef9b1aad1",
+        "GUID:d35b0935137438e728a4652ce39ed9ee"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

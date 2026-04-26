@@ -1,17 +1,17 @@
 using System.Collections.Generic;
-using Battle;
-using Battle.Components;
+using Battle.Requests;
+using Battle.Window;
 using Core.Enums;
+using Cysharp.Threading.Tasks;
 using PrimeTween;
 using UnityEngine;
+using RequestHub; 
 
 namespace Battle.Actions
 {
     [CreateAssetMenu(menuName = "Battle/Action/Player/Jump", fileName = "Jump", order = 0)]
     public class Jump : ScriptableBattleAction
     {
-        private BattleEntity actor;
-    
         [SerializeField] private float approachDuration;
         [SerializeField] private float jumpDuration;
         [SerializeField] private float jumpHeight = 2f;
@@ -25,17 +25,14 @@ namespace Battle.Actions
     
         public override void StartAction(BattleEntity actor, BattleEntity target)
         {
-            this.actor = actor; 
-        
             Transform transform = actor.transform;
             Vector3 startPos = transform.position;
             float targetHeight = Mathf.Max(transform.position.y + jumpHeight, target.transform.position.y + miniumAboveEnemy);
 
             Vector3 topPosition = target.transform.position;  
-            if (target.TryGetComponent(out FormationSlotComponent formationSlotComponent))
-                topPosition = formationSlotComponent.topPosition;
-        
-        
+            // if (target.TryGetComponent(out FormationSlotComponent formationSlotComponent))
+            //     topPosition = formationSlotComponent.topPosition;
+            
             Sequence verticalMovement = Sequence.Create()
                 .Chain(
                     Tween.PositionY(
@@ -59,13 +56,10 @@ namespace Battle.Actions
 
         }
 
-        async UniTask<ActionCommandOutcome> AwaitActionCommand()
+        async UniTask<ActionCommandOutcome> AwaitActionCommand(BattleEntity actor)
         {
             PlayerId playerId = PlayerId.PlayerOne;
-            if (!actor.TryGetComponent(out PlayerEntityComponent playerEntityComponent))
-                Debug.LogWarning("No player entity component found on actor, using PlayerOne's input");
-            else
-                playerId = playerEntityComponent.PlayerID; 
+            playerId = RequestHub<RequestPlayerId>.Request(actor).PlayerId;  
         
         
             var window = new ActionCommandWindow(
@@ -83,7 +77,7 @@ namespace Battle.Actions
         {
             await sequence;
         
-            ActionCommandOutcome action = await AwaitActionCommand();
+            ActionCommandOutcome action = await AwaitActionCommand(actor);
         
             Debug.Log(action.Success);
         

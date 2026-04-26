@@ -11,8 +11,8 @@ namespace Battle.Components
     {
 
         [SerializeField] private bool takeTurn; 
-        [SerializeField, Tooltip("Defaults if empty")] private InterfaceReference<ITurnHandleStrategy> turnStartHandle; 
-        [SerializeField, Tooltip("Defaults if empty")] private InterfaceReference<ITurnHandleStrategy> turnEndHandle;
+        [SerializeField, Tooltip("Will default if empty")] private InterfaceReference<ITurnHandleStrategy> turnStartHandle; 
+        [SerializeField, Tooltip("Will default if empty")] private InterfaceReference<ITurnHandleStrategy> turnEndHandle;
     
         private EventBinding<TurnStartEvent> turnStartBinding;
         private EventBinding<TurnEndEvent> turnEndBinding;
@@ -56,7 +56,7 @@ namespace Battle.Components
     
         void HandleTurnStart(TurnStartEvent e)
         {
-            if (e.turnEntity != Entity) return;
+            if (e.Entity != Entity) return;
             StartTurn();
         } 
         void HandleTurnEnd(TurnEndEvent e)

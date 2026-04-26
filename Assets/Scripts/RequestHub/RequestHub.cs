@@ -11,15 +11,15 @@ namespace RequestHub
     public static class RequestHub<T> where T : IRequest
     {
         public delegate T ProvideRequestDelegate();
-
         private static Dictionary<IRequestProvider, ProvideRequestDelegate> providerDelegateDictionary = new();
 
         public static void Register(IRequestProvider provider, ProvideRequestDelegate provideRequestDelegate)
         {
             if (!providerDelegateDictionary.TryAdd(provider, provideRequestDelegate))
-                Debug.LogWarning("Provider already exists for provider " + provider.GetType().Name);
+                Debug.LogWarning("Key already exists for provider " + provider.GetType().Name);
         }
         public static void Deregister(IRequestProvider provider) => providerDelegateDictionary.Remove(provider);
+        public static void Clear() => providerDelegateDictionary.Clear();
 
         public static T Request(IRequestProvider provider)
         {

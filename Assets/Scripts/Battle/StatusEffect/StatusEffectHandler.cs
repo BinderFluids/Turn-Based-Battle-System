@@ -3,10 +3,8 @@ using System.Linq;
 using Battle;
 using Battle.Events;
 using EventBus;
-using UnityEngine;
-using UnityUtils;
 
-namespace StatusEffectSystem
+namespace Battle.StatusEffect
 {
     public class StatusEffectHandler
     {
@@ -42,7 +40,7 @@ namespace StatusEffectSystem
 
         void OnTurnStart(TurnStartEvent e)
         {
-            if (e.turnEntity.Entity != target) return;
+            if (e.Entity != target) return;
             for (int i = statusEffects.Count - 1; i >= 0; i--)
                 statusEffects[i].TurnStart(target); 
         }

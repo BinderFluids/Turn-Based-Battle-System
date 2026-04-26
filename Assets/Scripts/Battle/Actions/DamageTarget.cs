@@ -1,4 +1,5 @@
 using Battle.Events;
+using Battle.Requests;
 using EventBus; 
 using UnityEngine;
 using RequestHub;

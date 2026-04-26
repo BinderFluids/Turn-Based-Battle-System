@@ -1,11 +1,11 @@
 using Battle;
-using Battle.Components;
-using Core.Stats;
 using UnityEngine;
+using Battle.Events; 
+using EventBus; 
 
-namespace StatusEffectSystem
+namespace Battle.StatusEffect
 {
-    public class PoisonStatusEffect : StatusEffect
+    public class PoisonStatusEffect : StatusEffect, IDamageSource
     {
         private int damage;
         
@@ -21,8 +21,12 @@ namespace StatusEffectSystem
 
         protected override void OnTurnStart(BattleEntity entity)
         {
-            if (entity.TryGetComponent(out StatBlockComponent statBlockComponent))
-                statBlockComponent.AddHealth(-damage);
+            EventBus<AttackEntityEvent>.Raise(new AttackEntityEvent()
+            {
+                Source = this,
+                Target = entity,
+                Damage = damage
+            });
             
             Debug.Log($"Poisoned {entity.gameObject.name} for {damage} damage");
         }

@@ -62,7 +62,7 @@ namespace Battle
             int turnIndex = turnNumber % turnEntities.Count;
         
             BattleEntity turnComponent = turnEntities[turnIndex];
-            EventBus<TurnStartEvent>.Raise(new TurnStartEvent {turnEntity = turnComponent});
+            EventBus<TurnStartEvent>.Raise(new TurnStartEvent {Entity = turnComponent});
         }
 
         private void OnDestroy()

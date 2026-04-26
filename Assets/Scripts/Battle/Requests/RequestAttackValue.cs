@@ -6,4 +6,9 @@ namespace Battle.Requests
     {
         public int AttackValue; 
     }
+
+    public struct RequestSelectable : IRequest
+    {
+        
+    }
 }

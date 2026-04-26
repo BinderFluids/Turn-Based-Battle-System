@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Battle.Enums;
 using Battle.Components;
+using Battle.Events;
 using Registry;
 using RequestHub;
 using UnityEngine;
 
 namespace Battle
 {
-    public partial class BattleEntity : MonoBehaviour, IRequestProvider
+    public partial class BattleEntity : MonoBehaviour, IRequestProvider, IDamageSource
     {
         private static List<BattleEntity> entities = new();
         public static IReadOnlyList<BattleEntity> Entities => entities;

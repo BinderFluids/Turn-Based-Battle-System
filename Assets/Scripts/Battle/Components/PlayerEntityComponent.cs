@@ -1,6 +1,9 @@
+using System;
 using Battle.Components;
 using Core.Enums;
 using UnityEngine;
+using Battle.Requests; 
+using RequestHub;
 
 namespace Battle.Components
 {
@@ -19,8 +22,15 @@ namespace Battle.Components
             {
                 PlayerId.PlayerOne => input.PlayerOne,
                 PlayerId.PlayerTwo => input.PlayerTwo,
-                _ => throw new System.NotImplementedException()
+                _ => throw new NotImplementedException()
             };
+
+            RequestHub<RequestPlayerId>.Register(Entity, () => new RequestPlayerId { PlayerId = playerID });
+        }
+
+        private void OnDestroy()
+        {
+            RequestHub<RequestPlayerId>.Deregister(Entity);
         }
     }
 }

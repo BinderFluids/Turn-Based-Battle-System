@@ -2,7 +2,7 @@ using System;
 using Battle.Components;
 using SelectableSystem;
 
-namespace Battle.SelectionStrategy
+namespace Battle.TargetSelection
 {
     public class SelectableComponent : BattleEntityComponent, ISelectable
     {
