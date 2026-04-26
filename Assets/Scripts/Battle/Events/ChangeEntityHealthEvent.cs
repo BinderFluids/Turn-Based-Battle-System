@@ -2,7 +2,7 @@ using EventBus;
 
 namespace Battle.Events
 {
-    public struct AttackEntityEvent : IEvent
+    public struct ChangeEntityHealthEvent : IEvent
     {
         public IDamageSource Source;
         public BattleEntity Target;

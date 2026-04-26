@@ -21,7 +21,7 @@ namespace Battle.StatusEffect
 
         protected override void OnTurnStart(BattleEntity entity)
         {
-            EventBus<AttackEntityEvent>.Raise(new AttackEntityEvent()
+            EventBus<ChangeEntityHealthEvent>.Raise(new ChangeEntityHealthEvent()
             {
                 Source = this,
                 Target = entity,

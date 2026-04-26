@@ -18,7 +18,7 @@ namespace Battle.Components
         [SerializeField] private StatBlock statBlock;
         public StatBlock StatBlock => statBlock;
 
-        private EventBinding<AttackEntityEvent> attackEntityBinding;
+        private EventBinding<ChangeEntityHealthEvent> attackEntityBinding;
         
     
         protected override void Awake()
@@ -33,15 +33,19 @@ namespace Battle.Components
         
             statBlock = new StatBlock(new StatsMediator(), definition);
 
-            attackEntityBinding = new EventBinding<AttackEntityEvent>(HandleAttackEntityEvent);
-            EventBus<AttackEntityEvent>.Register(attackEntityBinding); 
+            attackEntityBinding = new EventBinding<ChangeEntityHealthEvent>(HandleAttackEntityEvent);
+            EventBus<ChangeEntityHealthEvent>.Register(attackEntityBinding); 
             
             RequestHub<RequestAttackValue>
                 .Register(Entity, () => new RequestAttackValue {AttackValue = statBlock.Attack.Value});
+            RequestHub<RequestDefenseValue>
+                .Register(Entity, () => new  RequestDefenseValue {DefenseValue = statBlock.Defense.Value});
+            RequestHub<RequestSpeedValue>
+                .Register(Entity, () => new RequestSpeedValue {SpeedValue = statBlock.Speed.Value});
         }
 
         
-        void HandleAttackEntityEvent(AttackEntityEvent e)
+        void HandleAttackEntityEvent(ChangeEntityHealthEvent e)
         {
             if (e.Target != Entity) return;
             AddHealth(e.Damage); 
@@ -55,8 +59,11 @@ namespace Battle.Components
 
         private void OnDestroy()
         {
-            EventBus<AttackEntityEvent>.Deregister(attackEntityBinding); 
+            EventBus<ChangeEntityHealthEvent>.Deregister(attackEntityBinding); 
+            
             RequestHub<RequestAttackValue>.Deregister(Entity); 
+            RequestHub<RequestDefenseValue>.Deregister(Entity);
+            RequestHub<RequestSpeedValue>.Deregister(Entity);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Battle.Actions
             this.actor = actor;
             this.target = target;
 
-            EventBus<AttackEntityEvent>.Raise(new AttackEntityEvent
+            EventBus<ChangeEntityHealthEvent>.Raise(new ChangeEntityHealthEvent
             {
                 Source = actor,
                 Target = target,
