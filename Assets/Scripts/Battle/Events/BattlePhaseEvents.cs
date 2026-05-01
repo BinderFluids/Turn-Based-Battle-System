@@ -7,7 +7,7 @@ namespace Battle.Events
         public BattleEntity turnEntity; 
     }
     
-    public struct TurnStartEvent : IEvent
+    public struct EntityStartTurnEvent : IEvent
     {
         public BattleEntity Entity; 
     }

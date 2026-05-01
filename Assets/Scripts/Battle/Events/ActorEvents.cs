@@ -28,7 +28,6 @@ namespace Battle.Events
         public BattleEntity Entity;
         public IBattleAction Action;
     }
-
     
     /// <summary>
     /// This event is raised when an Actor has ended its action

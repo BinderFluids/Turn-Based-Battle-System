@@ -43,12 +43,4 @@ namespace Battle
             EventBus<TurnEndEvent>.Raise(turnEndEvent);
         }
     }
-
-    public class NextTurnHandle : ITurnHandleStrategy
-    {
-        public void Handle(BattleEntity entity)
-        {
-        
-        }
-    }
 }

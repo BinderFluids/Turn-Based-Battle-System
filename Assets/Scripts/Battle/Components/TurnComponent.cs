@@ -17,7 +17,7 @@ namespace Battle.Components
         [SerializeField, Tooltip("Will default if empty")] private InterfaceReference<ITurnHandleStrategy> turnStartHandle; 
         [SerializeField, Tooltip("Will default if empty")] private InterfaceReference<ITurnHandleStrategy> turnEndHandle;
     
-        private EventBinding<TurnStartEvent> turnStartBinding;
+        private EventBinding<EntityStartTurnEvent> turnStartBinding;
         private EventBinding<TurnEndEvent> turnEndBinding;
     
         private ITurnHandleStrategy defaultTurnStartHandle = new ActorChooseActionTurnHandle();
@@ -29,8 +29,8 @@ namespace Battle.Components
         {
             base.Awake();
         
-            turnStartBinding = new EventBinding<TurnStartEvent>(HandleTurnStart);
-            EventBus<TurnStartEvent>.Register(turnStartBinding);
+            turnStartBinding = new EventBinding<EntityStartTurnEvent>(HandleTurnStart);
+            EventBus<EntityStartTurnEvent>.Register(turnStartBinding);
         
             turnEndBinding = new EventBinding<TurnEndEvent>(HandleTurnEnd);
             EventBus<TurnEndEvent>.Register(turnEndBinding);
@@ -47,7 +47,7 @@ namespace Battle.Components
                 turnStartHandle.Value.Handle(Entity);
         }
     
-        void HandleTurnStart(TurnStartEvent e)
+        void HandleTurnStart(EntityStartTurnEvent e)
         {
             if (!takeTurn) return; 
             if (e.Entity != Entity) return;
@@ -69,7 +69,7 @@ namespace Battle.Components
 
         private void OnDestroy()
         {
-            EventBus<TurnStartEvent>.Deregister(turnStartBinding);
+            EventBus<EntityStartTurnEvent>.Deregister(turnStartBinding);
             EventBus<TurnEndEvent>.Deregister(turnEndBinding);
         }
     }
