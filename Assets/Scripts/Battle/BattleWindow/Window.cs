@@ -30,7 +30,7 @@ namespace Battle.Window
             
         }
         
-        public float Elapsed => Time.frameCount - StartFrame;
+        public int Elapsed => Time.frameCount - StartFrame;
         public abstract void HandleInput(PlayerId player, bool isPressed);
     }
 }
