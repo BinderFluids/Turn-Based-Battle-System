@@ -1,8 +1,10 @@
-using Battle.Components.TurnHandleStrategies;
+using Battle.Enums;
 using Battle.Events;
+using Battle.Requests;
 using UnityEngine;
 using EventBus;
 using SerializedInterface;
+using RequestHub; 
 
 namespace Battle.Components
 {
@@ -18,10 +20,11 @@ namespace Battle.Components
         private EventBinding<TurnStartEvent> turnStartBinding;
         private EventBinding<TurnEndEvent> turnEndBinding;
     
-        private ITurnHandleStrategy defaultTurnStartHandle = new SelectActionTurnHandle();
+        private ITurnHandleStrategy defaultTurnStartHandle = new ActorChooseActionTurnHandle();
         private ITurnHandleStrategy defaultTurnEndHandle = new EmptyTurnHandle();
+
+        protected override ComponentType componentType => ComponentType.Turn; 
         
-    
         protected override void Awake()
         {
             base.Awake();
@@ -38,10 +41,10 @@ namespace Battle.Components
             if (turnStartHandle.UnderlyingValue == null)
             {
                 Debug.LogWarning($"{gameObject.name}: TurnStartHandle is null, using default: {defaultTurnStartHandle.GetType().Name}");
-                defaultTurnStartHandle.Handle(this);
+                defaultTurnStartHandle.Handle(Entity);
             }
             else
-                turnStartHandle.Value.Handle(this);
+                turnStartHandle.Value.Handle(Entity);
         }
     
         void HandleTurnStart(TurnStartEvent e)
@@ -58,10 +61,10 @@ namespace Battle.Components
             if (turnEndHandle.UnderlyingValue == null)
             {
                 Debug.LogWarning($"{gameObject.name}: TurnEndHandle is null, using default: {defaultTurnEndHandle.GetType().Name}");
-                defaultTurnEndHandle.Handle(this);
+                defaultTurnEndHandle.Handle(Entity);
             }
             else
-                turnEndHandle.Value.Handle(this);
+                turnEndHandle.Value.Handle(Entity);
         }
 
         private void OnDestroy()

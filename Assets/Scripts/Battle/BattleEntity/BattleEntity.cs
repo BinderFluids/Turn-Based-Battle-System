@@ -26,7 +26,7 @@ namespace Battle
         void Awake()
         {
             _allEntities.Add(this); 
-            components = GetComponents<BattleEntityComponent>()
+            battleEntityComponents = GetComponents<BattleEntityComponent>()
                 .ToDictionary(c => c.GetType());
         }
 
@@ -42,13 +42,13 @@ namespace Battle
             Registry<BattleEntity>.Remove(this); 
         }
     
-        private Dictionary<Type, BattleEntityComponent> components;
+        private Dictionary<Type, BattleEntityComponent> battleEntityComponents;
         public new bool TryGetComponent<T>(out T component)
         {
             //Attempt to find BattleComponent from dictionary
             if (typeof(T).IsAssignableFrom(typeof(BattleEntityComponent)) &&
-                components.TryGetValue(typeof(T), out var foundBattleComponent) && 
-                foundBattleComponent is T typed)
+                battleEntityComponents.TryGetValue(typeof(T), out var cachedBattleComponent) && 
+                cachedBattleComponent is T typed)
             {
                 component = typed;
                 return true;
@@ -64,6 +64,21 @@ namespace Battle
             //Return false
             component = default; 
             return false;
+        }
+        public bool TryGetComponent(ComponentType type, out BattleEntityComponent component)
+        {
+            foreach (var kvp in battleEntityComponents)
+            {
+                BattleEntityComponent battleEntityComponent = kvp.Value;
+                if (battleEntityComponent.ComponentType == type)
+                {
+                    component = battleEntityComponent;
+                    return true;
+                } 
+            }
+
+            component = null;  
+            return false; 
         }
     }
 }

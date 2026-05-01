@@ -1,13 +1,13 @@
-namespace Battle.Components.TurnHandleStrategies
+namespace Battle
 {
     public interface ITurnHandleStrategy
     {
-        void Handle(TurnComponent component);
+        void Handle(BattleEntity entity);
     }
 
     public struct EmptyTurnHandle : ITurnHandleStrategy
     {
-        public void Handle(TurnComponent component)
+        public void Handle(BattleEntity entity)
         {
         
         }
