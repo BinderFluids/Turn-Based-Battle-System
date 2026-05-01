@@ -9,9 +9,6 @@ namespace Battle.Graph.Runtime
 {
     public class BattleActionDirector : BattleEntityComponent, IBattleAction
     {
-        [SerializeField] private BattleEntity entity;
-        public BattleEntity Entity => entity;
-
         [Header("Graph")] public BattleActionRuntimeGraph RuntimeGraph;
         public event Action onActionStarted;
         public event Action onActionEnded;

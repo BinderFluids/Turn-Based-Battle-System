@@ -12,8 +12,7 @@ namespace Battle
         
         protected abstract ComponentType componentType { get; }
         public ComponentType ComponentType => componentType;
-
-
+        
         protected virtual void Awake() { }
 
         protected virtual void Start() => entity ??= GetComponent<BattleEntity>();
