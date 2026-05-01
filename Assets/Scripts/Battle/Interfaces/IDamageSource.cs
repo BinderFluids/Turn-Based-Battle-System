@@ -1,4 +1,4 @@
-namespace Battle.Events
+namespace Battle.Interfaces
 {
     public interface IDamageSource {}
 }

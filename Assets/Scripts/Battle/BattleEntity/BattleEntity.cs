@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Battle.Enums;
-using Battle.Events;
+using Battle.Interfaces;
 using Registry;
 using RequestHub;
 using UnityEngine;
@@ -21,8 +21,7 @@ namespace Battle
 
         private Pose startPose; 
         public Pose StartPose => startPose;
-    
-    
+        
         void Awake()
         {
             _allEntities.Add(this); 
