@@ -19,8 +19,8 @@ namespace SelectableSystem
         [SerializeField] private SelectionHighlighter defaultHighligher;
         [SerializeField] private SelectionHighlighter currentHighlighter;
 
-        [SerializeField] private InputAction Confirm; 
-        [SerializeField] private InputAction Navigate;
+        [SerializeField] private InputActionReference Confirm; 
+        [SerializeField] private InputActionReference Navigate;
     
 
         int GetTrueIndex(int index, List<ISelectable> items)
@@ -74,7 +74,7 @@ namespace SelectableSystem
 
             NavigateSelectables();
         
-            if (Confirm.WasPressedThisFrame())
+            if (Confirm.action.WasPressedThisFrame())
             {
                 CurrentItem.Value.Select();
                 EndSelection();
@@ -92,9 +92,9 @@ namespace SelectableSystem
 
         void NavigateSelectables()
         {
-            if (!Navigate.WasPressedThisFrame()) return;
+            if (!Navigate.action.WasPressedThisFrame()) return;
 
-            Vector2 value = Navigate.ReadValue<Vector2>();
+            Vector2 value = Navigate.action.ReadValue<Vector2>();
         
             if (value.y < 0)
                 ShiftSelection(-1);
