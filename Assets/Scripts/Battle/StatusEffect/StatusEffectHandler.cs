@@ -12,14 +12,14 @@ namespace Battle.StatusEffect
         private List<StatusEffect> statusEffects = new(); 
         public IReadOnlyList<StatusEffect> StatusEffects => statusEffects;
 
-        EventBinding<TurnStartEvent> turnStartBinding;
+        EventBinding<EntityStartTurnEvent> turnStartBinding;
         
         public StatusEffectHandler(BattleEntity target)
         {
             this.target = target; 
             
-            turnStartBinding = new EventBinding<TurnStartEvent>(OnTurnStart);
-            EventBus<TurnStartEvent>.Register(turnStartBinding);
+            turnStartBinding = new EventBinding<EntityStartTurnEvent>(OnTurnStart);
+            EventBus<EntityStartTurnEvent>.Register(turnStartBinding);
         }
         
         public void AddStatus(StatusEffect status)
@@ -38,7 +38,7 @@ namespace Battle.StatusEffect
             status.Remove(target);
         }
 
-        void OnTurnStart(TurnStartEvent e)
+        void OnTurnStart(EntityStartTurnEvent e)
         {
             if (e.Entity != target) return;
             for (int i = statusEffects.Count - 1; i >= 0; i--)

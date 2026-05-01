@@ -1,10 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battle.Enums;
+using Battle.Events;
 using Battle.Interfaces;
+using Battle.Requests;
 using Battle.TargetSelection;
+using EventBus;
 using SerializedInterface;
 using UnityEngine;
+using RequestHub;
+using UnityEditor.PackageManager.Requests;
 
 namespace Battle.Actions
 {
@@ -20,11 +26,27 @@ namespace Battle.Actions
         public IReadOnlyList<IBattleAction> Actions => actionsRef.Select(a => a.Value).ToList();
         private IBattleAction chosenAction;
 
-
+        private EventBinding<ActorChooseActionEvent> chooseActionBinding; 
+        
         public event Action onActionStarted = delegate {}; 
         public event Action onActionEnded = delegate { };
 
-        public void SelectAction()
+        protected override ComponentType componentType => ComponentType.Actor; 
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            chooseActionBinding = new EventBinding<ActorChooseActionEvent>(HandleChooseActionEvent);
+            EventBus<ActorChooseActionEvent>.Register(chooseActionBinding); 
+        }
+        
+        void HandleChooseActionEvent(ActorChooseActionEvent e)
+        {
+            if (e.Entity == Entity)  
+                ChooseAction();
+        }
+        public void ChooseAction()
         {
             actionSelectionStrategy.onActionSelected += OnActionSelected;
             actionSelectionStrategy.GetAction(Actions);
@@ -70,6 +92,11 @@ namespace Battle.Actions
         {
             chosenAction.onActionEnded -= OnActionEnded;
             onActionEnded?.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            EventBus<ActorChooseActionEvent>.Deregister(chooseActionBinding);
         }
     }
 }

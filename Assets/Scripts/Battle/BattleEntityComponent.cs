@@ -1,4 +1,5 @@
 using Battle;
+using Battle.Enums;
 using UnityEngine;
 
 namespace Battle
@@ -8,6 +9,9 @@ namespace Battle
     {
         [SerializeField] private BattleEntity entity;
         public BattleEntity Entity => entity;
+        
+        protected abstract ComponentType componentType { get; }
+        public ComponentType ComponentType => componentType;
 
 
         protected virtual void Awake() { }

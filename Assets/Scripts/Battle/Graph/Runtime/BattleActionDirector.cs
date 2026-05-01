@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battle.Enums;
 using Battle.Interfaces;
 using UnityEngine;
 
@@ -10,11 +11,14 @@ namespace Battle.Graph.Runtime
     {
         [SerializeField] private BattleEntity entity;
         public BattleEntity Entity => entity;
-        
+
         [Header("Graph")] public BattleActionRuntimeGraph RuntimeGraph;
-        
         public event Action onActionStarted;
         public event Action onActionEnded;
+
+        protected override ComponentType componentType => ComponentType.GraphDirector; 
+        
+        
         public async void StartAction(BattleEntity actor, BattleEntity target)
         {
             onActionStarted?.Invoke();

@@ -19,6 +19,13 @@ namespace RequestHub
             if (!providerDelegateDictionary.TryAdd(provider, provideRequestDelegate))
                 Debug.LogWarning("Key already exists for provider " + provider.GetType().Name);
         }
+
+        public static void Register(IRequestProvider provider, T request)
+        {
+            if (!providerDelegateDictionary.TryAdd(provider, () => request))
+                Debug.LogWarning("Key already exists for provider " + provider.GetType().Name);
+        }
+        
         public static void Deregister(IRequestProvider provider) => providerDelegateDictionary.Remove(provider);
         public static void Clear() => providerDelegateDictionary.Clear();
 

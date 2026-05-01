@@ -1,3 +1,4 @@
+using Battle.Interfaces;
 using EventBus;
 
 namespace Battle.Events

@@ -1,5 +1,5 @@
 using System;
-using Battle.Components;
+using Battle.Enums;
 using Core.Enums;
 using UnityEngine;
 using Battle.Requests; 
@@ -15,6 +15,9 @@ namespace Battle.Components
         private BoolInputData inputData;
         public BoolInputData InputData => inputData;
 
+
+        protected override ComponentType componentType => ComponentType.Player;
+        
         protected override void Start()
         {
             base.Start();

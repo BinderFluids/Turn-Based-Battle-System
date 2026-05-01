@@ -1,6 +1,7 @@
 using Battle;
 using UnityEngine;
-using Battle.Events; 
+using Battle.Events;
+using Battle.Interfaces;
 using EventBus; 
 
 namespace Battle.StatusEffect

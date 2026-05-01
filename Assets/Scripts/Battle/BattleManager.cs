@@ -16,7 +16,7 @@ namespace Battle
         [SerializeField] private BattleInputReader inputReader;
         [SerializeField] private List<BattleEntity> turnEntities = new();
         private EventBinding<TurnEndEvent> turnEndBinding;
-        private EventBinding<TurnStartEvent> turnStartBinding;
+        private EventBinding<EntityStartTurnEvent> turnStartBinding;
         [SerializeField] private bool manageBattle;
         
         protected override void Awake()
@@ -67,7 +67,7 @@ namespace Battle
             int turnIndex = turnNumber % turnEntities.Count;
         
             BattleEntity turnComponent = turnEntities[turnIndex];
-            EventBus<TurnStartEvent>.Raise(new TurnStartEvent {Entity = turnComponent});
+            EventBus<EntityStartTurnEvent>.Raise(new EntityStartTurnEvent {Entity = turnComponent});
         }
 
         private void OnDestroy()

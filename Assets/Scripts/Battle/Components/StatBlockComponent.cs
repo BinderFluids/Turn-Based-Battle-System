@@ -1,4 +1,5 @@
 using System;
+using Battle.Enums;
 using Battle.Requests;
 using Battle.Events; 
 using Core.Stats;
@@ -20,7 +21,8 @@ namespace Battle.Components
 
         private EventBinding<ChangeEntityHealthEvent> attackEntityBinding;
         
-    
+        protected override ComponentType componentType => ComponentType.StatBlock;
+
         protected override void Awake()
         {
             base.Awake();
@@ -59,8 +61,8 @@ namespace Battle.Components
 
         private void OnDestroy()
         {
-            EventBus<ChangeEntityHealthEvent>.Deregister(attackEntityBinding); 
-            
+            EventBus<ChangeEntityHealthEvent>.Deregister(attackEntityBinding);
+
             RequestHub<RequestAttackValue>.Deregister(Entity); 
             RequestHub<RequestDefenseValue>.Deregister(Entity);
             RequestHub<RequestSpeedValue>.Deregister(Entity);
