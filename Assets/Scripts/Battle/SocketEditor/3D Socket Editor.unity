@@ -7430,6 +7430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battle.Actions.Graph.Runtime.BattleActionDirector
   entity: {fileID: 1198670846}
+  entity: {fileID: 1198670846}
   RuntimeGraph: {fileID: 0}
 --- !u!114 &1198670845
 MonoBehaviour:
