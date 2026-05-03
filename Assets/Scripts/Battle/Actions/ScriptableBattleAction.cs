@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Battle;
+using System.Linq;
+using EventBus;
+using Battle.Events;
 using Battle.Interfaces;
 using SerializedInterface;
 using UnityEngine;
@@ -20,11 +22,18 @@ namespace Battle.Actions
         protected void EndAction(BattleEntity actor)
         {
             onActionEnded?.Invoke();
+            EventBus<ActionEndedEvent>.Raise(new ActionEndedEvent()
+            {
+                Entity = actor,
+                Action = this
+            });
         }
 
 
         public List<BattleEntity> GetValidTargets(BattleEntity actor, IEnumerable<BattleEntity> ctx)
         {
+            if (filters.Count == 0) return ctx.ToList();  
+            
             List<BattleEntity> output = new List<BattleEntity>();
             output.AddRange(ctx);
 

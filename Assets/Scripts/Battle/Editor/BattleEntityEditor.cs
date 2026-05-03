@@ -13,6 +13,7 @@ namespace Battle.Editor
     {
         private int index;
         private BattleEntity entity; 
+        private List<Type> cachedComponentTypes;
         
         public override void OnInspectorGUI()
         {
@@ -40,10 +41,8 @@ namespace Battle.Editor
 
         void DrawComponentMenu()
         {
-            
-            
-            var componentTypes = RetrieveAllComponentTypes().OrderBy(t => t.Name).ToList(); 
-            List<string> options = componentTypes.Select(t => t.Name).ToList();
+            cachedComponentTypes ??= RetrieveAllComponentTypes().OrderBy(t => t.Name).ToList(); 
+            List<string> options = cachedComponentTypes.Select(t => t.Name).ToList();
             options.Insert(0, "(select)");
             
             EditorGUI.BeginChangeCheck();
@@ -52,12 +51,10 @@ namespace Battle.Editor
             if (EditorGUI.EndChangeCheck())
             {
                 if (index == 0) return;
-                Type selectedType = componentTypes.ElementAt(index-1);
-
-                
+                Type selectedType = cachedComponentTypes.ElementAt(index-1);
                 index = 0; 
-                if (entity.TryGetComponent(selectedType, out var component))
-                    return;
+                
+                if (entity.TryGetComponent(selectedType, out _)) return;
                 
                 var newComponent = entity.gameObject.AddComponent(selectedType) as BattleEntityComponent;
                 var entityFieldInfo = typeof(BattleEntityComponent).GetField("entity", BindingFlags.NonPublic | BindingFlags.Instance);

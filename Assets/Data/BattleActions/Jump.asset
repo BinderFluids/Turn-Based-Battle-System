@@ -11,27 +11,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e31ffbc6abf740bebd32cfc113fe6387, type: 3}
   m_Name: Jump
-  m_EditorClassIdentifier: Assembly-CSharp::Jump
+  m_EditorClassIdentifier: Battle.Actions::Battle.Actions.Jump
   counterBehaviourRef:
     underlyingValue: {fileID: 0}
-  filters:
-  - rid: 978115875260596508
-  - rid: 978115875260596509
-  approachDuration: 2.43
+  filters: []
+  approachDuration: 0.5
   jumpDuration: 2
   jumpHeight: 2
   miniumAboveEnemy: 1
-  jumpSegmentDistribution: 0.553
+  jumpSegmentDistribution: 0.567
   jumpRiseEase: 0
   jumpFallEase: 0
   horizontalMovementEase: 0
   references:
     version: 2
-    RefIds:
-    - rid: 978115875260596508
-      type: {class: BattleFilterSelf, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 978115875260596509
-      type: {class: BattleFilterModifiers, ns: , asm: Assembly-CSharp}
-      data:
-        forbiddenModifiers: 0200000001000000
+    RefIds: []

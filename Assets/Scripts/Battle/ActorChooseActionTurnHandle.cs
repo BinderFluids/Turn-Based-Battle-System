@@ -39,6 +39,8 @@ namespace Battle
 
         void TurnEnd()
         {
+            Debug.Log($"{entity.gameObject.name}: Turn ended");
+            
             TurnEndEvent turnEndEvent = new TurnEndEvent { turnEntity = entity };
             EventBus<TurnEndEvent>.Raise(turnEndEvent);
         }

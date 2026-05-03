@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using EventBus;
 using SelectableSystem.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityUtils;
 
 namespace SelectableSystem
@@ -14,14 +16,17 @@ namespace SelectableSystem
     
         private List<ISelectable> activeItems;
         public Observer<ISelectable> CurrentItem = new Observer<ISelectable>(null); 
-        private bool active = false;
+        [SerializeField] private bool active = false;
 
-        [SerializeField] private SelectionHighlighter defaultHighligher;
+        [FormerlySerializedAs("defaultHighligher")] 
+        [SerializeField] private SelectionHighlighter defaultHighlighter;
         [SerializeField] private SelectionHighlighter currentHighlighter;
 
-        [SerializeField] private InputActionReference Confirm; 
-        [SerializeField] private InputActionReference Navigate;
-    
+        [SerializeField] private InputActionReference defaultConfirm;
+        [SerializeField] private InputActionReference defaultNavigate;
+        private InputAction confirmAction;
+        private InputAction navigateAction;
+        
 
         int GetTrueIndex(int index, List<ISelectable> items)
         {
@@ -30,6 +35,10 @@ namespace SelectableSystem
             return newIndex;
         }
 
+        /*
+         TODO: Create some sort of "SelectionSession" class that can be used to track the selection state, and can be built
+            using the builder pattern. e.g. StartSelection().WithNavigateInputAction().WithConfirmAction()... you know the one.
+        */
         public void StartSelection(
             List<ISelectable> items, 
             int index = 0, 
@@ -40,10 +49,10 @@ namespace SelectableSystem
             if (active)
             {
                 Debug.LogWarning("Selection already started");
-                return; 
+                return;
             }
-
-            currentHighlighter = highlighter ?? defaultHighligher; 
+            
+            currentHighlighter = highlighter ?? defaultHighlighter; 
         
             active = true; 
             activeItems = items; 
@@ -51,8 +60,21 @@ namespace SelectableSystem
         
             currentHighlighter.Activate();
             CurrentItem.Value = activeItems[selectionCount];
+            
+            SetConfirmAction(defaultConfirm);
+            SetNavigateAction(defaultNavigate);
         }
-
+        public void SetConfirmAction(InputAction confirmAction)
+        {
+            this.confirmAction = confirmAction ?? defaultConfirm.ToInputAction(); 
+            this.confirmAction.Enable();
+        }
+        public void SetNavigateAction(InputAction navigateAction)
+        {
+            this.navigateAction = navigateAction ?? defaultNavigate.ToInputAction(); 
+            this.navigateAction.Enable();
+        }
+        
         public void EndSelection()
         {
             if (!active)
@@ -73,9 +95,17 @@ namespace SelectableSystem
             if (!active) return;
 
             NavigateSelectables();
-        
-            if (Confirm.action.WasPressedThisFrame())
+            ConfirmSelectable();
+           
+        }
+
+        void ConfirmSelectable()
+        {
+            if (confirmAction == null) return;
+            if (confirmAction.WasPressedThisFrame())
             {
+                Debug.Log("SelectionManager.ConfirmSelectable() succeeded");
+                
                 CurrentItem.Value.Select();
                 EndSelection();
             
@@ -85,20 +115,19 @@ namespace SelectableSystem
                         SelectedItem = CurrentItem.Value
                     }
                 ); 
-            
-                Debug.Log("SelectableChosenEvent.Raise() Successful");
             }
         }
-
+        
         void NavigateSelectables()
         {
-            if (!Navigate.action.WasPressedThisFrame()) return;
+            if (navigateAction == null) return;
+            if (!navigateAction.WasPressedThisFrame()) return;
 
-            Vector2 value = Navigate.action.ReadValue<Vector2>();
+            Vector2 value = navigateAction.ReadValue<Vector2>();
         
-            if (value.y < 0)
+            if (value.x < 0)
                 ShiftSelection(-1);
-            if (value.y > 0)
+            if (value.x > 0)
                 ShiftSelection(1);
         }
 

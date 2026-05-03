@@ -5,6 +5,7 @@ using EventBus;
 using SelectableSystem;
 using SelectableSystem.Events;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Battle.SelectionStrategy
 {
@@ -14,7 +15,9 @@ namespace Battle.SelectionStrategy
     
         private EventBinding<SelectableChosenEvent> chosenItemBinding;
         public event Action<IBattleAction> onActionSelected;
-        private BattleActionWheelItem selectedItem; 
+        private BattleActionWheelItem selectedItem;
+
+        [SerializeField] private InputActionReference confirm; 
 
         private void Start()
         {
@@ -29,7 +32,8 @@ namespace Battle.SelectionStrategy
             ActivateItems();
             SelectionManager.Instance.StartSelection(
                 items.ConvertAll(i => i as ISelectable
-                )); 
+                ));
+            SelectionManager.Instance.SetConfirmAction(confirm);
         }
     
         void OnSelectableChosenEventRaised(SelectableChosenEvent @event)
