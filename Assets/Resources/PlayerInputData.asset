@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f1ebf3c0484faa8574d96d607a3df3, type: 3}
+  m_Name: PlayerInputData
+  m_EditorClassIdentifier: Battle::Battle.BattleUtilityData
+  PlayerOne: {fileID: 6335999504472618374, guid: 8c6e970fd190e53eabedf984078e8b35, type: 3}
+  PlayerTwo: {fileID: 7166209746135772903, guid: 8c6e970fd190e53eabedf984078e8b35, type: 3}

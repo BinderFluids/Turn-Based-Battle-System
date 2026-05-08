@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Battle.Interfaces;
+using Battle.Requests;
+using Core.Enums;
 using EventBus;
 using UnityEngine;
 using SelectableSystem;
 using SelectableSystem.Events;
+using RequestHub;
 
 namespace Battle.TargetSelection
 {
@@ -27,7 +30,16 @@ namespace Battle.TargetSelection
                 if (entity.TryGetComponent(out SelectableComponent selectable))
                     entitiesAsSelectables.Add(selectable);
             }
+            
             SelectionManager.Instance.StartSelection(entitiesAsSelectables);
+
+            PlayerId actorPlayerId = PlayerId.PlayerOne; 
+            if (!RequestHub<RequestPlayerId>.TryRequest(actor, out var request))
+                Debug.Log("Actor does not have a PlayerId. Defaulting to PlayerOne input");
+            else
+                actorPlayerId = request.PlayerId;
+            
+            SelectionManager.Instance.SetConfirmAction(BattleUtils.PlayerInputData.GetInputActionByPlayerID(actorPlayerId));
         }
     
         void OnSelectableChosenEventRaised(SelectableChosenEvent e)

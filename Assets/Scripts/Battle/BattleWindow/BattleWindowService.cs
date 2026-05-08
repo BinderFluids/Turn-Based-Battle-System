@@ -20,7 +20,7 @@ namespace Battle.Window
 
         private void Start()
         {
-            battleInputReader.EnableInput(InputActionType.Player);
+            battleInputReader = InputManager.Instance.InputReader as BattleInputReader;
             SubscribeToEvents();
         }
 

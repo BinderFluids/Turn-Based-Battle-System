@@ -22,6 +22,7 @@ namespace Battle.Window
         public int StartFrame { get; private set; }
         public void Open()
         {
+            Debug.Log($"Opening {Id}");
             StartFrame = Time.frameCount;
         }
 

@@ -6,6 +6,7 @@ using Battle.Events;
 using Battle.Interfaces;
 using Battle.Requests;
 using Battle.TargetSelection;
+using Battle.Window;
 using EventBus;
 using SerializedInterface;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Battle.Actions
 {
     public class ActorComponent : BattleEntityComponent
     {
+        [SerializeField] private ActionCommandTierGradient gradient; 
         [SerializeField] private InterfaceReference<IBattleActionSelectionStrategy> selectActionStrategyRef; 
         private IBattleActionSelectionStrategy actionSelectionStrategy => selectActionStrategyRef.Value;
     
@@ -26,7 +28,7 @@ namespace Battle.Actions
         public IReadOnlyList<IBattleAction> Actions => actionsRef.Select(a => a.Value).ToList();
         private IBattleAction chosenAction;
 
-        private EventBinding<ActorChooseActionEvent> chooseActionBinding; 
+        private EventBinding<ActorChooseAction> chooseActionBinding; 
         
         public event Action onActionStarted = delegate {}; 
         public event Action onActionEnded = delegate { };
@@ -37,11 +39,11 @@ namespace Battle.Actions
         {
             base.Awake();
 
-            chooseActionBinding = new EventBinding<ActorChooseActionEvent>(HandleChooseActionEvent);
-            EventBus<ActorChooseActionEvent>.Register(chooseActionBinding); 
+            chooseActionBinding = new EventBinding<ActorChooseAction>(HandleChooseActionEvent);
+            EventBus<ActorChooseAction>.Register(chooseActionBinding); 
         }
         
-        void HandleChooseActionEvent(ActorChooseActionEvent e)
+        void HandleChooseActionEvent(ActorChooseAction e)
         {
             if (e.Entity == Entity)  
                 ChooseAction();
@@ -96,7 +98,7 @@ namespace Battle.Actions
 
         private void OnDestroy()
         {
-            EventBus<ActorChooseActionEvent>.Deregister(chooseActionBinding);
+            EventBus<ActorChooseAction>.Deregister(chooseActionBinding);
         }
     }
 }

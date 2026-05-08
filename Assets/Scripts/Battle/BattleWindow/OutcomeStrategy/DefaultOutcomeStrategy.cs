@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Battle.Enums;
 using Core.Enums;
 
@@ -6,7 +7,21 @@ namespace Battle.Window
 {
     public class DefaultOutcomeStrategy : IOutcomeStrategy
     {
-        
+        private List<ActionCommandTier> attainableTiers; 
+        public DefaultOutcomeStrategy(params ActionCommandTier[] attainableTiers)
+        {
+            this.attainableTiers = new List<ActionCommandTier>();
+            this.attainableTiers.AddRange(attainableTiers);
+        }
+        public DefaultOutcomeStrategy()
+            : this(
+                ActionCommandTier.OKAY, 
+                ActionCommandTier.GOOD, 
+                ActionCommandTier.GREAT, 
+                ActionCommandTier.EXCELLENT
+                ) 
+        { }
+
         private ActionCommandTier EvaluateTier(int error, int duration)
         {
             float normalized = error / (float)duration;

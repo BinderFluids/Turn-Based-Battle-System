@@ -12,6 +12,7 @@ namespace Battle.Window
         public int Duration { get; }
         private readonly Dictionary<PlayerId, PlayerHoldData> holdData = new Dictionary<PlayerId, PlayerHoldData>();
         private readonly IOutcomeStrategy outcomeStrategy;
+        private readonly DefaultOutcomeStrategy defaultOutcomeStrategy = new DefaultOutcomeStrategy();
 
         public ActionCommandWindow(string id, int duration, List<PlayerId> expectedPlayerInputs, IOutcomeStrategy outcomeStrategy)
             : base(id, expectedPlayerInputs)
@@ -62,7 +63,7 @@ namespace Battle.Window
                 return outcomeStrategy.Evaluate(this);
             }
             
-            ActionCommandOutcome outcome = new DefaultOutcomeStrategy().Evaluate(this);
+            ActionCommandOutcome outcome = defaultOutcomeStrategy.Evaluate(this);
             return outcome;
         }
     }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Battle.Enums;
 using Battle.Requests;
 using Battle.Window;
 using Core.Enums;
@@ -12,6 +13,9 @@ namespace Battle.Actions
     [CreateAssetMenu(menuName = "Battle/Action/Player/Jump", fileName = "Jump", order = 0)]
     public class Jump : ScriptableBattleAction
     {
+        [SerializeField] private ActionCommandTierGradient gradient; 
+        [SerializeField] private int actionCommandWindow; 
+        
         [SerializeField] private float approachDuration;
         [SerializeField] private float jumpDuration;
         [SerializeField] private float jumpHeight = 2f;
@@ -53,7 +57,6 @@ namespace Battle.Actions
             Tween horizontalMovement = Tween.PositionX(transform, target.transform.position.x, jumpDuration, horizontalMovementEase);
 
             AwaitTween(actor, transform, startPos, verticalMovement).Forget();
-
         }
 
         async UniTask<ActionCommandOutcome> AwaitActionCommand(BattleEntity actor)
@@ -65,12 +68,16 @@ namespace Battle.Actions
         
             var window = new ActionCommandWindow(
                 id: "Jump",
-                duration: 10,
+                duration: actionCommandWindow,
                 expectedPlayerInputs: new List<PlayerId> { playerId },
-                outcomeStrategy: new DefaultOutcomeStrategy()
+                outcomeStrategy: new DefaultOutcomeStrategy(ActionCommandTier.GOOD)
             );
 
-            return await BattleWindowService.Instance.RunActionCommandAsync(window);
+            ActionCommandOutcome outcome = await BattleWindowService.Instance.RunActionCommandAsync(window);
+            Debug.Log($"Success: {outcome.Success} Tier: {outcome.Tier}");
+            if (outcome.Tier == ActionCommandTier.GOOD) Debug.Log("Do second jump!");
+            
+            return outcome; 
         }
 
 

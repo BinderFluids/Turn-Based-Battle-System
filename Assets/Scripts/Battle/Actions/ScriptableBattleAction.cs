@@ -22,7 +22,7 @@ namespace Battle.Actions
         protected void EndAction(BattleEntity actor)
         {
             onActionEnded?.Invoke();
-            EventBus<ActionEndedEvent>.Raise(new ActionEndedEvent()
+            EventBus<OnActionEnded>.Raise(new OnActionEnded()
             {
                 Entity = actor,
                 Action = this
