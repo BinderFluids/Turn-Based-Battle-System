@@ -1,5 +1,4 @@
 using Battle.Events.Windows;
-using Battle.Window.Editor;
 using Core.Enums;
 using Cysharp.Threading.Tasks;
 using EventBus;

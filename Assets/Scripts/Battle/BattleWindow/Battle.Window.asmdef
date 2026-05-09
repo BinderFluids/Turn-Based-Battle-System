@@ -1,17 +1,12 @@
 {
-    "name": "Battle.Actions",
-    "rootNamespace": "Battle.Actions",
+    "name": "Battle.Window",
+    "rootNamespace": "",
     "references": [
         "GUID:69fd95a57929a201fb32f8fef9b1aad1",
-        "GUID:40adeae3f8805877eb697259a72ba748",
-        "GUID:80ecb87cae9c44d19824e70ea7229748",
-        "GUID:51142552874e1af0daed9c11084233e7",
-        "GUID:9bf89cd96f4050c46b99ab3ed5018426",
         "GUID:d35b0935137438e728a4652ce39ed9ee",
+        "GUID:9bf89cd96f4050c46b99ab3ed5018426",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:3fdfe6dde2c72ef439fd6cb6d5dca5c8",
-        "GUID:71d4f8d8b1b47854586598aa2c4dfc2b",
-        "GUID:4eeab01b63707b0a19e755fa0b643bf2"
+        "GUID:3fdfe6dde2c72ef439fd6cb6d5dca5c8"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

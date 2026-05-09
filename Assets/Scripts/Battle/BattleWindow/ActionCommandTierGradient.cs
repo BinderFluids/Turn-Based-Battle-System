@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Battle.Enums;
-using Battle.Window.Editor;
 using UnityEngine;
-using UnityUtils;
 
 namespace Battle.Window
 {
@@ -134,22 +132,20 @@ namespace Battle.Window
 
         public ActionCommandTier Evaluate(int frame)
         {
-            TierKey keyLeft = tierKeys[0];
-            TierKey keyRight = tierKeys.Last();
+            TierKey outKey = tierKeys.Last();
 
             for (int i = 0; i < tierKeys.Count; i++)
             {
                 TierKey key = tierKeys[i];
-                if (key.Frame <= frame)
-                    keyLeft = key;
+
                 if (key.Frame >= frame)
                 {
-                    keyRight = key;
+                    outKey = key;
                     break; 
                 }
             }
 
-            return keyRight.Tier; 
+            return outKey.Tier; 
         }
     }
 }
