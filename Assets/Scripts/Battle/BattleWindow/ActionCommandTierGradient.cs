@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Battle.Enums;
+using Battle.Window.Editor;
 using UnityEngine;
 using UnityUtils;
 
@@ -13,7 +14,7 @@ namespace Battle.Window
     [Serializable]
     public class ActionCommandTierGradient
     {
-        [SerializeReference] private int frames;
+        [SerializeField] private int frames;
         public int Frames => frames; 
 
         public void UpdateFrames(int frames)
@@ -33,6 +34,7 @@ namespace Battle.Window
         
         public int NumKeys => tierKeys.Count;
 
+        [Serializable]
         public struct TierKey
         {
             private ActionCommandTier tier;
@@ -48,11 +50,18 @@ namespace Battle.Window
         
         public ActionCommandTierGradient()
         {
-            frames = 80;
-            AddKey(ActionCommandTier.OKAY, 0);
-            AddKey(ActionCommandTier.GOOD, 20);
-            AddKey(ActionCommandTier.GREAT, 40);
-            AddKey(ActionCommandTier.EXCELLENT, 60);
+            frames = 25;
+            AddKey(ActionCommandTier.MISS, 0);
+            AddKey(ActionCommandTier.OKAY, 5);
+            AddKey(ActionCommandTier.GOOD, 10);
+            AddKey(ActionCommandTier.GREAT, 15);
+            AddKey(ActionCommandTier.EXCELLENT, 20);
+        }
+        public ActionCommandTierGradient(int frames, params TierKey[] keys)
+        {
+            this.frames = frames;
+            foreach (TierKey key in keys)
+                AddKey(key.Tier, key.Frame);
         }
         
         public Texture2D GetTexture()
@@ -102,8 +111,6 @@ namespace Battle.Window
 
         public int UpdateKeyTime(int index, int frame)
         {
-            //if there is a key at the new frame, dont do anything
-            if (index == 0) return index;
             if (frame > Frames) return index;
             if (frame < 0) return index; 
             if (tierKeys.Any(k => k.Frame == frame)) return index;
@@ -122,9 +129,6 @@ namespace Battle.Window
 
         public void RemoveKey(int index)
         {
-            if (index == 0)
-                return;
-            
             tierKeys.RemoveAt(index);
         }
 

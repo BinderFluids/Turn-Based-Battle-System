@@ -11,40 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandTierGradient.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandTierGradient.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Editor/ActionCommandTierGradientDrawer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Editor/ActionCommandTierGradientDrawer.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Editor/ActionCommandTierGradientWindow.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Editor/ActionCommandTierGradientWindow.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/DodgeStates.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/DodgeStates.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IDodgeState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IDodgeState.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/PlayerInputData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/PlayerInputData.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Data/BattleActions/Jump.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/BattleActions/Jump.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle Environment.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle Environment.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Jump.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Jump.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ScriptableBattleAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ScriptableBattleAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/ActorChooseActionTurnHandle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/ActorChooseActionTurnHandle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Battle.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Battle.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandOutcome.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandOutcome.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandTierGradient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandTierGradient.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandWindow.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/BattleWindowService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/BattleWindowService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/DefaultOutcomeStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/DefaultOutcomeStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Window.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Window.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/ActionCommandTier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/ActionCommandTier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/ComponentType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/ComponentType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/ActorEvents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/ActorEvents.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/Battle.TargetSelection.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/Battle.TargetSelection.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ManualSelectTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ManualSelectTarget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/InputReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/InputReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Editor/ActionCommandTierGradientDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Editor/ActionCommandTierGradientDrawer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Editor/ActionCommandTierGradientWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/Editor/ActionCommandTierGradientWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/DefaultOutcomeStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/ActionCommandOutcomeStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/DefaultOutcomeStrategy.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/OutcomeStrategy/ActionCommandOutcomeStrategy.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +149,7 @@
       <workItem from="1778108493122" duration="1529000" />
       <workItem from="1778205792732" duration="2494000" />
       <workItem from="1778230659136" duration="1785000" />
-      <workItem from="1778232486609" duration="3223000" />
+      <workItem from="1778232486609" duration="15902000" />
     </task>
     <servers />
   </component>

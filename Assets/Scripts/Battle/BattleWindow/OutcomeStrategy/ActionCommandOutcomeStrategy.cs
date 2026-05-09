@@ -5,23 +5,8 @@ using Core.Enums;
 
 namespace Battle.Window
 {
-    public class DefaultOutcomeStrategy : IOutcomeStrategy
+    public class ActionCommandOutcomeStrategy : IOutcomeStrategy
     {
-        private List<ActionCommandTier> attainableTiers; 
-        public DefaultOutcomeStrategy(params ActionCommandTier[] attainableTiers)
-        {
-            this.attainableTiers = new List<ActionCommandTier>();
-            this.attainableTiers.AddRange(attainableTiers);
-        }
-        public DefaultOutcomeStrategy()
-            : this(
-                ActionCommandTier.OKAY, 
-                ActionCommandTier.GOOD, 
-                ActionCommandTier.GREAT, 
-                ActionCommandTier.EXCELLENT
-                ) 
-        { }
-
         private ActionCommandTier EvaluateTier(int error, int duration)
         {
             float normalized = error / (float)duration;
@@ -34,7 +19,7 @@ namespace Battle.Window
         
         public ActionCommandOutcome Evaluate(ActionCommandWindow window)
         {
-            int referenceFrame = window.StartFrame + window.Duration;
+            //int referenceFrame = window.StartFrame + window.Duration;
             ActionCommandTier worstTier = ActionCommandTier.EXCELLENT;
             bool hasAny = false;
 
@@ -43,8 +28,7 @@ namespace Battle.Window
                 if (!window.TryGetHoldData(player, out var data))
                     return ActionCommandOutcome.Fail();
 
-                int error = Math.Abs(data.PressFrame - referenceFrame);
-                var tier = this.EvaluateTier(error, window.Duration);
+                ActionCommandTier tier = window.Gradient.Evaluate(window.Duration);
                 hasAny = true;
 
                 // keep worst result

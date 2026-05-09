@@ -15,17 +15,20 @@ MonoBehaviour:
   counterBehaviourRef:
     underlyingValue: {fileID: 0}
   filters: []
-  gradient:
-    frames: 90
-  actionCommandWindow: 60
+  firstJumpGradient:
+    frames: 30
+  secondJumpGradient:
+    frames: 30
   approachDuration: 0.5
+  approachEndDistance: 3
   jumpDuration: 2
   jumpHeight: 2
   miniumAboveEnemy: 1
-  jumpSegmentDistribution: 0.404
+  jumpSegmentDistribution: 0.5
   jumpRiseEase: 0
   jumpFallEase: 0
   horizontalMovementEase: 0
+  secondJumpDuration: 0
   references:
     version: 2
     RefIds: []

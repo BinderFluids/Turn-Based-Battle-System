@@ -1,4 +1,5 @@
 using Battle.Events.Windows;
+using Battle.Window.Editor;
 using Core.Enums;
 using Cysharp.Threading.Tasks;
 using EventBus;
@@ -51,7 +52,19 @@ namespace Battle.Window
             EventBus<ActionCommandWindowOpened>.Raise(
                 new ActionCommandWindowOpened(actionCommandWindow.Id, actionCommandWindow.Duration)
             );
-            await UniTask.DelayFrame(actionCommandWindow.Duration); 
+
+            for (int i = 0; i < actionCommandWindow.Duration; i++)
+            {
+                //TODO: I don't love this. 
+                if (actionCommandWindow.TryGetHoldData(PlayerId.PlayerOne, out var playerOneData) &&
+                    playerOneData.HasPressed)
+                    break;
+                if (actionCommandWindow.TryGetHoldData(PlayerId.PlayerTwo, out var playerTwoData) &&
+                    playerTwoData.HasPressed)
+                    break;
+                
+                await UniTask.DelayFrame(1);
+            }
             
             // TODO: BAD CODE, MAKE BETTER
             currentWindow.Close();

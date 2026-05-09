@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Battle.Enums;
@@ -9,6 +10,7 @@ namespace Battle.Window.Editor
     public class ActionCommandTierGradientWindow : EditorWindow
     {
         private ActionCommandTierGradient gradient;
+        private UnityEngine.Object target; 
         
         private Rect gradientPreviewRect;
         private Rect[] keyRects;
@@ -26,10 +28,26 @@ namespace Battle.Window.Editor
         private bool needsRepaint; 
         
 
-        public void SetGradient(ActionCommandTierGradient gradient)
+        public void Initialize(ActionCommandTierGradient gradient, UnityEngine.Object target)
         {
             this.gradient = gradient;
+            this.target = target;
         }
+        
+        private void OnEnable()
+        {
+            titleContent = new GUIContent("Edit Tier Gradient");
+            position.Set(position.x, position.y, 400, 150);
+            minSize = new Vector2(200, 150);
+            maxSize = new Vector2(1920, 150);
+        }
+
+        private void OnDisable()
+        {
+            EditorUtility.SetDirty(target);
+            AssetDatabase.SaveAssetIfDirty(target); 
+        }
+
 
         private void OnGUI() 
         {
@@ -130,19 +148,27 @@ namespace Battle.Window.Editor
         {
             Event guiEvent = Event.current;
 
+            //left click
             if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0)
             {
+                //select key
                 for (int i = 0; i < keyRects.Length; i++)
                 {
                     if (keyRects[i].Contains(guiEvent.mousePosition))
                     {
+                        GUI.FocusControl(null); 
                         selectedKeyIndex = i;
                         mouseIsDownOverKey = true;
                         needsRepaint = true; 
                         break;
                     }
                 }
+            }
 
+            //right click
+            if (guiEvent.type == EventType.MouseDown && guiEvent.button == 1)
+            {
+                //create new key
                 if (!mouseIsDownOverKey)
                 {
                     int keyTime = MousePositionToFrame();
@@ -151,19 +177,23 @@ namespace Battle.Window.Editor
                 }
             }
             
-            if (guiEvent.type == EventType.MouseUp && guiEvent.button == 0)
+            //mouse up
+            if (guiEvent.type == EventType.MouseUp && (guiEvent.button == 0 || guiEvent.button == 1))
                 mouseIsDownOverKey = false;
             
             if (mouseIsDownOverKey && guiEvent.type == EventType.MouseDrag && guiEvent.button == 0)
             {
                 int keyTime = MousePositionToFrame();
                 
-                selectedKeyIndex = gradient.UpdateKeyTime(selectedKeyIndex, keyTime);
+                if (selectedKeyIndex != 0)
+                    selectedKeyIndex = gradient.UpdateKeyTime(selectedKeyIndex, keyTime);
                 needsRepaint = true;
             }
             
             if (guiEvent.keyCode == KeyCode.Backspace && guiEvent.type == EventType.KeyDown)
             {
+                if (selectedKeyIndex < 1) return; 
+                
                 gradient.RemoveKey(selectedKeyIndex);
                 if (selectedKeyIndex >= gradient.NumKeys)
                 {
@@ -172,8 +202,6 @@ namespace Battle.Window.Editor
                 needsRepaint= true;
             }
         }
-
-
         private int MousePositionToFrame()
         {
             float mousePositionX = Event.current.mousePosition.x - gradientPreviewRect.x;

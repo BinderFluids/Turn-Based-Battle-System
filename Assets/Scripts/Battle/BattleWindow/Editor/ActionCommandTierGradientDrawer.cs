@@ -29,7 +29,7 @@ namespace Battle.Window.Editor
                      textureRect.Contains(guiEvent.mousePosition))
             {
                 ActionCommandTierGradientWindow window = EditorWindow.GetWindow<ActionCommandTierGradientWindow>();
-                window.SetGradient(gradient);
+                window.Initialize(gradient, property.serializedObject.targetObject);
             }
         }
     }

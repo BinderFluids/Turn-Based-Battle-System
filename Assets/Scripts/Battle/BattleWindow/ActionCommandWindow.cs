@@ -9,15 +9,17 @@ namespace Battle.Window
     /// </summary>
     public class ActionCommandWindow : Window
     {
-        public int Duration { get; }
         private readonly Dictionary<PlayerId, PlayerHoldData> holdData = new Dictionary<PlayerId, PlayerHoldData>();
         private readonly IOutcomeStrategy outcomeStrategy;
-        private readonly DefaultOutcomeStrategy defaultOutcomeStrategy = new DefaultOutcomeStrategy();
-
-        public ActionCommandWindow(string id, int duration, List<PlayerId> expectedPlayerInputs, IOutcomeStrategy outcomeStrategy)
-            : base(id, expectedPlayerInputs)
+        public int Duration => gradient.Frames; 
+        private readonly ActionCommandTierGradient gradient;
+        public ActionCommandTierGradient Gradient => gradient;
+        private readonly ActionCommandOutcomeStrategy _actionCommandOutcomeStrategy = new ActionCommandOutcomeStrategy();
+        
+        public ActionCommandWindow(string id, List<PlayerId> expectedPlayerInputs, ActionCommandTierGradient gradient, IOutcomeStrategy outcomeStrategy)
+        : base(id, expectedPlayerInputs)
         {
-            Duration = duration;
+            this.gradient = gradient;
             this.outcomeStrategy = outcomeStrategy;
         }
 
@@ -59,11 +61,10 @@ namespace Battle.Window
         public ActionCommandOutcome DetermineOutcome()
         {
             if (outcomeStrategy != null)
-            {
                 return outcomeStrategy.Evaluate(this);
-            }
             
-            ActionCommandOutcome outcome = defaultOutcomeStrategy.Evaluate(this);
+            
+            ActionCommandOutcome outcome = _actionCommandOutcomeStrategy.Evaluate(this);
             return outcome;
         }
     }
