@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.annulusgames.lit-motion": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion",
     "com.binderfluids.eventbus": "https://github.com/BinderFluids/EventBus.git",
     "com.binderfluids.projectsetup": "https://github.com/BinderFluids/Project-Setup.git",
     "com.binderfluids.registry": "git+https://github.com/BinderFluids/Registry.git",
