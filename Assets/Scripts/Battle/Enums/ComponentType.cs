@@ -13,6 +13,6 @@ namespace Battle.Enums
         StatusHandler = 6,
         GraphDirector = 7,
         Selectable = 8,
-        DodgeDirector = 9,
+        DodgeAgent = 9,
     }
 }
