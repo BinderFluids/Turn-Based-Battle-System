@@ -76,7 +76,7 @@ namespace Battle
                     return true;
                 } 
             }
-
+            
             component = null;  
             return false; 
         }

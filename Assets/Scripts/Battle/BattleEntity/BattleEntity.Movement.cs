@@ -1,5 +1,6 @@
 using Battle.Enums;
 using Cysharp.Threading.Tasks;
+using PrimeTween;
 using UnityEngine;
 
 namespace Battle
@@ -8,29 +9,15 @@ namespace Battle
     {
         private const float DISTANCE_THRESHOLD = 0.1f; 
     
-        public async UniTask MoveTo(Vector3 targetPosition, float movement, EntityMoveType moveType = EntityMoveType.Speed)
+        public async UniTask MoveTo(Vector3 targetPosition, float movement, EntityMoveType moveType = EntityMoveType.Duration)
         {
+            if (moveType == EntityMoveType.Duration)
+                await Tween.Position(Transform, targetPosition, movement);
+
             if (moveType == EntityMoveType.Speed)
-            {
-                while (Vector3.Distance(Transform.position, targetPosition) >= DISTANCE_THRESHOLD)
-                {
-                    Transform.position =
-                        Vector3.MoveTowards(Transform.position, targetPosition, movement * Time.deltaTime);
-                    await UniTask.Yield();
-                }
-                Transform.position = targetPosition;
-            }
-
-            //TODO: import prime tween
-            // if (moveType == EntityMoveType.Duration)
-            // {
-            //     Tween
-            // }
+                await Tween.PositionAtSpeed(Transform, targetPosition, movement); 
         }
-
-        public async UniTask MoveHome(float speed)
-        {
-            await MoveTo(startPose.position, speed); 
-        }
+        public async UniTask MoveHome(float speed) 
+            => await MoveTo(startPose.position, speed);
     }
 }
