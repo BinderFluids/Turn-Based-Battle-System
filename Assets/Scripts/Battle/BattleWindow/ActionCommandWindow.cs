@@ -1,6 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Enums;
 using UnityEngine;
+using Battle.Events.Windows;
+using Codice.CM.Common;
+using EventBus;
 
 namespace Battle.Window
 {
@@ -9,15 +14,30 @@ namespace Battle.Window
     /// </summary>
     public class ActionCommandWindow : Window
     {
-        public int Duration { get; }
-        private readonly Dictionary<PlayerId, PlayerHoldData> holdData = new Dictionary<PlayerId, PlayerHoldData>();
+        //Action command
+        public int Duration => gradient.Frames; 
+        private readonly ActionCommandTierGradient gradient;
+        public ActionCommandTierGradient Gradient => gradient;
+        
+        //Outcome strategy
         private readonly IOutcomeStrategy outcomeStrategy;
-
-        public ActionCommandWindow(string id, int duration, List<PlayerId> expectedPlayerInputs, IOutcomeStrategy outcomeStrategy)
-            : base(id, expectedPlayerInputs)
+        
+        //Hold Data
+        private readonly Dictionary<PlayerId, PlayerHoldData> holdData = new Dictionary<PlayerId, PlayerHoldData>();
+        
+        internal ActionCommandWindow(string id, List<PlayerId> expectedPlayerInputs, ActionCommandTierGradient gradient, IOutcomeStrategy outcomeStrategy)
+        : base(id, expectedPlayerInputs)
         {
-            Duration = duration;
+            this.gradient = gradient;
             this.outcomeStrategy = outcomeStrategy;
+        }
+
+        protected override void OnOpen()
+        {
+            //Broadcast ActionCommandWindow has been opened
+            EventBus<ActionCommandWindowOpened>.Raise(
+                new ActionCommandWindowOpened(Id, Duration)
+            );
         }
 
         public bool TryGetHoldData(PlayerId playerId, out PlayerHoldData data)
@@ -33,8 +53,7 @@ namespace Battle.Window
             {
                 data = new PlayerHoldData();
             }
-                
-
+            
             if (isPressed)
             {
                 // only first press counts
@@ -55,15 +74,31 @@ namespace Battle.Window
             holdData[playerId] = data;
         }
 
-        public ActionCommandOutcome DetermineOutcome()
+        public ActionCommandOutcome DetermineOutcome() 
+            => outcomeStrategy.Evaluate(this);
+    }
+
+    /// <summary>
+    /// Builder for ActionCommandWindow. Default Outcome Strategy is ActionCommandOutcomeStrategy.
+    /// </summary>
+    public class ActionCommandWindowBuilder
+    {
+        private IOutcomeStrategy outcomeStrategy = new ActionCommandOutcomeStrategy(); 
+        private readonly List<PlayerId> expectedInputs = new();
+        
+        public ActionCommandWindowBuilder WithOutcomeStrategy(IOutcomeStrategy strategy)
         {
-            if (outcomeStrategy != null)
-            {
-                return outcomeStrategy.Evaluate(this);
-            }
-            
-            ActionCommandOutcome outcome = new DefaultOutcomeStrategy().Evaluate(this);
-            return outcome;
+            outcomeStrategy = strategy;
+            return this; 
         }
+
+        public ActionCommandWindowBuilder WithPlayerInput(PlayerId playerId)
+        {
+            expectedInputs.Add(playerId);
+            return this; 
+        }
+
+        public ActionCommandWindow Build(string id, ActionCommandTierGradient gradient) 
+            => new(id, expectedInputs, gradient, outcomeStrategy);
     }
 }

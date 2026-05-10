@@ -4,13 +4,10 @@ using UnityEngine.InputSystem;
 
 public interface IInputReader
 {
-    Vector2InputData Move { get; }
-    BoolInputData Select { get; } 
-    
     void EnableInput(InputActionType inputActionType);
 }
 
-public abstract class InputReader<T> : ScriptableObject where T : IInputActionCollection2
+public abstract class InputReader<T> : ScriptableObject, IInputReader where T : IInputActionCollection2
 {
     protected T InputActions { get; private set; }
     protected InputActionType ActiveActionType;

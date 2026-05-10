@@ -12,7 +12,7 @@ namespace Battle.Window
             : base(id, expectedPlayerInputs)
         { }
 
-        public override void HandleInput(PlayerId playerId, bool isPressed)
+        public override void HandleInput(PlayerId playerId, bool isPressed) 
         {
             throw new System.NotImplementedException();
         }

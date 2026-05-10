@@ -5,6 +5,8 @@ namespace Battle.Enums
         OKAY,
         GOOD,
         GREAT,
-        EXCELLENT
+        EXCELLENT,
+        MISS,
+        CANCELLED
     }
 }

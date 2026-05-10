@@ -6,7 +6,7 @@ namespace Battle.Events
     /// <summary>
     /// When raised, the ActorComponent with the corresponding Entity should begin their action selection method.
     /// </summary>
-    public struct ActorChooseActionEvent : IEvent
+    public struct ActorChooseAction : IEvent
     {
         public BattleEntity Entity; 
     }
@@ -14,7 +14,7 @@ namespace Battle.Events
     /// <summary>
     /// This event is raised when an entity has selected their action
     /// </summary>
-    public struct ActionWasSelectedEvent : IEvent
+    public struct OnActionSelected : IEvent
     {
         public BattleEntity Entity;
         public IBattleAction Action;
@@ -23,7 +23,7 @@ namespace Battle.Events
     /// <summary>
     /// This event is raised when an Actor has started its action
     /// </summary>
-    public struct ActionStartedEvent : IEvent
+    public struct OnActionStarted : IEvent
     {
         public BattleEntity Entity;
         public IBattleAction Action;
@@ -32,7 +32,7 @@ namespace Battle.Events
     /// <summary>
     /// This event is raised when an Actor has ended its action
     /// </summary>
-    public struct ActionEndedEvent : IEvent
+    public struct OnActionEnded : IEvent
     {
         public BattleEntity Entity;
         public IBattleAction Action;

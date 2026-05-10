@@ -15,7 +15,7 @@ namespace Battle.Window
 
         public static ActionCommandOutcome Fail()
         {
-            return new ActionCommandOutcome(false, null);
+            return new ActionCommandOutcome(false, null); 
         }
 
         public static ActionCommandOutcome Succeed(ActionCommandTier tier)

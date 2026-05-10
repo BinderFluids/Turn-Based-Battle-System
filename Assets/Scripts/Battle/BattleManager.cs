@@ -22,7 +22,8 @@ namespace Battle
         protected override void Awake()
         {
             base.Awake();
-            
+
+            Application.targetFrameRate = 60;
             inputReader.EnableInput(InputActionType.Player);
         }
 

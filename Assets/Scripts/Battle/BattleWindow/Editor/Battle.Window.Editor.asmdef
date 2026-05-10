@@ -1,0 +1,19 @@
+{
+    "name": "Battle.Window.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:69fd95a57929a201fb32f8fef9b1aad1",
+        "GUID:4eeab01b63707b0a19e755fa0b643bf2"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

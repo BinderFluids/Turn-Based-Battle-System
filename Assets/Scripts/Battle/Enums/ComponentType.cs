@@ -12,6 +12,7 @@ namespace Battle.Enums
         FormationSlots = 5,
         StatusHandler = 6,
         GraphDirector = 7,
-        Selectable = 8
+        Selectable = 8,
+        DodgeDirector = 9,
     }
 }

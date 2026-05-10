@@ -10,7 +10,7 @@ namespace Battle
     public class ActorChooseActionTurnHandle : ITurnHandleStrategy
     {
         private BattleEntity entity;
-        private EventBinding<ActionEndedEvent> actionEndHandle; 
+        private EventBinding<OnActionEnded> actionEndHandle; 
     
         public void Handle(BattleEntity entity)
         {
@@ -23,22 +23,24 @@ namespace Battle
                 return; 
             }
 
-            actionEndHandle ??= new EventBinding<ActionEndedEvent>(ActionEnded);
-            EventBus<ActionEndedEvent>.Register(actionEndHandle); 
+            actionEndHandle ??= new EventBinding<OnActionEnded>(ActionEnded);
+            EventBus<OnActionEnded>.Register(actionEndHandle); 
             
-            EventBus<ActorChooseActionEvent>.Raise(new ActorChooseActionEvent {Entity = entity});
+            EventBus<ActorChooseAction>.Raise(new ActorChooseAction {Entity = entity});
         }
 
-        void ActionEnded(ActionEndedEvent e)
+        void ActionEnded(OnActionEnded e)
         {
             if (e.Entity != entity) return; 
-            EventBus<ActionEndedEvent>.Deregister(actionEndHandle);
+            EventBus<OnActionEnded>.Deregister(actionEndHandle);
             
             TurnEnd();
         }
 
         void TurnEnd()
         {
+            Debug.Log($"{entity.gameObject.name}: Turn ended");
+            
             TurnEndEvent turnEndEvent = new TurnEndEvent { turnEntity = entity };
             EventBus<TurnEndEvent>.Raise(turnEndEvent);
         }

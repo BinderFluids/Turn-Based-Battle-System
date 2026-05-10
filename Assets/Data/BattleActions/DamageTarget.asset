@@ -11,14 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1f57a313a8e41c5a96f198933fce800, type: 3}
   m_Name: DamageTarget
-  m_EditorClassIdentifier: Assembly-CSharp::DamageTarget
+  m_EditorClassIdentifier: Battle.Actions::Battle.Actions.DamageTarget
   counterBehaviourRef:
     underlyingValue: {fileID: 0}
-  filters:
-  - rid: 978115875260596506
+  filters: []
   references:
     version: 2
-    RefIds:
-    - rid: 978115875260596506
-      type: {class: BattleFilterSelf, ns: , asm: Assembly-CSharp}
-      data: 
+    RefIds: []

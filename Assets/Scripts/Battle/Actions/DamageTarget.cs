@@ -19,13 +19,15 @@ namespace Battle.Actions
 
             int actorAttackValue = 1;
             if (RequestHub<RequestAttackValue>.TryRequest(actor, out var request))
-                actorAttackValue = request.AttackValue;                 
+                actorAttackValue = request.AttackValue;      
+            else
+                Debug.Log($"{actor} does not have a StatBlock. Damage will be 1");
             
             EventBus<ChangeEntityHealthEvent>.Raise(new ChangeEntityHealthEvent
             {
                 Source = actor,
                 Target = target,
-                Damage = actorAttackValue
+                Damage = -actorAttackValue
             });
             
             EndAction(actor); 

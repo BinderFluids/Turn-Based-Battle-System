@@ -48,8 +48,19 @@
                 },
                 {
                     "name": "",
-                    "id": "d89614e4-3efe-4dc5-a71d-ec11036bdb00",
-                    "path": "<Mouse>/leftButton",
+                    "id": "426d044e-7d9b-436b-8e06-d0472c12fcda",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c1d16a4-0b41-4b33-b633-73ca8b1d4501",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -70,8 +81,19 @@
                 },
                 {
                     "name": "",
-                    "id": "0cb05117-4006-4aa8-a99d-6a56c132671b",
-                    "path": "<Mouse>/rightButton",
+                    "id": "ed6ea00d-567f-4e7b-be4a-86e8b040c66a",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12f0ff39-d8e7-4c65-a350-11351cd72f60",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -155,6 +177,61 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "DPad",
+                    "id": "88f13cad-6b0b-4e1b-b5c8-9b92909e37c9",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "f0137cc4-e1ba-49b3-abde-ae39204a88ce",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "0b7c71dd-c979-416e-b34c-eaab74b63d8d",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "38d1f9a9-140d-498c-8ce4-f21b2ab5d85c",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "9d1aa622-8b1f-4c3b-8043-99a58a1a4ead",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
