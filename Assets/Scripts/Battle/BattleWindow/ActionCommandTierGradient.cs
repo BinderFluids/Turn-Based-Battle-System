@@ -23,7 +23,6 @@ namespace Battle.Window
                 if (tierKeys[i].Frame > frames)
                     RemoveKey(i); 
             
-            
             this.frames = frames;
         }
         

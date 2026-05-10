@@ -14,6 +14,16 @@ namespace Battle
             }
         }
         private static PlayerInputData playerInputData;
+
+        public static BattleInputReader InputReader
+        {
+            get
+            {
+                battleInputReader ??= InputManager.Instance.InputReader as BattleInputReader;
+                return battleInputReader;
+            }
+        }
+        private static BattleInputReader battleInputReader;
         
         
         public static Color TierToColor(ActionCommandTier tier)

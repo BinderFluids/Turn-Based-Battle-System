@@ -17,17 +17,21 @@ namespace Battle.Window
         
         private UnityAction<bool> _playerOneHandler;
         private UnityAction<bool> _playerTwoHandler;
+        
+        public ActionCommandWindowBuilder ActionCommandWindowBuilder { get; private set; }
 
         private void Start()
         {
-            battleInputReader = InputManager.Instance.InputReader as BattleInputReader;
+            battleInputReader ??= BattleUtils.InputReader;
+            ActionCommandWindowBuilder = new ActionCommandWindowBuilder();
+            
             SubscribeToEvents();
         }
 
         /// <summary>
         /// Subscribe to input events so we can pass them onto who ever subscribes to the windowId.
         /// </summary>
-        public void SubscribeToEvents()
+        void SubscribeToEvents()
         {
             _playerOneHandler = (pressed) => HandleInputEvent(PlayerId.PlayerOne, pressed);
             _playerTwoHandler = (pressed) => HandleInputEvent(PlayerId.PlayerTwo, pressed);
@@ -48,26 +52,23 @@ namespace Battle.Window
         {
             currentWindow = actionCommandWindow;
             currentWindow.Open();
-            EventBus<ActionCommandWindowOpened>.Raise(
-                new ActionCommandWindowOpened(actionCommandWindow.Id, actionCommandWindow.Duration)
-            );
 
+            //Step through each frame of the window's duration and exit early on player input
             for (int i = 0; i < actionCommandWindow.Duration; i++)
             {
-                //TODO: I don't love this. 
+                //Tanner - TODO: I don't love this. 
                 if (actionCommandWindow.TryGetHoldData(PlayerId.PlayerOne, out var playerOneData) &&
                     playerOneData.HasPressed)
                     break;
                 if (actionCommandWindow.TryGetHoldData(PlayerId.PlayerTwo, out var playerTwoData) &&
                     playerTwoData.HasPressed)
                     break;
-                
-                await UniTask.DelayFrame(1);
+
+                await UniTask.DelayFrame(1); 
             }
             
-            // TODO: BAD CODE, MAKE BETTER
-            currentWindow.Close();
-            currentWindow = null;
+            //Derek - TODO: BAD CODE, MAKE BETTER
+            Reset();
             return actionCommandWindow.DetermineOutcome();
         }
         
@@ -76,12 +77,13 @@ namespace Battle.Window
         /// </summary>
         public void Reset()
         {
-            this.currentWindow = null;
+            currentWindow?.Close();
+            currentWindow = null;
         }
 
         private void OnDestroy()
         {
-            this.Reset();
+            Reset();
             battleInputReader.PlayerOne.Action -= _playerOneHandler;
             battleInputReader.PlayerTwo.Action -= _playerTwoHandler;
         }

@@ -15,7 +15,7 @@ namespace Battle.Actions
     {
         [SerializeField] private ActionCommandTierGradient firstJumpGradient;
         [SerializeField] private ActionCommandTierGradient secondJumpGradient; 
- 
+        
         [SerializeField] private float approachDuration;
         [SerializeField] private float approachEndDistance;
         [SerializeField] private float jumpDuration;
@@ -69,14 +69,11 @@ namespace Battle.Actions
         {
             PlayerId playerId = PlayerId.PlayerOne;
             if (RequestHub<RequestPlayerId>.TryRequest(actor, out var request))
-                playerId = request.PlayerId; 
+                playerId = request.PlayerId;
             
-            var window = new ActionCommandWindow(
-                id: "Jump",
-                expectedPlayerInputs: new List<PlayerId> { playerId },
-                outcomeStrategy: new ActionCommandOutcomeStrategy(),
-                gradient: gradient
-            );
+            var window = BattleWindowService.Instance.ActionCommandWindowBuilder
+                .WithPlayerInput(playerId)
+                .Build("Jump", gradient);
 
             ActionCommandOutcome outcome = await BattleWindowService.Instance.RunActionCommandAsync(window);
             Debug.Log($"Outcome: {outcome.Tier}");
@@ -143,7 +140,10 @@ namespace Battle.Actions
         
         async UniTask AwaitLand(Transform actorTransform, Transform targetTransform)
         {
+            //TODO: animate landing
             
+            //temp
+            await UniTask.DelayFrame(10); 
         }
     }
 }

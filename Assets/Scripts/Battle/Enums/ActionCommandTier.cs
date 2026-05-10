@@ -6,6 +6,7 @@ namespace Battle.Enums
         GOOD,
         GREAT,
         EXCELLENT,
-        MISS
+        MISS,
+        CANCELLED
     }
 }

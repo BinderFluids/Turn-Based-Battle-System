@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Core.Enums;
 using UnityEngine;
+using EventBus;
+using Battle.Events.Windows;
 
 namespace Battle.Window
 {
@@ -10,26 +12,31 @@ namespace Battle.Window
     public abstract class Window
     {
         public string Id { get; protected set; }
+        public int StartFrame { get; private set; }
         
-        public List<PlayerId> ExpectedInputs { get; }
+        
+        HashSet<PlayerId> expectedInputs = new HashSet<PlayerId>();
+        public IReadOnlyCollection<PlayerId> ExpectedInputs => expectedInputs; 
 
-        protected Window(string id, List<PlayerId> expectedInputs)
+        protected Window(string id, IEnumerable<PlayerId> expectedInputs)
         {
             Id = id;
-            ExpectedInputs = expectedInputs;
+            foreach (var playerId in expectedInputs)
+                this.expectedInputs.Add(playerId);
         }
 
-        public int StartFrame { get; private set; }
         public void Open()
         {
             Debug.Log($"Opening {Id}");
             StartFrame = Time.frameCount;
         }
+        protected virtual void OnOpen() {}
 
         public void Close()
         {
             
         }
+        protected virtual void OnClose() {}
         
         public int Elapsed => Time.frameCount - StartFrame;
         public abstract void HandleInput(PlayerId player, bool isPressed);

@@ -5,7 +5,6 @@ using UnityEngine;
 namespace RequestHub
 {
     public interface IRequest  { }
-    public interface IDefaultRequest<T> : IRequest where T : IRequest { }
 
     public interface IRequestProvider { }
 
