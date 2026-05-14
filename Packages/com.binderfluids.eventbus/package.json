@@ -1,0 +1,10 @@
+{
+  "name": "com.binderfluids.eventbus",
+  "version": "1.0.0",
+  "displayName": "Event Bus",
+  "author": {
+    "name": "Tanner Martin"
+  },
+  "description": "Inspired by Git-Amend's Unity Event Bus implementation",
+  "_fingerprint": "66f87880e95662bce56542c77696eb10f9f5cabb"
+}
