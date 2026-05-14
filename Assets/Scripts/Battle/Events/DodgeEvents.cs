@@ -3,13 +3,24 @@ using EventBus;
 
 namespace Battle.Events
 {
-    public struct StartDodge<TDodge> : IEvent where TDodge : IDodgeBehaviour
+    public struct StartDodgePhase : IEvent  
     {
-        public TDodge DodgeBehaviour;
+        public IDodgeFactory DodgeFactory;
         
-        public StartDodge(TDodge dodgeBehaviour)
+        public StartDodgePhase(IDodgeFactory dodgeFactory)
         {
-            DodgeBehaviour = dodgeBehaviour;
+            DodgeFactory = dodgeFactory;
         }
+    }
+    
+    public struct DodgePhaseEnded : IEvent
+    {
+        public IDodgeFactory DodgeFactory;
+        
+        public DodgePhaseEnded(IDodgeFactory dodgeFactory)
+        {
+            DodgeFactory = dodgeFactory;
+        }
+
     }
 }

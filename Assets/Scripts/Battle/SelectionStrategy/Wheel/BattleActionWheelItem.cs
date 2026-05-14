@@ -8,9 +8,13 @@ namespace Battle.SelectionStrategy
 {
     public class BattleActionWheelItem : MonoBehaviour, ISelectable
     {
+        
+        
         [SerializeField] private InterfaceReference<IBattleAction> actionRef;
         public IBattleAction Action => actionRef.Value;
-    
+
+        public Vector3 SelectionAnchor => transform.position; 
+        
         public event Action OnSelected;
         public void Select() => OnSelected?.Invoke();
 

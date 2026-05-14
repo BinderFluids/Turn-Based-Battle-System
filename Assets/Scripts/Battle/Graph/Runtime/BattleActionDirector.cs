@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Battle.Enums;
 using Battle.Interfaces;
+using Battle; 
 using UnityEngine;
 
 namespace Battle.Graph.Runtime
@@ -35,7 +36,7 @@ namespace Battle.Graph.Runtime
             onActionEnded?.Invoke();
         }
 
-        public List<global::Battle.BattleEntity> GetValidTargets(global::Battle.BattleEntity actor, IEnumerable<global::Battle.BattleEntity> ctx)
+        public List<BattleEntity> GetValidTargets(BattleEntity actor, IEnumerable<BattleEntity> ctx)
         {
             return ctx.ToList(); 
         }

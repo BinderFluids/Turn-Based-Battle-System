@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Battle.Enums;
 using Battle.Events;
 using Battle.Interfaces;
@@ -17,6 +18,8 @@ namespace Battle.Dodging
         public bool IsDodging { get; private set; }
         public IDodgeBehaviour DodgeBehaviour { get; private set; }
 
+        private Dictionary<Type, IDodgeBehaviour> dodgeBehaviourCache = new(); 
+
 
         protected override void Start()
         {
@@ -27,13 +30,20 @@ namespace Battle.Dodging
         private void Update()
         {
             if (!IsDodging) return;
-            DodgeBehaviour.Update();
+            DodgeBehaviour.UpdateDodge(Entity);
         }
 
-        public void StartDodge(IDodgeBehaviour dodgeBehaviour)
+        public void StartDodge(IDodgeFactory factory)
         {
             IsDodging = true;
-            DodgeBehaviour = dodgeBehaviour;
+            
+            if (dodgeBehaviourCache.TryGetValue(factory.GetType(), out var dodgeBehaviour))
+                DodgeBehaviour = dodgeBehaviour;
+            else
+            {
+                DodgeBehaviour = factory.GetDodgeBehaviour(); 
+                dodgeBehaviourCache.Add(factory.GetType(), DodgeBehaviour);
+            }
         }
         
         public void EndDodge()
@@ -50,21 +60,22 @@ namespace Battle.Dodging
 
     public class JumpDodge : IDodgeBehaviour
     {
-        private DodgeAgentComponent agent;
+        private UniTask jumpTask; 
         
-        public void Update()
+        public void UpdateDodge(BattleEntity entity)
         {
-            if (!RequestHub<RequestPlayerId>.TryRequest(agent.Entity, out var request)) return;
+            if (!RequestHub<RequestPlayerId>.TryRequest(entity, out var request)) return;
 
             if (BattleUtils.PlayerInputData.GetInputActionByPlayerID(request.PlayerId).WasPressedThisFrame())
-                Jump(agent.Entity);
+            {
+                if (jumpTask.Status.IsCompleted())
+                    jumpTask = Jump(entity); 
+            }
         }
 
-        async UniTaskVoid Jump(BattleEntity entity)
+        async UniTask Jump(BattleEntity entity)
         {
-            Vector3 startPos = entity.Transform.position;
-            
-            //await entity.MoveTo()
+            await entity.Jump(entity.Transform.position, 2f, 1, EntityMotionType.Duration); 
         }
     }
 }

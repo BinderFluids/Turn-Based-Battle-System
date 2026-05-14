@@ -1,6 +1,6 @@
 namespace Battle.Enums
 {
-    public enum FormationSlots
+    public enum FormationOffsets
     {
         Top,
         Bottom,

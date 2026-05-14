@@ -2,6 +2,11 @@ namespace Battle.Interfaces
 {
     public interface IDodgeBehaviour
     {
-        void Update(); 
+        void UpdateDodge(BattleEntity entity); 
+    }
+
+    public interface IDodgeFactory
+    {
+        public IDodgeBehaviour GetDodgeBehaviour();
     }
 }

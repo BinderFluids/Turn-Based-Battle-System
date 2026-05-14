@@ -71,6 +71,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6032774056151810502, guid: 8f8ac28fbeb8579f8b70dd8fa02b4bfc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6528812625704938854}
+    - targetCorrespondingSourceObject: {fileID: 6032774056151810502, guid: 8f8ac28fbeb8579f8b70dd8fa02b4bfc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6836861482512596781}
   m_SourcePrefab: {fileID: 100100000, guid: 8f8ac28fbeb8579f8b70dd8fa02b4bfc, type: 3}
 --- !u!1 &4768215149523373145 stripped
 GameObject:
@@ -92,6 +95,19 @@ MonoBehaviour:
   entity: {fileID: 7627693869982847784}
   playerID: 0
   input: {fileID: 11400000, guid: d565327a946beba4abafce2361776176, type: 2}
+--- !u!114 &6836861482512596781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4768215149523373145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff9718b13f74f95b53b4ea93f6d6698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Battle::Battle.Dodging.DodgeAgentComponent
+  entity: {fileID: 7627693869982847784}
 --- !u!114 &7627693869982847784 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8669325144816459447, guid: 8f8ac28fbeb8579f8b70dd8fa02b4bfc, type: 3}

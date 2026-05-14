@@ -1,6 +1,6 @@
 namespace Battle.Enums
 {
-    public enum EntityMoveType
+    public enum EntityMotionType
     {
         Duration,
         Speed

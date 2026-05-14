@@ -1,4 +1,6 @@
-using PrimeTween;
+
+using LitMotion;
+using LitMotion.Extensions;
 using SelectableSystem;
 using UnityEngine;
 
@@ -13,7 +15,6 @@ namespace Highlighters
         [SerializeField] private float time;
         [SerializeField] private Vector3 offset;
         [SerializeField] private Ease ease;
-        private Tween tween;
 
         private void Start()
         {
@@ -24,11 +25,14 @@ namespace Highlighters
         {
             currentSelection = newSelection;
             if (newSelection is Component component)
+            {
                 target = component.transform;
-            else
-                target = null;
-
-            tween = Tween.Position(transform, target.position + offset, time, ease); 
+                Vector3 startPosition = transform.position;
+            
+                LMotion.Create(startPosition, target.position + offset, time)
+                    .BindToPosition(transform)
+                    .AddTo(transform);
+            }
         }
 
         protected override void OnActivate()

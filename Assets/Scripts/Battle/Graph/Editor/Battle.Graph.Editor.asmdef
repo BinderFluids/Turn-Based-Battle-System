@@ -3,7 +3,8 @@
     "rootNamespace": "Battle.Graph.Editor",
     "references": [
         "GUID:d28ae80767bb22a3eb8bb5dcf8101ba2",
-        "GUID:69fd95a57929a201fb32f8fef9b1aad1"
+        "GUID:69fd95a57929a201fb32f8fef9b1aad1",
+        "GUID:40adeae3f8805877eb697259a72ba748"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
