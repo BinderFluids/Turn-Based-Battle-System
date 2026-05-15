@@ -28,6 +28,8 @@ namespace Battle.Actions
         private IBattleAction chosenAction;
 
         private EventBinding<ActorChooseAction> chooseActionBinding; 
+        private EventBinding<CancelChooseAction> cancelChooseActionBinding;
+        private EventBinding<CancelSelectEntity> cancelSelectEntityBinding;
         
         public event Action onActionStarted = delegate {}; 
         public event Action onActionEnded = delegate { };
@@ -39,7 +41,13 @@ namespace Battle.Actions
             base.Awake();
 
             chooseActionBinding = new EventBinding<ActorChooseAction>(HandleChooseActionEvent);
-            EventBus<ActorChooseAction>.Register(chooseActionBinding); 
+            EventBus<ActorChooseAction>.Register(chooseActionBinding);
+
+            cancelChooseActionBinding = new EventBinding<CancelChooseAction>(e => CancelChooseAction(e.Entity));
+            EventBus<CancelChooseAction>.Register(cancelChooseActionBinding);
+            
+            cancelSelectEntityBinding = new EventBinding<CancelSelectEntity>(e => CancelSelectEntity(e.Entity));
+            EventBus<CancelSelectEntity>.Register(cancelSelectEntityBinding);
         }
         
         void HandleChooseActionEvent(ActorChooseAction e)
@@ -52,7 +60,14 @@ namespace Battle.Actions
             actionSelectionStrategy.onActionSelected += OnActionSelected;
             actionSelectionStrategy.GetAction(Actions);
         }
-    
+
+        void CancelChooseAction(BattleEntity entity)
+        {
+            if (entity == Entity)
+                CancelChooseAction();
+        }
+        public void CancelChooseAction() => actionSelectionStrategy.onActionSelected -= OnActionSelected;
+
         void OnActionSelected(IBattleAction action)
         {
             chosenAction = action;
@@ -61,6 +76,13 @@ namespace Battle.Actions
             targetSelectionStrategy.onEntitySelected += OnTargetSelected;
             targetSelectionStrategy.GetEntity(Entity, action, BattleEntity.AllEntities); 
         }
+
+        void CancelSelectEntity(BattleEntity entity)
+        {
+            if (entity == Entity)
+                CancelSelectEntity();
+        }
+        public void CancelSelectEntity() => targetSelectionStrategy.onEntitySelected -= OnTargetSelected;
     
         void OnTargetSelected(BattleEntity target)
         {
@@ -95,7 +117,14 @@ namespace Battle.Actions
 
         private void OnDestroy()
         {
+            DeregisterEventBindings();
+        }
+        
+        void DeregisterEventBindings()
+        {
             EventBus<ActorChooseAction>.Deregister(chooseActionBinding);
+            EventBus<CancelChooseAction>.Deregister(cancelChooseActionBinding);
+            EventBus<CancelSelectEntity>.Deregister(cancelSelectEntityBinding);
         }
     }
 }

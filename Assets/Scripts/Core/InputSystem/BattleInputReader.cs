@@ -7,6 +7,7 @@ public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerAc
 {
     public BoolInputData PlayerOne;
     public BoolInputData PlayerTwo;
+    public BoolInputData Cancel;
     private PlayerId currentPlayerInput;
 
     public BoolInputData Confirm => PlayerOne;
@@ -22,7 +23,8 @@ public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerAc
         InputActions.Player.SetCallbacks(this);
         
         PlayerOne = new BoolInputData(InputActions.Player.PlayerOne);
-        PlayerTwo = new BoolInputData(InputActions.Player.PlayerTwo); 
+        PlayerTwo = new BoolInputData(InputActions.Player.PlayerTwo);
+        Cancel = new BoolInputData(InputActions.Player.Cancel);
         Move = new Vector2InputData(InputActions.Player.Move);
         
         SetCurrentPlayer(PlayerId.None);
@@ -48,5 +50,6 @@ public class BattleInputReader : InputReader<BattleInput>, BattleInput.IPlayerAc
 
     public void OnPlayerTwo(InputAction.CallbackContext context) => PlayerTwo.Trigger(context);
     public void OnMove(InputAction.CallbackContext context) => Move.Trigger(context);
+    public void OnCancel(InputAction.CallbackContext context) => Cancel.Trigger(context);
     
 }

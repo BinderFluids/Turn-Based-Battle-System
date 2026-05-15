@@ -9,6 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5129ad62c2cb4bdca6bad7c415955a4b, type: 3}
-  m_Name: Poison Definition
-  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectSystem.PoisonStatusEffect
+  m_Script: {fileID: 11500000, guid: 4d7bd4fd1ddb4db7825256f6ac0ce293, type: 3}
+  m_Name: Partner
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Stats.StatBlockTemplate
+  attack: 1
+  defense: 0
+  speed: 8
+  health: 5

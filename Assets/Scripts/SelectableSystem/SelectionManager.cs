@@ -1,8 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using EventBus;
-using SelectableSystem.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -13,81 +9,73 @@ namespace SelectableSystem
     public class SelectionManager : Singleton<SelectionManager>
     {
         [SerializeField] private int selectionCount;
+
+        private SelectionMenuBuilder menuBuilder;
+        [field: SerializeField] public SelectionMenu ActiveMenu { get; private set; }
+        private Stack<SelectionMenu> previousMenuStack = new Stack<SelectionMenu>();
     
-        private List<ISelectable> activeItems;
+        
         public Observer<ISelectable> CurrentItem = new Observer<ISelectable>(null); 
-        [SerializeField] private bool active = false;
-
-        [FormerlySerializedAs("defaultHighligher")] 
-        [SerializeField] private SelectionHighlighter defaultHighlighter;
-        [SerializeField] private SelectionHighlighter currentHighlighter;
-
+        
+        [Header("Default Settings")]
         [SerializeField] private InputActionReference defaultConfirm;
         [SerializeField] private InputActionReference defaultNavigate;
-        private InputAction confirmAction;
-        private InputAction navigateAction;
+        [SerializeField] private InputActionReference defaultBacktrack;
+        [FormerlySerializedAs("defaultHighligher")] 
+        [SerializeField] private SelectionHighlighter defaultHighlighter;
+
+        [SerializeField] private bool active; 
         
 
-        int GetTrueIndex(int index, List<ISelectable> items)
+        private void Start()
         {
-            if (items.Count == 0) return 0; 
-            int newIndex = (index % items.Count + items.Count) % items.Count;
-            return newIndex;
+            menuBuilder = new SelectionMenuBuilder(
+                defaultConfirm, 
+                defaultNavigate, 
+                defaultBacktrack,
+                defaultHighlighter); 
         }
 
+        public SelectionMenuBuilder CreateMenu() => menuBuilder;
+        
         /*
          TODO: Create some sort of "SelectionSession" class that can be used to track the selection state, and can be built
             using the builder pattern. e.g. StartSelection().WithNavigateInputAction().WithConfirmAction()... you know the one.
         */
-        public void StartSelection(
-            List<ISelectable> items, 
-            int index = 0, 
-            SelectionHighlighter highlighter = null
-        )
+        public void StartSelection(SelectionMenu menu)
         {
-            print($"Try Start Selection with {items.Count} items");
-            if (active)
-            {
-                Debug.LogWarning("Selection already started");
-                return;
-            }
+            Debug.Log("Selection Started");
             
-            currentHighlighter = highlighter ?? defaultHighlighter; 
-        
-            active = true; 
-            activeItems = items; 
-            selectionCount = index;
-        
-            currentHighlighter.Activate();
-            CurrentItem.Value = activeItems[selectionCount];
-            
-            SetConfirmAction(defaultConfirm);
-            SetNavigateAction(defaultNavigate);
-        }
-        public void SetConfirmAction(InputAction confirmAction)
-        {
-            this.confirmAction = confirmAction ?? defaultConfirm.ToInputAction(); 
-            this.confirmAction.Enable();
-        }
-        public void SetNavigateAction(InputAction navigateAction)
-        {
-            this.navigateAction = navigateAction ?? defaultNavigate.ToInputAction(); 
-            this.navigateAction.Enable();
-        }
-        
-        public void EndSelection()
-        {
-            if (!active)
+            if (active && !ignorePush)
             {
-                Debug.LogWarning("No selection session to end");
-                return;
+                ActiveMenu.Deactivate();
+                previousMenuStack.Push(ActiveMenu);
             }
 
-            currentHighlighter.Deactivate();
-            currentHighlighter = null; 
+            ignorePush = false; 
+            active = true; 
+            
+            ActiveMenu = menu;
+            ActiveMenu.Activate();
+            
+            CurrentItem.Value = ActiveMenu.CurrentItem; 
+        }
+
+        private bool ignorePush; 
+        void Backtrack()
+        {
+            if (previousMenuStack.Count == 0) return;
+            
+            ignorePush = true; 
+            StartSelection(previousMenuStack.Pop());
+        }
         
-            active = false; 
-            activeItems.Clear();
+        internal void EndSelection()
+        {
+            Debug.Log("Selection Ended");
+            previousMenuStack.Clear();
+            ActiveMenu = null; 
+            active = false;
         }
 
         private void Update()
@@ -95,50 +83,49 @@ namespace SelectableSystem
             if (!active) return;
 
             NavigateSelectables();
+            HandleBacktrackInput();
             ConfirmSelectable();
-           
         }
 
         void ConfirmSelectable()
         {
-            if (confirmAction == null) return;
-            if (confirmAction.WasPressedThisFrame())
+            if (ActiveMenu.ConfirmAction == null) return;
+            if (ActiveMenu.ConfirmAction.WasPressedThisFrame())
             {
-                CurrentItem.Value.Select();
-                EndSelection();
-            
-                EventBus<SelectableChosenEvent>.Raise( //TODO THIS IS KILLING ME MAN HELP ME
-                    new SelectableChosenEvent
-                    {
-                        SelectedItem = CurrentItem.Value
-                    }
-                ); 
+                SelectionMenu menu = ActiveMenu;
+                if (menu.IsLastMenu) EndSelection();
+                menu.Select();
+            }
+        }
+
+        void HandleBacktrackInput()
+        {
+            if (ActiveMenu.BacktrackAction == null) return;
+            if (ActiveMenu.BacktrackAction.WasPressedThisFrame())
+            {
+                ActiveMenu.Backtrack();
+                Backtrack();
             }
         }
         
         void NavigateSelectables()
         {
-            if (navigateAction == null) return;
-            if (!navigateAction.WasPressedThisFrame()) return;
+            if (ActiveMenu.NavigateAction == null) return;
+            if (!ActiveMenu.NavigateAction.WasPressedThisFrame()) return;
 
-            Vector2 value = navigateAction.ReadValue<Vector2>();
+            
+            Vector2 value = ActiveMenu.NavigateAction.ReadValue<Vector2>();
         
             if (value.x < 0)
-                ShiftSelection(-1);
+                ShiftSelection(ActiveMenu.InvertNavigation ? 1 : -1);
             if (value.x > 0)
-                ShiftSelection(1);
+                ShiftSelection(ActiveMenu.InvertNavigation ? -1 : 1);
         }
 
-        private UniTask currentHighlighterTask; 
-        void ShiftSelection(int shift)
+        void ShiftSelection(int amt)
         {
-            //if (currentHighlighterTask.Status == UniTaskStatus.Pending) return;
-        
-            selectionCount += shift; 
-            var index = GetTrueIndex(selectionCount, activeItems);
-            CurrentItem.Value = activeItems[index];
-
-            //currentHighlighterTask = currentHighlighter.GetHighlightTask();
+            ActiveMenu.ShiftSelection(amt);
+            CurrentItem.Value = ActiveMenu.CurrentItem;
         }
     }
 }

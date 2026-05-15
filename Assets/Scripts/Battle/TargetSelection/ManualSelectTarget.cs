@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Battle.Events;
 using Battle.Interfaces;
 using Battle.Requests;
 using Core.Enums;
 using EventBus;
 using UnityEngine;
 using SelectableSystem;
-using SelectableSystem.Events;
 using RequestHub;
 
 namespace Battle.TargetSelection
@@ -15,39 +15,35 @@ namespace Battle.TargetSelection
     public class ManualSelectTarget : ScriptableBattleEntitySelectionStrategy
     {
         public override event Action<BattleEntity> onEntitySelected;
-        private EventBinding<SelectableChosenEvent> chosenEventBinding;
-
     
         public override void GetEntity(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx)
         {
-            chosenEventBinding ??= new EventBinding<SelectableChosenEvent>(OnSelectableChosenEventRaised);
-            EventBus<SelectableChosenEvent>.Register(chosenEventBinding);
-        
             //Create list of selectable entities
             List<ISelectable> entitiesAsSelectables = new();
             foreach (BattleEntity entity in action.GetValidTargets(actor, ctx))
-            {
                 if (entity.TryGetComponent(out SelectableComponent selectable))
                     entitiesAsSelectables.Add(selectable);
-            }
             
-            SelectionManager.Instance.StartSelection(entitiesAsSelectables);
-
             PlayerId actorPlayerId = PlayerId.PlayerOne; 
             if (!RequestHub<RequestPlayerId>.TryRequest(actor, out var request))
                 Debug.Log("Actor does not have a PlayerId. Defaulting to PlayerOne input");
             else
                 actorPlayerId = request.PlayerId;
             
-            SelectionManager.Instance.SetConfirmAction(BattleUtils.PlayerInputData.GetInputActionByPlayerID(actorPlayerId));
+            var menu = SelectionManager.Instance.CreateMenu()
+                .WithConfirmAction(BattleUtils.PlayerInputData.GetInputActionByPlayerID(actorPlayerId))
+                .WithIsLastMenu()
+                .Build(entitiesAsSelectables); 
+            menu.onItemSelected += OnMenuItemSelected;
+            menu.onMenuBacktracked += () => EventBus<CancelSelectEntity>.Raise(new CancelSelectEntity() { Entity = actor });
+            
+            SelectionManager.Instance.StartSelection(menu);
         }
     
-        void OnSelectableChosenEventRaised(SelectableChosenEvent e)
+        void OnMenuItemSelected(ISelectable item)
         {
-            SelectableComponent selectedEntity = e.SelectedItem as SelectableComponent;
-            onEntitySelected?.Invoke(selectedEntity.Entity);
-        
-            EventBus<SelectableChosenEvent>.Deregister(chosenEventBinding);
+            if (item is SelectableComponent selectable)
+                onEntitySelected?.Invoke(selectable.Entity);
         }
     }
 }
