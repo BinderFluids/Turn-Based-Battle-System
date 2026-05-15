@@ -7,7 +7,7 @@ namespace Battle.Graph.Runtime.Nodes
     public class WaitRuntimeNode : RuntimeNode
     {
         public float Duration;
-        public override async UniTask Execute(BattleActionDirector ctx, global::Battle.BattleEntity actor, global::Battle.BattleEntity target)
+        public override async UniTask Execute(BattleActionDirector ctx, BattleEntity actor, BattleEntity target)
         {
             await UniTask.WaitForSeconds(Duration);
         }

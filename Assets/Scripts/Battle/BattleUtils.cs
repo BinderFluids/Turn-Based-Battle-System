@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Battle
 {
-    public static class BattleUtils
+    public static partial class BattleUtils
     {
         public static PlayerInputData PlayerInputData
         {

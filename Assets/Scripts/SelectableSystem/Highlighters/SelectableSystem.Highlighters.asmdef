@@ -2,8 +2,9 @@
     "name": "SelectableSystem.Highlighters",
     "rootNamespace": "",
     "references": [
-        "GUID:80ecb87cae9c44d19824e70ea7229748",
-        "GUID:5fefbf96c31bf55e88585fa4112bab12"
+        "GUID:5fefbf96c31bf55e88585fa4112bab12",
+        "GUID:3b570a5146f9d4f0fa107ed4559471a3",
+        "GUID:3aa1866a824b5472da50fe142777d95f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

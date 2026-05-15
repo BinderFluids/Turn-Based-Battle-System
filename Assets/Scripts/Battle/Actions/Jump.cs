@@ -4,7 +4,6 @@ using Battle.Requests;
 using Battle.Window;
 using Core.Enums;
 using Cysharp.Threading.Tasks;
-using PrimeTween;
 using UnityEngine;
 using RequestHub;
 
@@ -24,9 +23,9 @@ namespace Battle.Actions
 
         [Header("First Jump Settings"), SerializeField, Range(0f, 1f), Tooltip("Left side is rise time, right side is fall time.")] 
         private float jumpSegmentDistribution; 
-        [SerializeField] private Ease jumpRiseEase;
-        [SerializeField] private Ease jumpFallEase;
-        [SerializeField] private Ease horizontalMovementEase;
+        // [SerializeField] private Ease jumpRiseEase;
+        // [SerializeField] private Ease jumpFallEase;
+        // [SerializeField] private Ease horizontalMovementEase;
 
         [Header("Second Jump Settings")] [SerializeField]
         private float secondJumpDuration;
@@ -36,30 +35,34 @@ namespace Battle.Actions
         {
             Transform transform = actor.transform;
             Vector3 startPos = transform.position;
-            float targetHeight = Mathf.Max(transform.position.y + jumpHeight, target.transform.position.y + miniumAboveEnemy);
 
             Vector3 topPosition = target.transform.position;  
             // if (target.TryGetComponent(out FormationSlotComponent formationSlotComponent))
             //     topPosition = formationSlotComponent.topPosition;
-
-            await AwaitApproach(transform, topPosition);
             
-            await AwaitJump(transform, target.transform);
+            Vector3 moveDirection = (target.transform.position - transform.position).normalized;
+            moveDirection = Vector3.ProjectOnPlane(moveDirection, Vector3.up);
+            moveDirection *= approachEndDistance;
+            Vector3 approachPosition = target.transform.position - moveDirection;
+            
+            await actor.MoveTo(approachPosition, approachDuration, EntityMotionType.Duration);
+
+            await actor.Jump(topPosition, jumpHeight, jumpDuration, EntityMotionType.Duration); 
             ActionCommandOutcome firstJumpOutcome = await AwaitActionCommand(actor, firstJumpGradient);
 
             //end early if you didn't get a good rating
             if (firstJumpOutcome.Tier != ActionCommandTier.GOOD)
             {
-                await AwaitLand(transform, target.transform);
+                await actor.Jump(approachPosition, jumpHeight, jumpDuration, EntityMotionType.Duration); 
                 transform.position = startPos;
                 EndAction(actor); 
                 return; 
             }
             
-            await AwaitJump(transform, target.transform, false);
+            await actor.Jump(topPosition, jumpHeight, jumpDuration, EntityMotionType.Duration); 
             ActionCommandOutcome secondJumpOutcome = await AwaitActionCommand(actor, secondJumpGradient);
             
-            await AwaitLand(transform, target.transform);
+            await actor.Jump(approachPosition, jumpHeight, jumpDuration, EntityMotionType.Duration); 
             transform.position = startPos;
             
             EndAction(actor); 
@@ -79,71 +82,6 @@ namespace Battle.Actions
             Debug.Log($"Outcome: {outcome.Tier}");
             
             return outcome; 
-        }
-
-        async UniTask AwaitApproach(Transform actorTransform, Vector3 targetPosition)
-        {
-            Vector3 directionToTarget = targetPosition - actorTransform.position;
-            directionToTarget = Vector3.ProjectOnPlane(directionToTarget, Vector3.up); 
-            directionToTarget.Normalize();
-            directionToTarget *= approachEndDistance;
-            
-            Tween approachTween = 
-                Tween.Position(
-                    actorTransform, 
-                    targetPosition - directionToTarget, 
-                    approachDuration, 
-                    horizontalMovementEase
-                    );
-
-            await approachTween; 
-        }
-        async UniTask AwaitJump(Transform actorTransform, Transform targetTransform, bool moveHorizontally = true)
-        {
-            
-            Vector3 topPosition = targetTransform.transform.position; 
-            float targetHeight = Mathf.Max(actorTransform.position.y + jumpHeight, targetTransform.transform.position.y + miniumAboveEnemy);
-            
-            Sequence verticalMovement = Sequence.Create()
-                //Rise
-                .Chain(
-                    Tween.PositionY(
-                        actorTransform,
-                        targetHeight,
-                        jumpDuration * jumpSegmentDistribution,
-                        jumpRiseEase
-                    )
-                )
-                //Fall
-                .Chain(
-                    Tween.PositionY(
-                        actorTransform,
-                        topPosition.y,
-                        jumpDuration * (1f - jumpSegmentDistribution),
-                        jumpFallEase
-                    )
-                );
-            //Horizontal movement
-            
-            if (moveHorizontally)
-            {
-                Tween.PositionX(
-                    actorTransform,
-                    targetTransform.position.x,
-                    jumpDuration,
-                    horizontalMovementEase
-                );
-            }
-
-            await verticalMovement; 
-        }
-        
-        async UniTask AwaitLand(Transform actorTransform, Transform targetTransform)
-        {
-            //TODO: animate landing
-            
-            //temp
-            await UniTask.DelayFrame(10); 
         }
     }
 }

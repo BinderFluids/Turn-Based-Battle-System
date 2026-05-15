@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.annulusgames.lit-motion": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion",
     "com.binderfluids.eventbus": "https://github.com/BinderFluids/EventBus.git",
     "com.binderfluids.projectsetup": "https://github.com/BinderFluids/Project-Setup.git",
     "com.binderfluids.registry": "git+https://github.com/BinderFluids/Registry.git",
@@ -9,7 +10,6 @@
     "com.gitamend.improvedtimers": "git+https://github.com/adammyhre/Unity-Improved-Timers.git",
     "com.gitamend.unityutils": "git+https://github.com/adammyhre/Unity-Utils.git",
     "com.kylewbanks.scenerefattribute": "git+https://github.com/KyleBanks/scene-ref-attribute.git",
-    "com.kyrylokuzyk.primetween": "file:../Assets/Plugins/PrimeTween/internal/com.kyrylokuzyk.primetween.tgz",
     "com.orkunmanap.runtime-transform-handles": "https://github.com/manaporkun/UnityRuntimeTransformHandles.git#upm",
     "com.seaeees.simple-folder-icon": "https://github.com/SeaeeesSan/SimpleFolderIcon.git?path=Packages/com.seaeees.simple-folder-icon",
     "com.unity.ai.navigation": "2.0.11",

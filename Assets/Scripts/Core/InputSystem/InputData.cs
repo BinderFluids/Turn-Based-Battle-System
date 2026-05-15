@@ -21,7 +21,7 @@ public abstract class InputData<T>
     {
         InputAction = inputAction;
     }
-    public InputAction InputAction;
+    public InputAction InputAction { get; private set; }
     
     public void DoDebug(bool doDebug) => this.doDebug = doDebug;
 

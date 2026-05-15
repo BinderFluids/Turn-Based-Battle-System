@@ -119,6 +119,12 @@ namespace Battle.Graph.Editor.Battle.AssetImport
                         Duration = waitTime
                     });
                     break;
+                case StartDodgePhaseNode dodgePhaseNode:
+                    returnedNodes.Add(new StartDodgePhaseRuntimeNode()
+                    {
+                        
+                    });
+                    break;
                 
                 default:
                     throw new ArgumentException($"Unsupported node type: {nodeModel.GetType()}");

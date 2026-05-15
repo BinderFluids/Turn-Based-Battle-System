@@ -1,18 +1,15 @@
 {
-    "name": "Battle",
-    "rootNamespace": "Battle",
+    "name": "Battle.Dodging",
+    "rootNamespace": "",
     "references": [
+        "GUID:69fd95a57929a201fb32f8fef9b1aad1",
         "GUID:9bf89cd96f4050c46b99ab3ed5018426",
-        "GUID:393645a67b92aa681a5a037c6891f838",
-        "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:3fdfe6dde2c72ef439fd6cb6d5dca5c8",
-        "GUID:40adeae3f8805877eb697259a72ba748",
         "GUID:d35b0935137438e728a4652ce39ed9ee",
         "GUID:71d4f8d8b1b47854586598aa2c4dfc2b",
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:80ecb87cae9c44d19824e70ea7229748",
-        "GUID:3b570a5146f9d4f0fa107ed4559471a3",
-        "GUID:3aa1866a824b5472da50fe142777d95f"
+        "GUID:40adeae3f8805877eb697259a72ba748",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:3fdfe6dde2c72ef439fd6cb6d5dca5c8",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

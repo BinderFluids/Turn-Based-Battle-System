@@ -10,13 +10,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Packages/com.binderfluids.eventbus/Runtime/EventBusDebugHooks.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/com.binderfluids.eventbus/Runtime/EventBusDebugHooks.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/com.binderfluids.eventbus/Runtime/EventBus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.binderfluids.eventbus/Runtime/EventBus.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,18 +23,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "BinderFluids"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;BinderFluids&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/BinderFluids/Turn-Based-Battle-System.git",
-    "accountId": "bd10ea8a-fcc9-4c76-b6b4-8a9295897fb8"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/BinderFluids/Turn-Based-Battle-System.git&quot;,
+    &quot;accountId&quot;: &quot;bd10ea8a-fcc9-4c76-b6b4-8a9295897fb8&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/194aba98bf624c55b2370d17056b80d49dc600/f6/ab4ad8e0/EditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/BattleUtils.cs" root0="FORCE_HIGHLIGHTING" />
@@ -57,6 +51,7 @@
     <commands />
     <urls />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6,
   &quot;fromUser&quot;: false
@@ -81,7 +76,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "feature/event-bus-debug-window",
+    "git-widget-placeholder": "feature/dodge-state-machine",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -155,11 +150,21 @@
       <workItem from="1778232486609" duration="23977000" />
       <workItem from="1778803564550" duration="814000" />
     </task>
+    <task id="LOCAL-00001" summary="fix verbose reference">
+      <option name="closed" value="true" />
+      <created>1778810550348</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1778810550349</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />
@@ -169,6 +174,8 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="fix verbose reference" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix verbose reference" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
