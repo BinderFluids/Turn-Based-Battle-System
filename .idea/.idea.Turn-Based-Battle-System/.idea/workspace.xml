@@ -11,38 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenu.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenuBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenuBuilder.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActionSelection.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActionSelection/SelectRandomBattleAction.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActionSelection/SelectRandomBattleAction.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActions.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActions/DamageTarget.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActions/DamageTarget.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActions/Jump.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActions/Jump.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActions/StartDodgePhaseAction.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/BattleActions/StartDodgePhaseAction.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/StatusEffectDefinitions/Poison Definition.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Battle/StatusEffectDefinitions/Poison Definition.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle Environment.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle Environment.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/ActorEvents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/ActorEvents.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/Wheel/BattleActionWheel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SelectionStrategy/Wheel/BattleActionWheel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ManualSelectTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ManualSelectTarget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/BattleInputReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/BattleInputReader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/InputActionAssets/BattleInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/InputActionAssets/BattleInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/InputActionAssets/BattleInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/InputSystem/InputActionAssets/BattleInput.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Events.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Events/SelectableChosenEvent.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/Events/SelectableChosenEvent.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Recovery.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Recovery/0.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Recovery/0.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenuBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenuBuilder.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +169,7 @@
       <workItem from="1778230659136" duration="1785000" />
       <workItem from="1778232486609" duration="23977000" />
       <workItem from="1778803564550" duration="814000" />
-      <workItem from="1778883124638" duration="567000" />
+      <workItem from="1778883124638" duration="788000" />
     </task>
     <task id="LOCAL-00001" summary="fix verbose reference">
       <option name="closed" value="true" />

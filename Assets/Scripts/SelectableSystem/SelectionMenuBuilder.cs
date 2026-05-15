@@ -23,9 +23,9 @@ namespace SelectableSystem
             return this; 
         }
         
-        public SelectionMenuBuilder WithInvertedNavigation()
+        public SelectionMenuBuilder WithInvertedNavigation(bool doInvert = true)
         {
-            invertNavigation = true;
+            invertNavigation = doInvert;
             return this; 
         }
 
@@ -48,12 +48,11 @@ namespace SelectableSystem
         }
 
         /// <summary>
-        /// When an item is selected, the selection session will end.
+        /// When an item is selected, the selection session will optionally end.
         /// </summary>
-        /// <returns></returns>
-        public SelectionMenuBuilder WithIsLastMenu()
+        public SelectionMenuBuilder WithIsLastMenu(bool setAsLastMenu = true)
         {
-            isLastMenu = true;
+            isLastMenu = setAsLastMenu;
             return this; 
         }
 

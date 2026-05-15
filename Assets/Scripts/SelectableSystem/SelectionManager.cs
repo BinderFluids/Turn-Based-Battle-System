@@ -44,8 +44,6 @@ namespace SelectableSystem
         */
         public void StartSelection(SelectionMenu menu)
         {
-            Debug.Log("Selection Started");
-            
             if (active && !ignorePush)
             {
                 ActiveMenu.Deactivate();
@@ -65,6 +63,7 @@ namespace SelectableSystem
         void Backtrack()
         {
             if (previousMenuStack.Count == 0) return;
+            ActiveMenu.Backtrack();
             
             ignorePush = true; 
             StartSelection(previousMenuStack.Pop());
@@ -72,7 +71,6 @@ namespace SelectableSystem
         
         internal void EndSelection()
         {
-            Debug.Log("Selection Ended");
             previousMenuStack.Clear();
             ActiveMenu = null; 
             active = false;
@@ -102,10 +100,7 @@ namespace SelectableSystem
         {
             if (ActiveMenu.BacktrackAction == null) return;
             if (ActiveMenu.BacktrackAction.WasPressedThisFrame())
-            {
-                ActiveMenu.Backtrack();
                 Backtrack();
-            }
         }
         
         void NavigateSelectables()
