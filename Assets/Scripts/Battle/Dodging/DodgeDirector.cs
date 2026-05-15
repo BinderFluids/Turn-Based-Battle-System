@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Battle.Events;
 using Battle.Interfaces;
 using EventBus;
-using UnityEditor;
 using UnityUtils;
 
 namespace Battle.Dodging
@@ -26,7 +24,7 @@ namespace Battle.Dodging
             startDodgePhaseBinding = new EventBinding<StartDodgePhase>(e => StartDodge(e.DodgeFactory));
             EventBus<StartDodgePhase>.Register(startDodgePhaseBinding);
             
-            actionEndBinding = new EventBinding<OnActionEnded>(e => EndDodge());
+            actionEndBinding = new EventBinding<OnActionEnded>(EndDodge);
             EventBus<OnActionEnded>.Register(actionEndBinding);
         }
         

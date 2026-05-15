@@ -17,7 +17,6 @@ namespace Battle.Actions
 {
     public class ActorComponent : BattleEntityComponent
     {
-        [SerializeField] private ActionCommandTierGradient gradient; 
         [SerializeField] private InterfaceReference<IBattleActionSelectionStrategy> selectActionStrategyRef; 
         private IBattleActionSelectionStrategy actionSelectionStrategy => selectActionStrategyRef.Value;
     
