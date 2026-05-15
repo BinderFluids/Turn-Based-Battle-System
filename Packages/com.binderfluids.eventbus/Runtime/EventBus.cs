@@ -10,6 +10,12 @@ public static class EventBus<T> where T : IEvent {
     public static void Deregister(EventBinding<T> binding) => bindings.Remove(binding);
 
     public static void Raise(T @event) {
+        
+#if UNITY_EDITOR
+        EventBusDebugHooks.NotifyRaised(typeof(T), @event);        
+#endif
+        
+        
         var snapshot = new HashSet<IEventBinding<T>>(bindings);
 
         foreach (var binding in snapshot) {

@@ -65,8 +65,6 @@ namespace Battle.Actions
     
         void OnTargetSelected(BattleEntity target)
         {
-            print($"Selected target: {target}");
-        
             targetSelectionStrategy.onEntitySelected -= OnTargetSelected; 
             StartAction(chosenAction, target);
         }

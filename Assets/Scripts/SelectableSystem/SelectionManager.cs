@@ -104,8 +104,6 @@ namespace SelectableSystem
             if (confirmAction == null) return;
             if (confirmAction.WasPressedThisFrame())
             {
-                Debug.Log("SelectionManager.ConfirmSelectable() succeeded");
-                
                 CurrentItem.Value.Select();
                 EndSelection();
             
