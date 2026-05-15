@@ -13,12 +13,15 @@ namespace Battle.Components
     {
 
         [SerializeField] private bool takeTurn;
+        private bool shouldSkipTurn; 
+        
         public bool TakeTurn => takeTurn; 
         [SerializeField, Tooltip("Will default if empty")] private InterfaceReference<ITurnHandleStrategy> turnStartHandle; 
         [SerializeField, Tooltip("Will default if empty")] private InterfaceReference<ITurnHandleStrategy> turnEndHandle;
     
         private EventBinding<EntityStartTurnEvent> turnStartBinding;
         private EventBinding<TurnEndEvent> turnEndBinding;
+        private EventBinding<CancelEntityTurn> cancelTurnBinding;
     
         private ITurnHandleStrategy defaultTurnStartHandle = new ActorChooseActionTurnHandle();
         private ITurnHandleStrategy defaultTurnEndHandle = new EmptyTurnHandle();
@@ -28,16 +31,36 @@ namespace Battle.Components
         protected override void Awake()
         {
             base.Awake();
-        
+            RegisterEventBindings();
+        }
+
+        void RegisterEventBindings()
+        {
             turnStartBinding = new EventBinding<EntityStartTurnEvent>(HandleTurnStart);
             EventBus<EntityStartTurnEvent>.Register(turnStartBinding);
         
             turnEndBinding = new EventBinding<TurnEndEvent>(HandleTurnEnd);
             EventBus<TurnEndEvent>.Register(turnEndBinding);
+
+            cancelTurnBinding = new EventBinding<CancelEntityTurn>(() => shouldSkipTurn = true); 
+            EventBus<CancelEntityTurn>.Register(cancelTurnBinding);
         }
 
+        void DeregisterEventBindings()
+        {
+            EventBus<EntityStartTurnEvent>.Deregister(turnStartBinding);
+            EventBus<TurnEndEvent>.Deregister(turnEndBinding);
+            EventBus<CancelEntityTurn>.Deregister(cancelTurnBinding);
+        }
+        
         public void StartTurn()
         {
+            if (shouldSkipTurn)
+            {
+                HandleTurnEnd(new TurnEndEvent {turnEntity = Entity});
+                return;
+            }
+            
             if (turnStartHandle.UnderlyingValue == null)
             {
                 Debug.LogWarning($"{gameObject.name}: TurnStartHandle is null, using default: {defaultTurnStartHandle.GetType().Name}");
@@ -57,7 +80,9 @@ namespace Battle.Components
         {
             if (!takeTurn) return; 
             if (e.turnEntity != Entity) return;
-        
+
+            shouldSkipTurn = false; 
+            
             if (turnEndHandle.UnderlyingValue == null)
             {
                 Debug.LogWarning($"{gameObject.name}: TurnEndHandle is null, using default: {defaultTurnEndHandle.GetType().Name}");
@@ -69,8 +94,7 @@ namespace Battle.Components
 
         private void OnDestroy()
         {
-            EventBus<EntityStartTurnEvent>.Deregister(turnStartBinding);
-            EventBus<TurnEndEvent>.Deregister(turnEndBinding);
+            DeregisterEventBindings();
         }
     }
 }
