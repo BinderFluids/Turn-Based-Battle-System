@@ -7,7 +7,7 @@ namespace SelectableSystem
     {
         public void Activate()
         {
-            SelectionManager.Instance.CurrentItem.onValueChanged += SelectionChanged; 
+            SelectionManager.Instance.onCurrentItemChanged += SelectionChanged; 
             OnActivate();
         }
 
@@ -15,14 +15,12 @@ namespace SelectableSystem
 
         protected abstract void SelectionChanged(ISelectable newSelection);
 
-        public virtual UniTask GetHighlightTask()
-        {
-            return UniTask.CompletedTask;
-        } 
+        public virtual UniTask GetHighlightTask() 
+            => UniTask.CompletedTask;
 
         public void Deactivate()
         {
-            SelectionManager.Instance.CurrentItem.onValueChanged -= SelectionChanged; 
+            SelectionManager.Instance.onCurrentItemChanged -= SelectionChanged; 
             OnDeactivate();
         }
         protected virtual void OnDeactivate() { }

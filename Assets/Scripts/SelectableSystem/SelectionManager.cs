@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,9 +14,21 @@ namespace SelectableSystem
         private SelectionMenuBuilder menuBuilder;
         [field: SerializeField] public SelectionMenu ActiveMenu { get; private set; }
         private Stack<SelectionMenu> previousMenuStack = new Stack<SelectionMenu>();
-    
+
+
+        public ISelectable CurrentItem
+        {
+            get => currentItem;
+            private set
+            {
+                currentItem = value;
+                onCurrentItemChanged?.Invoke(value);
+            }
+        }
+        private ISelectable currentItem;
         
-        public Observer<ISelectable> CurrentItem = new Observer<ISelectable>(null); 
+        public event Action<ISelectable> onCurrentItemChanged = delegate { };
+        public event Action<ISelectable> onItemSelected = delegate { };
         
         [Header("Default Settings")]
         [SerializeField] private InputActionReference defaultConfirm;
@@ -56,7 +69,7 @@ namespace SelectableSystem
             ActiveMenu = menu;
             ActiveMenu.Activate();
             
-            CurrentItem.Value = ActiveMenu.CurrentItem; 
+            CurrentItem = ActiveMenu.CurrentItem; 
         }
 
         private bool ignorePush; 
@@ -120,7 +133,7 @@ namespace SelectableSystem
         void ShiftSelection(int amt)
         {
             ActiveMenu.ShiftSelection(amt);
-            CurrentItem.Value = ActiveMenu.CurrentItem;
+            CurrentItem = ActiveMenu.CurrentItem;
         }
     }
 }
