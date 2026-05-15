@@ -24,10 +24,7 @@ MonoBehaviour:
   jumpDuration: 2
   jumpHeight: 2
   miniumAboveEnemy: 1
-  jumpSegmentDistribution: 0.5
-  jumpRiseEase: 0
-  jumpFallEase: 0
-  horizontalMovementEase: 0
+  jumpSegmentDistribution: 0.639
   secondJumpDuration: 0
   references:
     version: 2

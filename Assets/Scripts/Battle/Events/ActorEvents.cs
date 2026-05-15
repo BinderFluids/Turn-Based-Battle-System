@@ -11,6 +11,16 @@ namespace Battle.Events
         public BattleEntity Entity; 
     }
 
+    public struct CancelSelectEntity : IEvent
+    {
+        public BattleEntity Entity;
+    }
+
+    public struct CancelChooseAction : IEvent
+    {
+        public BattleEntity Entity;
+    }
+
     /// <summary>
     /// This event is raised when an entity has selected their action
     /// </summary>

@@ -847,6 +847,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 545287730194498799, guid: 1e605543fe657d97a979046610eb58bb, type: 3}
+      propertyPath: definition
+      value: 
+      objectReference: {fileID: 11400000, guid: 59b3ec49f691dc9029d577b6955b1f50, type: 2}
     - target: {fileID: 4768215149523373145, guid: 1e605543fe657d97a979046610eb58bb, type: 3}
       propertyPath: m_Name
       value: Partner
@@ -982,11 +986,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionCount: 0
-  active: 0
-  defaultHighlighter: {fileID: 176593138}
-  currentHighlighter: {fileID: 0}
+  <ActiveMenu>k__BackingField:
+    <ConfirmAction>k__BackingField:
+      m_Name: Confirm
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b5ea44d8-5d10-49f5-ad73-3ac6698ba853
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    <NavigateAction>k__BackingField:
+      m_Name: Navigate
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 522bddfa-bfe7-4f46-aa22-878e2cf90ac0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    <BacktrackAction>k__BackingField:
+      m_Name: Backtrack
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 748955e8-b29f-4d3b-8874-b1fe9cf468fd
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    <Highlighter>k__BackingField: {fileID: 0}
+    <InvertNavigation>k__BackingField: 0
   defaultConfirm: {fileID: 6335999504472618374, guid: 8c6e970fd190e53eabedf984078e8b35, type: 3}
   defaultNavigate: {fileID: 4343142814188068263, guid: 8c6e970fd190e53eabedf984078e8b35, type: 3}
+  defaultBacktrack: {fileID: -6346256083952250759, guid: 8c6e970fd190e53eabedf984078e8b35, type: 3}
+  defaultHighlighter: {fileID: 176593138}
+  active: 0
 --- !u!4 &1192007230
 Transform:
   m_ObjectHideFlags: 0

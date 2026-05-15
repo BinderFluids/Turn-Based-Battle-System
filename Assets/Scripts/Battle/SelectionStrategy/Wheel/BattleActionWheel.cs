@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Battle.Interfaces;
-using EventBus;
 using SelectableSystem;
-using SelectableSystem.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,36 +10,38 @@ namespace Battle.SelectionStrategy
     public class BattleActionWheel : MonoBehaviour, IBattleActionSelectionStrategy
     {
         [SerializeField] List<BattleActionWheelItem> items;
-    
-        private EventBinding<SelectableChosenEvent> chosenItemBinding;
+
         public event Action<IBattleAction> onActionSelected;
+        private event Action<IBattleAction> onActionSelectedCached; 
+        
         private BattleActionWheelItem selectedItem;
 
-        [SerializeField] private InputActionReference confirm; 
+        [SerializeField] private InputActionReference confirm;
 
-        private void Start()
-        {
-            chosenItemBinding = new EventBinding<SelectableChosenEvent>
-                (OnSelectableChosenEventRaised); 
-        }
-
+        
         public void GetAction(IEnumerable<IBattleAction> context)
         {
-            EventBus<SelectableChosenEvent>.Register(chosenItemBinding); 
-        
-            ActivateItems();
-            SelectionManager.Instance.StartSelection(
-                items.ConvertAll(i => i as ISelectable
-                ));
-            SelectionManager.Instance.SetConfirmAction(confirm);
+            onActionSelectedCached = onActionSelected;
+            
+            var menu = SelectionManager.Instance
+                .CreateMenu()
+                .WithConfirmAction(confirm.ToInputAction())
+                .Build(items.ConvertAll(i => i as ISelectable));
+            
+            menu.onMenuActivated += () => ActivateItems(); 
+            menu.onMenuDeactivated += () => ActivateItems(false);
+            menu.onItemSelected += OnMenuItemSelected; 
+            
+            SelectionManager.Instance.StartSelection(menu); 
         }
     
-        void OnSelectableChosenEventRaised(SelectableChosenEvent @event)
+        void OnMenuItemSelected(ISelectable item)
         {
-            selectedItem = (BattleActionWheelItem)@event.SelectedItem; 
-            onActionSelected?.Invoke(selectedItem.Action); 
-            EventBus<SelectableChosenEvent>.Deregister(chosenItemBinding); 
-            ActivateItems(false); 
+            if (item is BattleActionWheelItem wheel)
+            {
+                onActionSelectedCached?.Invoke(wheel.Action); 
+                ActivateItems(false); 
+            }
         }
     
         void ActivateItems(bool active = true)
