@@ -12,13 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/BattlePhases.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/BattlePhases.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/ActorChooseActionTurnHandle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/ActorChooseActionTurnHandle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/ActorChooseActionTurnHandle.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/ActorChooseActionTurnHandle.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/BattlePhaseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/BattlePhaseManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/Transition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/Transition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/TurnComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/TurnComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/com.binderfluids.eventbus/Runtime/EventBus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.binderfluids.eventbus/Runtime/EventBus.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
