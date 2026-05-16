@@ -956,6 +956,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1192007230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1120341101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1120341103}
+  - component: {fileID: 1120341102}
+  m_Layer: 0
+  m_Name: PhaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1120341102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120341101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04a598f6e414282acad5bd426636812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Battle::Battle.TurnPhase.BattlePhaseManager
+--- !u!4 &1120341103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120341101}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25747, y: -7.89824, z: 15.52579}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1192007228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1060,7 @@ MonoBehaviour:
       m_Flags: 0
     <Highlighter>k__BackingField: {fileID: 0}
     <InvertNavigation>k__BackingField: 0
+    <IsLastMenu>k__BackingField: 0
   defaultConfirm: {fileID: 6335999504472618374, guid: 8c6e970fd190e53eabedf984078e8b35, type: 3}
   defaultNavigate: {fileID: 4343142814188068263, guid: 8c6e970fd190e53eabedf984078e8b35, type: 3}
   defaultBacktrack: {fileID: -6346256083952250759, guid: 8c6e970fd190e53eabedf984078e8b35, type: 3}
@@ -1844,3 +1889,4 @@ SceneRoots:
   - {fileID: 480405327}
   - {fileID: 484799132}
   - {fileID: 424295419}
+  - {fileID: 1120341103}

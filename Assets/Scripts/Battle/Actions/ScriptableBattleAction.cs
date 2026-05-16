@@ -28,8 +28,7 @@ namespace Battle.Actions
                 Action = this
             });
         }
-
-
+        
         public List<BattleEntity> GetValidTargets(BattleEntity actor, IEnumerable<BattleEntity> ctx)
         {
             if (filters.Count == 0) return ctx.ToList();  

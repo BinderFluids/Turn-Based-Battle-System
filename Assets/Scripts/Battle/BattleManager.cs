@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RequestHub; 
 using Battle.Events;
 using Battle.Requests;
+using Cysharp.Threading.Tasks;
 using EventBus;
 using Registry;
 using UnityEngine;
@@ -18,6 +20,7 @@ namespace Battle
         private EventBinding<TurnEndEvent> turnEndBinding;
         private EventBinding<EntityStartTurnEvent> turnStartBinding;
         [SerializeField] private bool manageBattle;
+        public BattleEntity ActiveEntity { get; private set; }
         
         protected override void Awake()
         {
@@ -37,11 +40,11 @@ namespace Battle
         {
             Registry<BattleEntity>._onItemAddedNoArgs += SetSortedTurns;
         
-            turnEndBinding = new EventBinding<TurnEndEvent>(NextTurn);
+            turnEndBinding = new EventBinding<TurnEndEvent>(HandleTurnEnd);
             EventBus<TurnEndEvent>.Register(turnEndBinding);
         
             SetSortedTurns();
-            NextTurn(default);
+            NextTurn();
         }
 
 
@@ -52,7 +55,7 @@ namespace Battle
             Dictionary<BattleEntity, int> entityBySpeed = new Dictionary<BattleEntity, int>();
             foreach (BattleEntity entity in BattleEntity.AllEntities)
             {
-                if (RequestHub<RequestSpeedValue>.TryRequest(entity, out var request))
+                if (RequestHub<RequestableSpeedValue>.TryRequest(entity, out var request))
                 {
                     entityBySpeed.Add(entity, request.SpeedValue);
                     turnEntities.Add(entity); 
@@ -61,14 +64,19 @@ namespace Battle
             
             turnEntities = turnEntities.OrderByDescending(e => entityBySpeed[e]).ToList();
         }
-    
-        private void NextTurn(TurnEndEvent turnEndEvent)
+
+        private void HandleTurnEnd(TurnEndEvent turnEndEvent)
+        {
+            NextTurn();
+        }
+        
+        private void NextTurn()
         {
             turnNumber++;
             int turnIndex = turnNumber % turnEntities.Count;
         
-            BattleEntity turnComponent = turnEntities[turnIndex];
-            EventBus<EntityStartTurnEvent>.Raise(new EntityStartTurnEvent {Entity = turnComponent});
+            ActiveEntity = turnEntities[turnIndex];
+            EventBus<EntityStartTurnEvent>.Raise(new EntityStartTurnEvent {Entity = ActiveEntity});
         }
 
         private void OnDestroy()

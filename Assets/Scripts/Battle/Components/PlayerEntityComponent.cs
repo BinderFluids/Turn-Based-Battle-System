@@ -28,12 +28,12 @@ namespace Battle.Components
                 _ => throw new NotImplementedException()
             };
 
-            RequestHub<RequestPlayerId>.Register(Entity, () => new RequestPlayerId { PlayerId = playerID });
+            RequestHub<RequestablePlayerId>.Register(Entity, () => new RequestablePlayerId { PlayerId = playerID });
         }
 
         private void OnDestroy()
         {
-            RequestHub<RequestPlayerId>.Deregister(Entity);
+            RequestHub<RequestablePlayerId>.Deregister(Entity);
         }
     }
 }

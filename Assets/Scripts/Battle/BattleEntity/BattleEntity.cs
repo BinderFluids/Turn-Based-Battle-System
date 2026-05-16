@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Battle
 {
-    public partial class BattleEntity : MonoBehaviour, IRequestProvider, IDamageSource
+    public partial class BattleEntity : MonoBehaviour, IRequestableProvider, IDamageSource
     {
         private static List<BattleEntity> _allEntities = new();
         public static IReadOnlyList<BattleEntity> AllEntities => _allEntities;

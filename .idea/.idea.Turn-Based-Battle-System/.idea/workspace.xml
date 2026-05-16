@@ -11,7 +11,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectableSystem.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectableSystem.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/BattlePhases.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/BattlePhases.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/EntityTransitionEvents.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/EntityTransitionEvents.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/PhaseEvents.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/PhaseEvents.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/BattlePhaseManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/BattlePhaseManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/Transition.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/Transition.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/ICommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/ICommand.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle Environment.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle Environment.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/DamageTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/DamageTarget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Jump.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Jump.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ScriptableBattleAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ScriptableBattleAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/ActorChooseActionTurnHandle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/ActorChooseActionTurnHandle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/ActorChooseActionTurnHandle.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/ActorChooseActionTurnHandle.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/Battle.Components.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/Battle.Components.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/PlayerEntityComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/PlayerEntityComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/StatBlockComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/StatBlockComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/TurnComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/TurnComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Components/TurnComponent.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/TurnComponent.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Dodging/JumpDodge.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Dodging/JumpDodge.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/CancelEntityTurn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/MarkEntityForTurnSkip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/CancelEntityTurn.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Events/MarkEntityForTurnSkip.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IBattleTargetSelectionStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IBattleTargetSelectionStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/RequestPlayerId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/RequestPlayerId.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/StatBlockRequests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Requests/StatBlockRequests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ManualSelectTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ManualSelectTarget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/RandomOtherTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/RandomOtherTarget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ScriptableBattleEntitySelectionStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/TargetSelection/ScriptableBattleEntitySelectionStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Core.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Core.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RequestHub/RequestHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RequestHub/RequestHub.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,15 +88,20 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/BattleUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/BattleWindow/ActionCommandTierGradient.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Dodging/DodgeDirector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Enums/BattlePhases.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Enums/ComponentType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Enums/DodgeStates.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/ActorEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/BattlePhaseEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/CancelEntityTurn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/DodgeEvents.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/PhaseEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IDodgeBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/BattlePhaseManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Stats/StatBlockDefinition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenuBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.gitamend.unityutils@ee927cd3f735/UnityUtils/Scripts/Extensions/EnumerableExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.gitamend.unityutils@ee927cd3f735/UnityUtils/Scripts/Singleton/Singleton.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
@@ -94,7 +137,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feature/turn-command-stalling",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

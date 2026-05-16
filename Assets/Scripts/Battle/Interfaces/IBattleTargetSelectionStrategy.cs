@@ -8,6 +8,6 @@ namespace Battle.TargetSelection
     {
         public event Action<BattleEntity> onEntitySelected;
     
-        void GetEntity(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx); 
+        void BeginTargetSelection(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx); 
     }
 }

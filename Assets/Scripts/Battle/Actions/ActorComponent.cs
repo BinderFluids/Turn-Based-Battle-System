@@ -6,7 +6,9 @@ using Battle.Events;
 using Battle.Interfaces;
 using Battle.Requests;
 using Battle.TargetSelection;
+using Battle.TurnPhase;
 using Battle.Window;
+using Cysharp.Threading.Tasks;
 using EventBus;
 using SerializedInterface;
 using UnityEngine;
@@ -68,13 +70,16 @@ namespace Battle.Actions
         }
         public void CancelChooseAction() => actionSelectionStrategy.onActionSelected -= OnActionSelected;
 
-        void OnActionSelected(IBattleAction action)
+        void OnActionSelected(IBattleAction action) => OnActionSelectedAsync(action).Forget();
+        async UniTaskVoid OnActionSelectedAsync(IBattleAction action)
         {
             chosenAction = action;
             actionSelectionStrategy.onActionSelected -= OnActionSelected;
-        
             targetSelectionStrategy.onEntitySelected += OnTargetSelected;
-            targetSelectionStrategy.GetEntity(Entity, action, BattleEntity.AllEntities); 
+
+            await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.SelectingTarget);
+            
+            targetSelectionStrategy.BeginTargetSelection(Entity, action, BattleEntity.AllEntities); 
         }
 
         void CancelSelectEntity(BattleEntity entity)
@@ -84,9 +89,13 @@ namespace Battle.Actions
         }
         public void CancelSelectEntity() => targetSelectionStrategy.onEntitySelected -= OnTargetSelected;
     
-        void OnTargetSelected(BattleEntity target)
+        void OnTargetSelected(BattleEntity target) => OnTargetSelectedAsync(target).Forget();
+        async UniTaskVoid OnTargetSelectedAsync(BattleEntity target)
         {
             targetSelectionStrategy.onEntitySelected -= OnTargetSelected; 
+            
+            await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.PerformingAction);
+            
             StartAction(chosenAction, target);
         }
     

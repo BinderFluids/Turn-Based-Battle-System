@@ -16,7 +16,7 @@ namespace Battle.TargetSelection
     {
         public override event Action<BattleEntity> onEntitySelected;
     
-        public override void GetEntity(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx)
+        public override void BeginTargetSelection(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx)
         {
             //Create list of selectable entities
             List<ISelectable> entitiesAsSelectables = new();
@@ -25,7 +25,7 @@ namespace Battle.TargetSelection
                     entitiesAsSelectables.Add(selectable);
             
             PlayerId actorPlayerId = PlayerId.PlayerOne; 
-            if (!RequestHub<RequestPlayerId>.TryRequest(actor, out var request))
+            if (!RequestHub<RequestablePlayerId>.TryRequest(actor, out var request))
                 Debug.Log("Actor does not have a PlayerId. Defaulting to PlayerOne input");
             else
                 actorPlayerId = request.PlayerId;

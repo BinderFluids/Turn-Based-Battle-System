@@ -71,7 +71,7 @@ namespace Battle.Actions
         async UniTask<ActionCommandOutcome> AwaitActionCommand(BattleEntity actor, ActionCommandTierGradient gradient)
         {
             PlayerId playerId = PlayerId.PlayerOne;
-            if (RequestHub<RequestPlayerId>.TryRequest(actor, out var request))
+            if (RequestHub<RequestablePlayerId>.TryRequest(actor, out var request))
                 playerId = request.PlayerId;
             
             var window = BattleWindowService.Instance.ActionCommandWindowBuilder
