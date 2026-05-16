@@ -105,6 +105,8 @@ namespace SelectableSystem
             {
                 SelectionMenu menu = ActiveMenu;
                 if (menu.IsLastMenu) EndSelection();
+                
+                Debug.Log("im selecting!");
                 menu.Select();
             }
         }

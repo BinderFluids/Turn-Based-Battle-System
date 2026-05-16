@@ -10,4 +10,13 @@ namespace Battle.TargetSelection
     
         void BeginTargetSelection(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx); 
     }
+
+    public class NoSelection : IBattleEntitySelectionStrategy
+    {
+        public event Action<BattleEntity> onEntitySelected;
+        public void BeginTargetSelection(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx)
+        {
+            onEntitySelected?.Invoke(null); 
+        }
+    }
 }

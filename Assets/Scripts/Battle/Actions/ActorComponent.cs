@@ -28,6 +28,7 @@ namespace Battle.Actions
         [SerializeField] private List<InterfaceReference<IBattleAction>> actionsRef;
         public IReadOnlyList<IBattleAction> Actions => actionsRef.Select(a => a.Value).ToList();
         private IBattleAction chosenAction;
+        private IBattleEntitySelectionStrategy chosenSelectionStrategy;
 
         private EventBinding<ActorChooseAction> chooseActionBinding; 
         private EventBinding<CancelChooseAction> cancelChooseActionBinding;
@@ -75,11 +76,12 @@ namespace Battle.Actions
         {
             chosenAction = action;
             actionSelectionStrategy.onActionSelected -= OnActionSelected;
-            targetSelectionStrategy.onEntitySelected += OnTargetSelected;
 
             await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.SelectingTarget);
-            
-            targetSelectionStrategy.BeginTargetSelection(Entity, action, BattleEntity.AllEntities); 
+
+            chosenSelectionStrategy = action.ForcedTargetSelectionStrategy ?? targetSelectionStrategy;
+            chosenSelectionStrategy.onEntitySelected += OnTargetSelected;
+            chosenSelectionStrategy.BeginTargetSelection(Entity, action, BattleEntity.AllEntities); 
         }
 
         void CancelSelectEntity(BattleEntity entity)
@@ -87,12 +89,12 @@ namespace Battle.Actions
             if (entity == Entity)
                 CancelSelectEntity();
         }
-        public void CancelSelectEntity() => targetSelectionStrategy.onEntitySelected -= OnTargetSelected;
+        public void CancelSelectEntity() => chosenSelectionStrategy.onEntitySelected -= OnTargetSelected;
     
         void OnTargetSelected(BattleEntity target) => OnTargetSelectedAsync(target).Forget();
         async UniTaskVoid OnTargetSelectedAsync(BattleEntity target)
         {
-            targetSelectionStrategy.onEntitySelected -= OnTargetSelected; 
+            chosenSelectionStrategy.onEntitySelected -= OnTargetSelected; 
             
             await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.PerformingAction);
             
@@ -103,21 +105,19 @@ namespace Battle.Actions
         {
             if (action is null)
             {
-                Debug.LogError($"Tried to start action on {gameObject.name} with null action");
+                Debug.LogError($"Tried to start action from {gameObject.name} with null action");
                 return;
             }
 
             if (target is null)
-            {
-                Debug.LogError($"Tried to start action on {gameObject.name} with null target");
-                return;
-            }
+                Debug.LogWarning($"Starting action from {gameObject.name} with null target");
         
-            chosenAction = action; 
+            chosenAction = action;
             chosenAction.onActionEnded += OnActionEnded;
         
             chosenAction.StartAction(Entity, target);
         }
+        
         void OnActionEnded()
         {
             chosenAction.onActionEnded -= OnActionEnded;

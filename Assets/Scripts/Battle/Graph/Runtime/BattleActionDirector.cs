@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Battle.Enums;
 using Battle.Interfaces;
-using Battle; 
+using Battle;
+using Battle.TargetSelection;
 using UnityEngine;
 
 namespace Battle.Graph.Runtime
@@ -14,9 +15,12 @@ namespace Battle.Graph.Runtime
         public event Action onActionStarted;
         public event Action onActionEnded;
 
-        protected override ComponentType componentType => ComponentType.GraphDirector; 
-        
-        
+        protected override ComponentType componentType => ComponentType.GraphDirector;
+
+
+        //TODO: interface reference with optional selection strat
+        public IBattleEntitySelectionStrategy ForcedTargetSelectionStrategy => null; 
+
         public async void StartAction(BattleEntity actor, BattleEntity target)
         {
             onActionStarted?.Invoke();

@@ -20,7 +20,12 @@ namespace Battle.Phase
         public event Action onTransitionEnd; 
 
         public void AddPendingTask(UniTask task) => pendingTasks.Add(task);
-        public void QueueCommand(ICommand command) => queuedCommands.Enqueue(command);
+
+        public void QueueCommand(ICommand command)
+        {
+            Debug.Log("Command Queued");
+            queuedCommands.Enqueue(command);
+        }
 
         public void PrintStatus(object source)
         {

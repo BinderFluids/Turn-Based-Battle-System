@@ -985,6 +985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04a598f6e414282acad5bd426636812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Battle::Battle.TurnPhase.BattlePhaseManager
+  <CurrentPhase>k__BackingField: 0
 --- !u!4 &1120341103
 Transform:
   m_ObjectHideFlags: 0
@@ -1745,7 +1746,7 @@ PrefabInstance:
     - target: {fileID: 6943271461863747115, guid: 8f8ac28fbeb8579f8b70dd8fa02b4bfc, type: 3}
       propertyPath: actionsRef.Array.data[0].underlyingValue
       value: 
-      objectReference: {fileID: 11400000, guid: 9cfb5c51e697d038a96b7ef741ac143b, type: 2}
+      objectReference: {fileID: 11400000, guid: 1eb92d485f97942449505434d635d597, type: 2}
     - target: {fileID: 7485158156513918079, guid: 8f8ac28fbeb8579f8b70dd8fa02b4bfc, type: 3}
       propertyPath: m_LocalScale.y
       value: 1

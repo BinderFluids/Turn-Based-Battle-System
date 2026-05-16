@@ -5,11 +5,8 @@ namespace Battle
         void Handle(BattleEntity entity);
     }
 
-    public struct EmptyTurnHandle : ITurnHandleStrategy
+    public struct NextTurnHandle : ITurnHandleStrategy
     {
-        public void Handle(BattleEntity entity)
-        {
-        
-        }
+        public void Handle(BattleEntity entity) => BattleManager.Instance.EndTurn();
     }
 }

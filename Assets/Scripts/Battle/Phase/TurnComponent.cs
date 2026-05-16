@@ -29,7 +29,7 @@ namespace Battle.Phase
         private EventBinding<QueuePostTurnCommand> queuePostTurnCommandBinding;
     
         private ITurnHandleStrategy defaultTurnStartHandle = new ActorChooseActionTurnHandle();
-        private ITurnHandleStrategy defaultTurnEndHandle = new EmptyTurnHandle();
+        private ITurnHandleStrategy defaultTurnEndHandle = new NextTurnHandle();
 
         protected override ComponentType componentType => ComponentType.Turn; 
         
@@ -105,9 +105,11 @@ namespace Battle.Phase
         {
             if (!takeTurn) return; 
             if (e.Entity != Entity) return;
-            StartTurn().Forget();
+            StartTurn();
         } 
-        public async UniTask StartTurn()
+        
+        public void StartTurn() => StartTurnAsync().Forget();
+        public async UniTask StartTurnAsync()
         {
             preTurnTransition.PrintStatus(gameObject.name); 
             await preTurnTransition.TransitionAsync(); 
@@ -127,7 +129,8 @@ namespace Battle.Phase
                 turnStartHandle.Value.Handle(Entity);
         }
         
-        public async UniTask EndTurn()
+        public void EndTurn() => EndTurnAsync().Forget();
+        private async UniTask EndTurnAsync()
         {
             postTurnTransition.PrintStatus(gameObject.name);
             await postTurnTransition.TransitionAsync();
@@ -147,7 +150,7 @@ namespace Battle.Phase
         {
             if (!takeTurn) return; 
             if (e.turnEntity != Entity) return;
-            EndTurn().Forget(); 
+            EndTurn();
         }
 
         private void OnDestroy()

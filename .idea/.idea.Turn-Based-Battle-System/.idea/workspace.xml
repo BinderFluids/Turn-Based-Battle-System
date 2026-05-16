@@ -11,24 +11,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a94bb241-960b-43ea-9fa4-c60ca9ba8219" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/TestAddTurnTransitionTasks.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/TestAddTurnTransitionTasks.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Turn-Based-Battle-System/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle Environment.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle Environment.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ActorComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Jump.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/Jump.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/ActorChooseActionTurnHandle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/ActorChooseActionTurnHandle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.Movement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ScriptableBattleAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Actions/ScriptableBattleAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleEntity/BattleEntity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Dodging/JumpDodge.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Dodging/JumpDodge.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/EntityMotionType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Enums/MotionType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Enums/EntityMotionType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Enums/MotionType.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Graph/Runtime/Battle.Graph.Runtime.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Graph/Runtime/Battle.Graph.Runtime.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Graph/Runtime/Nodes/MoveToSocketRuntimeNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Graph/Runtime/Nodes/MoveToSocketRuntimeNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/BattlePhaseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/BattlePhaseManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/BattlePhaseManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/BattlePhaseManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/Transition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/Transition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/Transition.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/Transition.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/TurnComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/TurnComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/TurnComponent.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/TurnComponent.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Editor/BattleEntityEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Editor/BattleEntityEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Graph/Runtime/BattleActionDirector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Graph/Runtime/BattleActionDirector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IBattleAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IBattleAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IBattleTargetSelectionStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IBattleTargetSelectionStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/ITurnHandleStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/ITurnHandleStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/BattlePhaseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/BattlePhaseManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/Transition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/Transition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/TurnComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Phase/TurnComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +59,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/194aba98bf624c55b2370d17056b80d49dc600/66/8147de6f/CustomPropertyDrawer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/194aba98bf624c55b2370d17056b80d49dc600/f6/ab4ad8e0/EditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1bdc97936f564eb98deb7626cd2dd805468c00/fa/64c11015/Queue`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4c451ab93a5145e7b49c3473e43c4e1322dc00/78/d9437447/IMGUIContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4c451ab93a5145e7b49c3473e43c4e1322dc00/7c/6332677f/RenderTreeManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/c5/bd0b67b6/IReadOnlyDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
@@ -72,15 +72,14 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Enums/DodgeStates.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/ActorEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/BattlePhaseEvents.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/CancelEntityTurn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/DodgeEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Events/PhaseEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Interfaces/IDodgeBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/TurnPhase/BattlePhaseManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/Stats/StatBlockDefinition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SelectableSystem/SelectionMenuBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.cysharp.unitask@a85b92a8e443/Runtime/CompilerServices/AsyncUniTaskVoidMethodBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.gitamend.unityutils@ee927cd3f735/UnityUtils/Scripts/Extensions/EnumerableExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.gitamend.unityutils@ee927cd3f735/UnityUtils/Scripts/Singleton/Singleton.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
@@ -114,6 +113,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "XThreadsFramesViewSplitterKey": "0.33402705",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "feature/turn-command-stalling",
@@ -147,13 +147,15 @@
       <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false" ignored-value-for-modified-check="1128136">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="1128136" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list />
+        <list>
+          <MonoRuntime />
+        </list>
       </option>
       <option name="selectedOptions">
         <list />
@@ -215,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778883926383</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Some cleanup">
+      <option name="closed" value="true" />
+      <created>1778902809745</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778902809745</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +244,8 @@
     <MESSAGE value="fix verbose reference" />
     <MESSAGE value="Turn skip functionallity to TurnComponent.cs" />
     <MESSAGE value="cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleanup" />
+    <MESSAGE value="Some cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some cleanup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

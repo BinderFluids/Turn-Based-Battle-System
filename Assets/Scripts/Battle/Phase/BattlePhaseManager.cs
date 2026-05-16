@@ -61,7 +61,7 @@ namespace Battle.Phase
             
             if (phase == CurrentPhase)
             {
-                Debug.LogWarning($"Tried to transition to phase {phase} when already in that phase, so the transition is cancelled.");
+                Debug.LogWarning($"{BattleManager.Instance.ActiveEntity}: Tried to transition to phase {phase} when already in that phase, so the transition is cancelled.");
                 return;
             }
             
