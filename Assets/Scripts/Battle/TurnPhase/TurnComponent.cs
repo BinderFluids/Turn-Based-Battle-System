@@ -109,11 +109,7 @@ namespace Battle.TurnPhase
         } 
         public async UniTask StartTurn()
         {
-            if (preTurnTransition.PendingTasks.Count > 0)
-                Debug.Log($"{gameObject.name}: There are pending tasks to be completed before the turn starts, waiting..");
-            if (preTurnTransition.QueuedCommands.Count > 0)
-                Debug.Log($"{gameObject.name}: There are still commands that need to be executed");
-            
+            preTurnTransition.PrintStatus(gameObject.name); 
             await preTurnTransition.TransitionAsync(); 
             
             if (markedShouldSkipTurn)
@@ -133,10 +129,8 @@ namespace Battle.TurnPhase
         
         public async UniTask EndTurn()
         {
-            
-            {
-                await postTurnTransition.TransitionAsync();
-            }
+            postTurnTransition.PrintStatus(gameObject.name);
+            await postTurnTransition.TransitionAsync();
             
             markedShouldSkipTurn = false; 
             

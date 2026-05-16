@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battle.Enums;
 using RequestHub; 
 using Battle.Events;
 using Battle.Requests;
+using Battle.TurnPhase;
 using Cysharp.Threading.Tasks;
 using EventBus;
 using Registry;
@@ -65,15 +67,22 @@ namespace Battle
             turnEntities = turnEntities.OrderByDescending(e => entityBySpeed[e]).ToList();
         }
 
-        private void HandleTurnEnd(TurnEndEvent turnEndEvent)
+        private void HandleTurnEnd(TurnEndEvent turnEndEvent) => EndTurn();
+
+        public void EndTurn() => EndTurnAsync().Forget();
+        private async UniTask EndTurnAsync()
         {
+            await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.EndTurn); 
             NextTurn();
         }
         
-        private void NextTurn()
+        public void NextTurn() => NextTurnAsync().Forget();
+        private async UniTask NextTurnAsync()
         {
             turnNumber++;
             int turnIndex = turnNumber % turnEntities.Count;
+
+            await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.StartTurn); 
         
             ActiveEntity = turnEntities[turnIndex];
             EventBus<EntityStartTurnEvent>.Raise(new EntityStartTurnEvent {Entity = ActiveEntity});

@@ -61,10 +61,9 @@ namespace Battle.TurnPhase
             
             if (phase == CurrentPhase)
             {
-                Debug.LogWarning($"Tried to transition to phase {phase} when already in that phase.");
+                Debug.LogWarning($"Tried to transition to phase {phase} when already in that phase, so the transition is cancelled.");
                 return;
             }
-            Debug.Log($"Started transitioning to phase {phase}; {timeStartedTransition}");
             
             onPhaseChangeBegin?.Invoke(phase);
             
@@ -74,10 +73,7 @@ namespace Battle.TurnPhase
             UniTask transitionAsync = transition.TransitionAsync();
             pendingTransition = transitionAsync;
             
-            if (transition.PendingTasks.Count > 0)
-                Debug.Log($"{gameObject.name}: There are pending tasks to be completed before the turn starts, waiting..");
-            if (transition.QueuedCommands.Count > 0)
-                Debug.Log($"{gameObject.name}: There are still commands that need to be executed");
+            transition.PrintStatus(gameObject.name);
             await transitionAsync;
 
             CurrentPhase = phase;
