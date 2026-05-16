@@ -4,7 +4,7 @@ using Core;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Battle.TurnPhase
+namespace Battle.Phase
 {
     [Serializable]
     public class Transition

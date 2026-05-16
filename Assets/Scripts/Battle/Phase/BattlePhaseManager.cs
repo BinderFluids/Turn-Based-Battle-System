@@ -8,7 +8,7 @@ using UnityUtils;
 using EventBus;
 using UnityEngine;
 
-namespace Battle.TurnPhase
+namespace Battle.Phase
 {
     /// <summary>
     /// Manages the state of the battle phases.

@@ -5,7 +5,7 @@ using Battle.Enums;
 using RequestHub; 
 using Battle.Events;
 using Battle.Requests;
-using Battle.TurnPhase;
+using Battle.Phase;
 using Cysharp.Threading.Tasks;
 using EventBus;
 using Registry;
@@ -72,7 +72,7 @@ namespace Battle
         public void EndTurn() => EndTurnAsync().Forget();
         private async UniTask EndTurnAsync()
         {
-            await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.EndTurn); 
+            await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.EndTurn);
             NextTurn();
         }
         

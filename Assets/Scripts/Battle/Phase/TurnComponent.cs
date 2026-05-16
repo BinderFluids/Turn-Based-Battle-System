@@ -6,7 +6,7 @@ using UnityEngine;
 using EventBus;
 using SerializedInterface;
 
-namespace Battle.TurnPhase
+namespace Battle.Phase
 {
     public class TurnComponent : BattleEntityComponent
     {

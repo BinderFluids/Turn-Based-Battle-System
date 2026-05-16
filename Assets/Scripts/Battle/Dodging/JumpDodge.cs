@@ -1,4 +1,4 @@
-using Battle.Enums;
+using Core.Enums;
 using Battle.Interfaces;
 using Battle.Requests;
 using Cysharp.Threading.Tasks;
@@ -32,7 +32,7 @@ namespace Battle.Dodging
 
         async UniTask Jump(BattleEntity entity)
         {
-            await entity.Jump(entity.Transform.position, 2f, 1, EntityMotionType.Duration); 
+            await entity.Jump(entity.Transform.position, 2f, 1, MotionType.Duration); 
         }
     }
 }

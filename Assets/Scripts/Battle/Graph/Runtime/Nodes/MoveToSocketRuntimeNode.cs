@@ -10,7 +10,7 @@ namespace Battle.Graph.Runtime.Nodes
         public Vector3 SocketPosition;
         public float Speed;
 
-        public override async UniTask Execute(BattleActionDirector ctx, BattleEntity actor, global::Battle.BattleEntity target)
+        public override async UniTask Execute(BattleActionDirector ctx, BattleEntity actor, BattleEntity target)
         {
             await actor.MoveTo(SocketPosition, Speed); 
         }
