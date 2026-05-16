@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Battle.Phase;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,10 +33,8 @@ namespace Battle.Editor
         
             if (GUILayout.Button("Start Turn"))
             {
-                // if (entity.TryGetComponent(out TurnComponent turnComponent))
-                //     turnComponent.StartTurn();
-                //TODO TRIGGER TURN START EVENT
-                
+                 if (entity.TryGetComponent(out TurnComponent turnComponent))
+                     turnComponent.StartTurn();
             }
         }
 

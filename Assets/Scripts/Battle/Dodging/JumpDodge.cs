@@ -1,8 +1,10 @@
-using Battle.Enums;
+using Core.Enums;
 using Battle.Interfaces;
 using Battle.Requests;
 using Cysharp.Threading.Tasks;
 using RequestHub;
+using EventBus;
+using Battle.Events; 
 
 namespace Battle.Dodging
 {
@@ -12,18 +14,25 @@ namespace Battle.Dodging
         
         public void UpdateDodge(BattleEntity entity)
         {
-            if (!RequestHub<RequestPlayerId>.TryRequest(entity, out var request)) return;
+            if (!RequestHub<RequestablePlayerId>.TryRequest(entity, out var request)) return;
 
             if (BattleUtils.PlayerInputData.GetInputActionByPlayerID(request.PlayerId).WasPressedThisFrame())
             {
                 if (jumpTask.Status.IsCompleted())
-                    jumpTask = Jump(entity); 
+                {
+                    jumpTask = Jump(entity);
+                    EventBus<AddPreTurnTask>.Raise(new AddPreTurnTask()
+                    {
+                        Entity =  entity,
+                        Task = jumpTask
+                    });
+                } 
             }
         }
 
         async UniTask Jump(BattleEntity entity)
         {
-            await entity.Jump(entity.Transform.position, 2f, 1, EntityMotionType.Duration); 
+            await entity.Jump(entity.Transform.position, 2f, 1, MotionType.Duration); 
         }
     }
 }

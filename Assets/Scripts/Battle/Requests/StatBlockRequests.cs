@@ -2,17 +2,17 @@ using RequestHub;
 
 namespace Battle.Requests
 {
-    public struct RequestAttackValue : IRequest
+    public struct RequestableAttackValue : IRequestable
     {
         public int AttackValue; 
     }
 
-    public struct RequestDefenseValue : IRequest
+    public struct RequestableDefenseValue : IRequestable
     {
         public int DefenseValue;
     }
 
-    public struct RequestSpeedValue : IRequest
+    public struct RequestableSpeedValue : IRequestable
     {
         public int SpeedValue; 
     }

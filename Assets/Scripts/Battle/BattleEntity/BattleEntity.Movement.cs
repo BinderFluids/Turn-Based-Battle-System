@@ -1,10 +1,8 @@
-using System;
-using Battle.Enums;
+using Core.Enums;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using LitMotion;
 using LitMotion.Extensions;
-using PlasticPipe.PlasticProtocol.Messages;
 
 namespace Battle
 {
@@ -12,17 +10,17 @@ namespace Battle
     {
         private const float DISTANCE_THRESHOLD = 0.1f; 
     
-        public async UniTask MoveTo(Vector3 targetPosition, float movement, EntityMotionType motionType = EntityMotionType.Duration)
+        public async UniTask MoveTo(Vector3 targetPosition, float movement, MotionType motionType = MotionType.Duration)
         {
             Vector3 startPosition = Transform.position;
             float duration; 
             
-            if (motionType == EntityMotionType.Duration)
+            if (motionType == MotionType.Duration)
                 await LMotion.Create(startPosition, targetPosition, movement)
                     .BindToPosition(Transform)
                     .AddTo(Transform)
                     .ToUniTask(); 
-            else if (motionType == EntityMotionType.Speed)
+            else if (motionType == MotionType.Speed)
             {
                 float distance = Mathf.Abs((startPosition - targetPosition).magnitude);
                 float time = distance / movement;
@@ -37,14 +35,14 @@ namespace Battle
         }
 
         public async UniTask Jump(Vector3 targetPosition, float height, float movement,
-            EntityMotionType motionType = EntityMotionType.Duration)
+            MotionType motionType = MotionType.Duration)
         {
             Vector3 startPosition = Transform.position;
 
             float duration = motionType switch
             {
-                EntityMotionType.Duration => movement,
-                EntityMotionType.Speed => Vector3.Distance(startPosition, targetPosition) / movement,
+                MotionType.Duration => movement,
+                MotionType.Speed => Vector3.Distance(startPosition, targetPosition) / movement,
                 _ => throw new System.NotImplementedException()
             };
 

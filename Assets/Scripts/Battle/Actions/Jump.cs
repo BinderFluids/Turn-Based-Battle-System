@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Battle.Enums;
 using Battle.Requests;
 using Battle.Window;
@@ -45,24 +44,24 @@ namespace Battle.Actions
             moveDirection *= approachEndDistance;
             Vector3 approachPosition = target.transform.position - moveDirection;
             
-            await actor.MoveTo(approachPosition, approachDuration, EntityMotionType.Duration);
+            await actor.MoveTo(approachPosition, approachDuration, MotionType.Duration);
 
-            await actor.Jump(topPosition, jumpHeight, jumpDuration, EntityMotionType.Duration); 
+            await actor.Jump(topPosition, jumpHeight, jumpDuration, MotionType.Duration); 
             ActionCommandOutcome firstJumpOutcome = await AwaitActionCommand(actor, firstJumpGradient);
 
             //end early if you didn't get a good rating
             if (firstJumpOutcome.Tier != ActionCommandTier.GOOD)
             {
-                await actor.Jump(approachPosition, jumpHeight, jumpDuration, EntityMotionType.Duration); 
+                await actor.Jump(approachPosition, jumpHeight, jumpDuration, MotionType.Duration); 
                 transform.position = startPos;
                 EndAction(actor); 
                 return; 
             }
             
-            await actor.Jump(topPosition, jumpHeight, jumpDuration, EntityMotionType.Duration); 
+            await actor.Jump(topPosition, jumpHeight, jumpDuration, MotionType.Duration); 
             ActionCommandOutcome secondJumpOutcome = await AwaitActionCommand(actor, secondJumpGradient);
             
-            await actor.Jump(approachPosition, jumpHeight, jumpDuration, EntityMotionType.Duration); 
+            await actor.Jump(approachPosition, jumpHeight, jumpDuration, MotionType.Duration); 
             transform.position = startPos;
             
             EndAction(actor); 
@@ -71,7 +70,7 @@ namespace Battle.Actions
         async UniTask<ActionCommandOutcome> AwaitActionCommand(BattleEntity actor, ActionCommandTierGradient gradient)
         {
             PlayerId playerId = PlayerId.PlayerOne;
-            if (RequestHub<RequestPlayerId>.TryRequest(actor, out var request))
+            if (RequestHub<RequestablePlayerId>.TryRequest(actor, out var request))
                 playerId = request.PlayerId;
             
             var window = BattleWindowService.Instance.ActionCommandWindowBuilder

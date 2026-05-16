@@ -4,6 +4,7 @@ using System.Linq;
 using EventBus;
 using Battle.Events;
 using Battle.Interfaces;
+using Battle.TargetSelection;
 using SerializedInterface;
 using UnityEngine;
 
@@ -15,9 +16,11 @@ namespace Battle.Actions
     
         public event Action onActionStarted;
         public event Action onActionEnded;
-    
-        [SerializeReference, Subclass(IsList = true)] private List<BattleSelectionFilter> filters; 
-    
+
+        [SerializeReference, Subclass(IsList = true)] private List<BattleSelectionFilter> filters;
+
+        public virtual IBattleEntitySelectionStrategy ForcedTargetSelectionStrategy => null; 
+        
         public abstract void StartAction(BattleEntity actor, BattleEntity target);
         protected void EndAction(BattleEntity actor)
         {
@@ -27,9 +30,10 @@ namespace Battle.Actions
                 Entity = actor,
                 Action = this
             });
+            
+            onActionEnded = null;
         }
-
-
+        
         public List<BattleEntity> GetValidTargets(BattleEntity actor, IEnumerable<BattleEntity> ctx)
         {
             if (filters.Count == 0) return ctx.ToList();  

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Battle.Enums;
 using Battle.Interfaces;
-using Codice.CM.Client.Differences.Graphic;
 using Registry;
 using RequestHub;
 using UnityEngine;
 
 namespace Battle
 {
-    public partial class BattleEntity : MonoBehaviour, IRequestProvider, IDamageSource
+    public partial class BattleEntity : MonoBehaviour, IRequestableProvider, IDamageSource
     {
         private static List<BattleEntity> _allEntities = new();
         public static IReadOnlyList<BattleEntity> AllEntities => _allEntities;

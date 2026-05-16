@@ -18,7 +18,7 @@ namespace Battle.Actions
             this.target = target;
 
             int actorAttackValue = 1;
-            if (RequestHub<RequestAttackValue>.TryRequest(actor, out var request))
+            if (RequestHub<RequestableAttackValue>.TryRequest(actor, out var request))
                 actorAttackValue = request.AttackValue;      
             else
                 Debug.Log($"{actor} does not have a StatBlock. Damage will be 1");

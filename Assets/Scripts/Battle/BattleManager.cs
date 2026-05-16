@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Battle.Enums;
 using RequestHub; 
 using Battle.Events;
 using Battle.Requests;
+using Battle.Phase;
+using Cysharp.Threading.Tasks;
 using EventBus;
 using Registry;
 using UnityEngine;
@@ -18,6 +22,7 @@ namespace Battle
         private EventBinding<TurnEndEvent> turnEndBinding;
         private EventBinding<EntityStartTurnEvent> turnStartBinding;
         [SerializeField] private bool manageBattle;
+        public BattleEntity ActiveEntity { get; private set; }
         
         protected override void Awake()
         {
@@ -37,11 +42,11 @@ namespace Battle
         {
             Registry<BattleEntity>._onItemAddedNoArgs += SetSortedTurns;
         
-            turnEndBinding = new EventBinding<TurnEndEvent>(NextTurn);
-            EventBus<TurnEndEvent>.Register(turnEndBinding);
+            // turnEndBinding = new EventBinding<TurnEndEvent>(HandleTurnEnd);
+            // EventBus<TurnEndEvent>.Register(turnEndBinding);
         
             SetSortedTurns();
-            NextTurn(default);
+            NextTurn();
         }
 
 
@@ -52,7 +57,7 @@ namespace Battle
             Dictionary<BattleEntity, int> entityBySpeed = new Dictionary<BattleEntity, int>();
             foreach (BattleEntity entity in BattleEntity.AllEntities)
             {
-                if (RequestHub<RequestSpeedValue>.TryRequest(entity, out var request))
+                if (RequestHub<RequestableSpeedValue>.TryRequest(entity, out var request))
                 {
                     entityBySpeed.Add(entity, request.SpeedValue);
                     turnEntities.Add(entity); 
@@ -61,14 +66,28 @@ namespace Battle
             
             turnEntities = turnEntities.OrderByDescending(e => entityBySpeed[e]).ToList();
         }
-    
-        private void NextTurn(TurnEndEvent turnEndEvent)
+
+        // private void HandleTurnEnd(TurnEndEvent turnEndEvent) => EndTurn();
+
+        public void EndTurn() => EndTurnAsync().Forget();
+        private async UniTask EndTurnAsync()
+        {
+            await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.EndTurn);
+            
+            NextTurn();
+        }
+        
+        private void NextTurn() => NextTurnAsync().Forget();
+        private async UniTask NextTurnAsync()
         {
             turnNumber++;
             int turnIndex = turnNumber % turnEntities.Count;
+
+            
+            await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.StartTurn); 
         
-            BattleEntity turnComponent = turnEntities[turnIndex];
-            EventBus<EntityStartTurnEvent>.Raise(new EntityStartTurnEvent {Entity = turnComponent});
+            ActiveEntity = turnEntities[turnIndex];
+            EventBus<EntityStartTurnEvent>.Raise(new EntityStartTurnEvent {Entity = ActiveEntity});
         }
 
         private void OnDestroy()

@@ -38,12 +38,12 @@ namespace Battle.Components
             attackEntityBinding = new EventBinding<ChangeEntityHealthEvent>(HandleAttackEntityEvent);
             EventBus<ChangeEntityHealthEvent>.Register(attackEntityBinding); 
             
-            RequestHub<RequestAttackValue>
-                .Register(Entity, () => new RequestAttackValue {AttackValue = statBlock.Attack.Value});
-            RequestHub<RequestDefenseValue>
-                .Register(Entity, () => new  RequestDefenseValue {DefenseValue = statBlock.Defense.Value});
-            RequestHub<RequestSpeedValue>
-                .Register(Entity, () => new RequestSpeedValue {SpeedValue = statBlock.Speed.Value});
+            RequestHub<RequestableAttackValue>
+                .Register(Entity, () => new RequestableAttackValue {AttackValue = statBlock.Attack.Value});
+            RequestHub<RequestableDefenseValue>
+                .Register(Entity, () => new  RequestableDefenseValue {DefenseValue = statBlock.Defense.Value});
+            RequestHub<RequestableSpeedValue>
+                .Register(Entity, () => new RequestableSpeedValue {SpeedValue = statBlock.Speed.Value});
         }
 
         
@@ -63,9 +63,9 @@ namespace Battle.Components
         {
             EventBus<ChangeEntityHealthEvent>.Deregister(attackEntityBinding);
 
-            RequestHub<RequestAttackValue>.Deregister(Entity); 
-            RequestHub<RequestDefenseValue>.Deregister(Entity);
-            RequestHub<RequestSpeedValue>.Deregister(Entity);
+            RequestHub<RequestableAttackValue>.Deregister(Entity); 
+            RequestHub<RequestableDefenseValue>.Deregister(Entity);
+            RequestHub<RequestableSpeedValue>.Deregister(Entity);
         }
     }
 }

@@ -2,7 +2,7 @@ using EventBus;
 
 namespace Battle.Events
 {
-    public struct CancelEntityTurn : IEvent
+    public struct MarkEntityForTurnSkip : IEvent
     {
         public BattleEntity Entity;
     }

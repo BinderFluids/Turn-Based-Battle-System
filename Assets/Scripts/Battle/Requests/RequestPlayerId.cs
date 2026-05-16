@@ -3,7 +3,7 @@ using RequestHub;
 
 namespace Battle.Requests
 {
-    public struct RequestPlayerId : IRequest
+    public struct RequestablePlayerId : IRequestable
     {
         public PlayerId PlayerId; 
     }

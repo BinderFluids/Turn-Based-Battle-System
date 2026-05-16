@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Battle.TargetSelection;
 
 namespace Battle.Interfaces
 {
@@ -7,7 +8,9 @@ namespace Battle.Interfaces
     {
         public event Action onActionStarted;
         public event Action onActionEnded;
-    
+
+        public IBattleEntitySelectionStrategy ForcedTargetSelectionStrategy { get; }
+
         void StartAction(BattleEntity actor, BattleEntity target);
         List<BattleEntity> GetValidTargets(BattleEntity actor, IEnumerable<BattleEntity> ctx); 
     }

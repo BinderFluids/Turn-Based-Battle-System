@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace EventBus
@@ -18,6 +19,9 @@ public static class EventBus<T> where T : IEvent {
         
         var snapshot = new HashSet<IEventBinding<T>>(bindings);
 
+        eventRaisedThisFrame = @event;
+        wasRaisedThisFrame = true; 
+        
         foreach (var binding in snapshot) {
             if (bindings.Contains(binding)) {
                 binding.OnEvent.Invoke(@event);
@@ -26,9 +30,18 @@ public static class EventBus<T> where T : IEvent {
         }
     }
 
-    static void Clear() {
-        bindings.Clear();
+    private static bool wasRaisedThisFrame = false;
+    private static T eventRaisedThisFrame; 
+    public static async Task<T> AwaitRaise()
+    {
+        while (!wasRaisedThisFrame)
+            await Task.Yield();
+        
+        wasRaisedThisFrame = false;
+        return eventRaisedThisFrame;
     }
+
+    static void Clear() => bindings.Clear();
 }
     
 }

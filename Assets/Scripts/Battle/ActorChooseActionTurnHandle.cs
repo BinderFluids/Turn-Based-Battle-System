@@ -1,6 +1,8 @@
 using Battle.Enums;
 using Battle.Events;
 using Battle.Requests;
+using Battle.Phase;
+using Cysharp.Threading.Tasks;
 using RequestHub; 
 using UnityEngine;
 using EventBus; 
@@ -24,9 +26,9 @@ namespace Battle
             }
 
             actionEndHandle ??= new EventBinding<OnActionEnded>(ActionEnded);
-            EventBus<OnActionEnded>.Register(actionEndHandle); 
-            
-            EventBus<ActorChooseAction>.Raise(new ActorChooseAction {Entity = entity});
+            EventBus<OnActionEnded>.Register(actionEndHandle);
+
+            BattlePhaseManager.Instance.TransitionToPhase(BattlePhases.SelectingAction); 
         }
 
         void ActionEnded(OnActionEnded e)

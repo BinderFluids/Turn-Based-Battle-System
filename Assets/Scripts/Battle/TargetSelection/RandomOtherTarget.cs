@@ -10,7 +10,7 @@ namespace Battle.TargetSelection
     public class RandomOtherTarget : ScriptableObject, IBattleEntitySelectionStrategy
     {
         public event Action<BattleEntity> onEntitySelected;
-        public void GetEntity(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx)
+        public void BeginTargetSelection(BattleEntity actor, IBattleAction action, IEnumerable<BattleEntity> ctx)
         {
             var targetList = action.GetValidTargets(actor, ctx); 
             targetList.Remove(actor); 

@@ -14,7 +14,6 @@ namespace Battle.SelectionStrategy
 
         public void GetAction(IEnumerable<IBattleAction> context)
         {
-            Debug.Log($"Selecting random action from {context.Count()} actions");
             onActionSelected?.Invoke(context.Random());
         }
     }
