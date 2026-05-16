@@ -74,7 +74,6 @@ namespace Battle
         {
             await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.EndTurn);
             
-            Debug.Log($"$$$ TURN END: {ActiveEntity} $$$");
             NextTurn();
         }
         
@@ -88,7 +87,6 @@ namespace Battle
             await BattlePhaseManager.Instance.TransitionToPhaseAsync(BattlePhases.StartTurn); 
         
             ActiveEntity = turnEntities[turnIndex];
-            Debug.Log($"$$$ TURN START: {ActiveEntity} $$$");
             EventBus<EntityStartTurnEvent>.Raise(new EntityStartTurnEvent {Entity = ActiveEntity});
         }
 

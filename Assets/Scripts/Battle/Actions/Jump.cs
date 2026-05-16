@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Battle.Enums;
 using Battle.Requests;
 using Battle.Window;
